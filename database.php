@@ -1,14 +1,15 @@
 <?php
 	class DataBase{
 
-		var $conn;
+		var $connection;
 
-		public function DataBase($conn){
-			$this->conn = $conn;
+		public function DataBase(){
+			require("db_connection.php");
+			$this->connection = $conn;
 		}
 
 		function Query($query){
-			$result = mysqli_query($this->conn,$query);
+			$result = mysqli_query($this->connection,$query);
 			return $result;
 		}
 	}
