@@ -1,0 +1,27 @@
+div.table {
+	border: 2px;
+	border-style: solid;
+	margin: 3px;
+}
+
+div.cellA {
+	border: 1px;
+	border-style: solid;
+	width: 23.4%;
+	float: left;
+	margin: 6px;
+	background-color: #DBB8FF;
+}
+
+div.cellB {
+	border: 1px;
+	border-style: solid;
+	width: 23.4%;
+	float: left;
+	margin: 6px;
+	background-color: #CCFFCC;
+}
+
+div.clear{
+	clear: both;
+}
