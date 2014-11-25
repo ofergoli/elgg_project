@@ -7,6 +7,10 @@ div.mainpage{
 	margin: 200px;
 }
 
-div.download_section{
+div.download_section {
 	margin: 30px;
+}
+
+div.upload_section{
+	margin: 50px;
 }

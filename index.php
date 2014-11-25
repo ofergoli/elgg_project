@@ -32,6 +32,12 @@
 				<input type="submit" value="download" id="bt_csv"/>
 			</form>
 		</div>
+		<div class="upload_section">
+			<form action="upload.php" method="post" enctype="multipart/form-data">
+				<input type="file" name="file" size="50" />
+				<input type="submit" value="upload" id="bt_upload"/>
+			</form>
+		</div>
 	</div>
 </body>
 </html>
