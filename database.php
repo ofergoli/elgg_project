@@ -7,7 +7,7 @@
 			require("db_connection.php");
 			$this->connection = $conn;
 		}
-		// blabla
+
 		function Query($query){
 			$result = mysqli_query($this->connection,$query);
 			return $result;

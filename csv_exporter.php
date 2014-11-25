@@ -1,5 +1,4 @@
 <?php 
-
 	function export_csv($table_to_export){
 		header('Content-Type: text/csv; charset=utf-8');
 		header('Content-Disposition: attachment; filename=' . $table_to_export . '.csv');
@@ -20,5 +19,7 @@
 		while ($row = mysql_fetch_assoc($rows)){
 			 fputcsv($output, $row);
 		}
+		mysqli_close($databasecheck->connection);
+		exit();
 	}
 ?>
