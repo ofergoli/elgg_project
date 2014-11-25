@@ -14,13 +14,17 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="http://localhost/sites/elggtest/install/css/install.css" type="text/css">
 </head>
 <body>
-	<div class="mainpage">
-		<h1>Select table to Download (csv file)</h1>
+	<header class="elgg-page-header" role="banner">
+				<img src="http://localhost/sites/elggtest/_graphics/elgg_logo.png" alt="Elgg">
+	</header>
+	<div class="elgg-page-body">
+		<h1>Execute CSV File choose table</h1>
 		<div class="download_section">
 			<form action="index.php" method="get">
-				<select name="filename">
+				<select class="elgg-input-text" name="filename">
 					<?php 
 						$db = new DataBase();
 						$resultTableName = $db->Query("SHOW TABLES FROM elgg");
@@ -30,12 +34,6 @@
 					?>
 				</select>
 				<input type="submit" value="download" id="bt_csv"/>
-			</form>
-		</div>
-		<div class="upload_section">
-			<form action="upload.php" method="post" enctype="multipart/form-data">
-				<input type="file" name="file" size="50" />
-				<input type="submit" value="upload" id="bt_upload"/>
 			</form>
 		</div>
 	</div>
