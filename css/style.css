@@ -1,16 +1,4 @@
-body{
-	background: #D8D3DB;
-}
-
-div.mainpage{
-	text-align: center;
-	margin: 200px;
-}
-
-div.download_section {
-	margin: 30px;
-}
-
-div.upload_section{
-	margin: 50px;
+div.download_section{
+	margin-left: 50px;
+	margin-top: 30px;
 }
