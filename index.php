@@ -1,11 +1,15 @@
 <?php 
 	require_once("database.php");
 	require_once("csv_exporter.php");
+	require_once("zip_extract.php");
 	
 	if(isset($_GET['filename'])){
 		export_csv($_GET['filename']);
 	}
-
+	if(isset($_GET['soicalname'])){
+		$check = new SocialNetwork();
+		$check->createSN();
+	}
 	//$pass = md5("ronkahat" . "M0ABlCEl");
 	//echo $pass;
 ?>
@@ -40,7 +44,7 @@
 		</div>
 		<div class="elgg-page-body">
 			<h1>Create new Soical Network</h1>
-				<form action="../elggtest/install.php" method="get">
+				<form action="index.php" method="get">
 					<input type="text" name="soicalname"/> 
 					<input type="submit" value="install" />
 				</form>
