@@ -2,7 +2,10 @@
 	require_once("database.php");
 	require_once("csv_exporter.php");
 	require_once("zip_extract.php");
-	
+
+
+	$db = new DataBase();
+
 	if(isset($_GET['filename'])){
 		export_csv($_GET['filename']);
 	}
@@ -10,7 +13,9 @@
 		$check = new SocialNetwork();
 		$status = $check->createSN();
 		if($status!="failed"){
-			header('Location: ./soical_networks/'.$status.'/elgg-1.9.5/install.php');
+			$db->Query("CREATE DATABASE ".$status);
+			header('Location: ./soical_networks/'.$status.'/elgg-1.9.5/install.php?db_name='.$status);
+			//header('Location: ./soical_networks/8f747b8f0513448c2c115978ac2f6252/elgg-1.9.5/install.php?db_name=8f747b8f0513448c2c115978ac2f6252');
 		}
 	}
 	//$pass = md5("ronkahat" . "M0ABlCEl");
@@ -34,7 +39,6 @@
 				<form action="index.php" method="get">
 					<select class="elgg-input-text" name="filename">
 						<?php 
-							$db = new DataBase();
 							$resultTableName = $db->Query("SHOW TABLES FROM elgg");
 							while ($row = mysqli_fetch_row($resultTableName)) {
 							    echo "<option value='{$row[0]}'> {$row[0]} </option>";
