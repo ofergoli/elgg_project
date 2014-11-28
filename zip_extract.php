@@ -3,7 +3,6 @@
 	class SocialNetwork{
 		var $zip;
 
-
 		public function SocialNetwork()
 		{
 			$this->zip = new ZipArchive;
@@ -19,13 +18,8 @@
 			    return $folderName;
 			} 
 			else {
-			    echo 'failed, code:' . $res;
+			    echo 'failed';
 			}
 		}
 	}
-
-	$check = new SocialNetwork();
-	$check->createSN();
-
-
 ?>

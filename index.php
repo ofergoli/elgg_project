@@ -6,9 +6,12 @@
 	if(isset($_GET['filename'])){
 		export_csv($_GET['filename']);
 	}
-	if(isset($_GET['soicalname'])){
+	if(isset($_GET['Create'])){
 		$check = new SocialNetwork();
-		$check->createSN();
+		$status = $check->createSN();
+		if($status!="failed"){
+			header('Location: ./soical_networks/'.$status.'/elgg-1.9.5/install.php');
+		}
 	}
 	//$pass = md5("ronkahat" . "M0ABlCEl");
 	//echo $pass;
@@ -44,9 +47,11 @@
 		</div>
 		<div class="elgg-page-body">
 			<h1>Create new Soical Network</h1>
-				<form action="index.php" method="get">
-					<input type="text" name="soicalname"/> 
-					<input type="submit" value="install" />
+				<form action="index.php" method="get" value="create_sn">
+					<div>
+						<h3 >Make your own Soical Network : </h3>
+						<input type="submit" name="Create" value="Create" />
+					</div>
 				</form>
 		</div>
 	</div>
