@@ -84,6 +84,7 @@ ul {
 	border-right: 1px solid #666666;
 	padding: 0 1em .5em;
 	background: white;
+	vertical-align: middle;
 }
 
 
@@ -192,10 +193,7 @@ input[type="url"] {
 	width: 100%;
 }
 
-input[type="text"]{
-	width: 220px;
-	float: left;
-}
+
 
 input[type="password"]:focus,
 input[type="text"]:focus,
@@ -318,4 +316,41 @@ select {
 	width: 100%;
 	padding: .25em .5em;
 	margin: 1.5em 0 .5em 0;
+}
+
+
+div.custom_div{
+	width: 340px;
+	float: left;
+}
+
+input[type="text"]{
+	width: 220px;
+	float: left;
+	margin-top: 20px;
+}
+
+
+h3.custom_ui{
+	width: 190px;
+	float: left;
+}
+
+div.custom_div{
+	width: 440px;
+}
+
+input[type="button"]{
+	width: 220px;
+	float: left;
+	margin-top: 20px;
+}
+
+div.custom_submit{
+	margin-left: 330px;
+	margin-top: 40px;
+}
+
+#elgg_img{
+	text-align: center;
 }
