@@ -14,9 +14,7 @@
 		$status = $check->createSN();
 		if($status!="failed"){
 			$db->Query("CREATE DATABASE ".$status);
-			//header('Location: ./soical_networks/'.$status.'/elgg-1.9.5/install.php?db_name='.$status);
-			header('Location: install_ofer.php?db_name='.$status);
-			//header('Location: ./soical_networks/8f747b8f0513448c2c115978ac2f6252/elgg-1.9.5/install.php?db_name=8f747b8f0513448c2c115978ac2f6252');
+			header('Location: auto_install.php?db_name='.$status);
 		}
 	}
 	//$pass = md5("ronkahat" . "M0ABlCEl");
