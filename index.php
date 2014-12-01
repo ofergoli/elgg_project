@@ -3,18 +3,29 @@
 	require_once("csv_exporter.php");
 	require_once("zip_extract.php");
 
-
 	$db = new DataBase();
 
 	if(isset($_GET['filename'])){
 		export_csv($_GET['filename']);
 	}
-	if(isset($_GET['Create'])){
-		$check = new SocialNetwork();
-		$status = $check->createSN();
-		if($status!="failed"){
-			$db->Query("CREATE DATABASE ".$status);
-			header('Location: auto_install.php?db_name='.$status);
+	if(isset($_POST['Create'])){		// check isset <--- issues
+		if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['displayname']) && isset($_POST['sitename']) && isset($_POST['email'])){
+			$check = new SocialNetwork();
+			$status = $check->createSN();
+			if($status!="failed"){
+				$db->Query("CREATE DATABASE ".$status);
+				
+				$getParam = array('username' => $_POST['username'],
+		 					       'password' => $_POST['password'],
+		 					       'displayname' => $_POST['displayname'] ,
+		 					       'sitename'=> $_POST['sitename'],
+		 					       'email'=>$_POST['email'],
+		 					       'path' =>  $status);
+				header('Location: auto_install.php?' . http_build_query($getParam));
+			}
+		}
+		else{
+			echo "please fill fields";
 		}
 	}
 	//$pass = md5("ronkahat" . "M0ABlCEl");
@@ -49,7 +60,7 @@
 		</div>
 		<div class="elgg-page-body">
 			<h1>Create new Soical Network</h1>
-				<form action="index.php" method="get" value="create_sn">
+				<form action="index.php" method="post" value="create_sn">
 					<h3 >Make your own Soical Network : </h3>
 					<div class="custom_div">
 						<div class="custom_div">
