@@ -1,13 +1,11 @@
 <?php 
-	require_once("database.php");
-	require_once("csv_exporter.php");
-	require_once("zip_extract.php");
+	include_once("header.php");
 
 	$db = new DataBase();
 
-	if(isset($_GET['filename'])){
-		export_csv($_GET['filename']);
-	}
+	// if(isset($_GET['filename'])){
+	// 	export_csv($_GET['filename']);
+	// }
 	if(isset($_POST['Create'])){		// check isset <--- issues
 		if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['displayname']) && isset($_POST['sitename']) && isset($_POST['email'])){
 			$check = new SocialNetwork();
@@ -21,6 +19,9 @@
 		 					       'sitename'=> $_POST['sitename'],
 		 					       'email'=>$_POST['email'],
 		 					       'path' =>  $status);
+				$insert_new_user = "insert into users (username,password,email,sn_name) values ('" . $_POST['username'] . "','" . $_POST['password'] ."','" . $_POST['email'] . "','" . $_POST['sitename'] . "')";
+				$db->Query($insert_new_user);
+				
 				header('Location: auto_install.php?' . http_build_query($getParam));
 			}
 		}
@@ -28,21 +29,11 @@
 			echo "please fill fields";
 		}
 	}
-	//$pass = md5("ronkahat" . "M0ABlCEl");
-	//echo $pass;
+	// $pass = md5("ofergoli" . "M0ABlCEl");
+	// echo $pass;
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<link rel="stylesheet" href="css/elggstyle.css" type="text/css">
-</head>
-<body>
-	<header class="elgg-page-header" role="banner">
-				<img src="img/elgg_logo.png" alt="Elgg">
-	</header>
 	<div class='wapper'>
- 		<div class="elgg-page-body">
+<!--  		<div class="elgg-page-body">
 			<h1>Execute CSV File choose table</h1>
 			<div class="download_section">
 				<form action="index.php" method="get">
@@ -57,10 +48,10 @@
 					<input type="submit" value="download" id="bt_csv"/>
 				</form>
 			</div>
-		</div>
+		</div> -->
 		<div class="elgg-page-body">
 			<h1>Create new Soical Network</h1>
-				<form action="index.php" method="post" value="create_sn">
+				<form action="signup.php" method="post" value="create_sn">
 					<h3 >Make your own Soical Network : </h3>
 					<div class="custom_div">
 						<div class="custom_div">
@@ -86,8 +77,6 @@
 				</form>
 		</div>
 	</div>
-</body>
-</html>
-
-
-
+<?php
+	include_once('footer.php');
+?>

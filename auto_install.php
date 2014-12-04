@@ -4,7 +4,6 @@
 	if(isset($_GET['username']) && isset($_GET['password']) && isset($_GET['displayname']) && 
 									isset($_GET['sitename']) && isset($_GET['email']) && isset($_GET['path'])) {
 
-
 		$username = $_GET['username'];
 		$password = $_GET['password'];
 		$displayname = $_GET['displayname'];
