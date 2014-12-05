@@ -32,51 +32,51 @@
 	// $pass = md5("ofergoli" . "M0ABlCEl");
 	// echo $pass;
 ?>
-	<div class='wapper'>
-<!--  		<div class="elgg-page-body">
-			<h1>Execute CSV File choose table</h1>
-			<div class="download_section">
-				<form action="index.php" method="get">
-					<select class="elgg-input-text" name="filename">
-						<?php 
-							$resultTableName = $db->Query("SHOW TABLES FROM elgg");
-							while ($row = mysqli_fetch_row($resultTableName)) {
-							    echo "<option value='{$row[0]}'> {$row[0]} </option>";
-							}	
-						?>
-					</select>
-					<input type="submit" value="download" id="bt_csv"/>
-				</form>
+  <body class="login-bg">
+  	<div class="header">
+	     <div class="container">
+	        <div class="row">
+	           <div class="col-md-12">
+	              <!-- Logo -->
+	              <div class="logo">
+	                 <h1><a href="index.html">BGUNET Sign Up</a></h1>
+	              </div>
+	           </div>
+	        </div>
+	     </div>
+	</div>
+
+	<div class="page-content container">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<div class="login-wrapper">
+			        <div class="box">
+			            <div class="content-wrap">
+			                <h6>Sign Up</h6>
+			                <form action="signup.php" method="post" value="create_sn">
+				                <input class="form-control" type="text" name="username" placeholder="user name">
+				                <input class="form-control" type="password" name="password" placeholder="Password">
+				                <input class="form-control" type="text" name="email" placeholder="E-mail address">
+				               <!--  <input class="form-control" type="password" placeholder="Confirm Password"> -->
+				                <input class="form-control" type="text" name="displayname" placeholder="display name">
+				                <input class="form-control" type="text" name="sitename" placeholder="Social network name">
+				                <div class="action">
+				               		<input class="btn btn-primary signup" type="submit" name="Create" value="Create"  />
+				                   <!--  <a class="btn btn-primary signup" href="index.html">Sign Up</a> -->
+				                </div>
+			                </form>                
+			            </div>
+			        </div>
+
+			        <div class="already">
+			            <p>Have an account already?</p>
+			            <a href="login.php">Login</a>
+			        </div>
+			    </div>
 			</div>
-		</div> -->
-		<div class="elgg-page-body">
-			<h1>Create new Soical Network</h1>
-				<form action="signup.php" method="post" value="create_sn">
-					<h3 >Make your own Soical Network : </h3>
-					<div class="custom_div">
-						<div class="custom_div">
-							<h3 class="custom_ui">user name :</h3> <input type="text" value="" name="username" class="custom_ui"/>
-						</div>
-						<div class="custom_div">
-							<h3 class="custom_ui">password  :</h3> <input type="text" value="" name="password" class="custom_ui"/>
-						</div>
-						<div class="custom_div">
-							<h3 class="custom_ui">email     :</h3> <input type="text" value="" name="email" class="custom_ui"/>
-						</div>
-						<div class="custom_div">
-							<h3 class="custom_ui">display name:</h3> <input type="text" value="" name="displayname" class="custom_ui"/> 	
-						</div>
-						<div class="custom_div">
-							<h3 class="custom_ui">site name   :</h3> <input type="text" value="" name="sitename" class="custom_ui"/>
-						</div>
-						<div class="custom_submit">
-							 <input type="submit" name="Create" value="Create"  />
-						</div>
-					
-					</div>
-				</form>
 		</div>
 	</div>
+	<img id="elgg_img" src="img/elgg_logo_new.png">
 <?php
 	include_once('footer.php');
 ?>

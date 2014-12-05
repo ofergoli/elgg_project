@@ -6,14 +6,11 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="css/elggstyle.css" type="text/css">
-<script type="text/javascript" src="bootstrap.js"></script>
-
-</head>
-<body>
-	<header class="elgg-page-header" role="banner">
-				<img src="img/elgg_logo.png" alt="Elgg">
-	</header>
+  <head>
+    <title>Social Netword</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- styles -->
+    <link href="css/styles.css" rel="stylesheet">
+  </head>
