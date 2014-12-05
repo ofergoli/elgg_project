@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	include_once('post.php');
 
 	if(isset($_GET['username']) && isset($_GET['password']) && isset($_GET['displayname']) && 
@@ -40,7 +41,8 @@
 	    $urladm = 'http://localhost/sites/elgg_project/soical_networks/'.$path.'/elgg-1.9.5/install.php?step=admin';
 		doPost($adminParam,$urladm);
 
-	   	header('Location: http://localhost/sites/elgg_project/soical_networks/'.$path.'/elgg-1.9.5/admin');
+		header('Location: my_social_networks.php');
+	   	//header('Location: http://localhost/sites/elgg_project/soical_networks/'.$path.'/elgg-1.9.5/admin');
 	}
 	// else{//redirect to index.php with error message
 	// 	header('Location: http://localhost/sites/elgg_project/index.php?install_error=install_fatal_error');		
