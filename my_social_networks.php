@@ -65,12 +65,32 @@
               $query = "select * from users where username='" . $_SESSION['username'] . "' and password='" . $_SESSION['password'] . "'";
               $result = $db->Query($query);
               while($row = $result->fetch_assoc()){
-                echo "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">Please fill the following field:</div></div><div class=\"content-box-large box-with-header\"><h2>". $row['sn_name'] . "</h2><div class=\"action\"><a href=\"". $row['sn_link'] . "\"><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><br /><br /></div></div></div></div>";
+                echo "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['sn_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['sn_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li><li class=\"sum_bgunet\">created in : " . $row['sn_date'] . "</li><li class=\"sum_bgunet\">email : " . $row['email'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><input class=\"btn btn-primary-del signup\" type=\"submit\" name=\"CreateNewSN\" value=\"Delete\"  /><br /><br /></div></div></div></div>";
               }
           ?>
+<!--           <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="content-box-header">
+                  <div class="panel-title">Please fill the following field:</div>
+                </div>
+                <div class="content-box-large box-with-header">
+                        <h2> </h2>
+                        <br/>
+                        <br/>
+                        <div class="action">
+                          <input class="btn btn-primary signup" type="submit" name="CreateNewSN" value="Create"  />
+                          <input class="btn btn-primary-del signup" type="submit" name="CreateNewSN" value="Delete"  />
+                           <!--  <a class="btn btn-primary signup" href="index.html">Sign Up</a> -->
+<!--                         </div>
+                   <br /><br />
+              </div>
+              </div>
+            </div>
+          </div> --> 
+
+
         </div>
-
-
         <div id="space"></div>
 <!--        <div class="content-box-large">
         <br /><br />
