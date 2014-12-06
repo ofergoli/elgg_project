@@ -41,8 +41,11 @@
 	        <div class="row">
 	           <div class="col-md-12">
 	              <!-- Logo -->
+	              <a href="login.php">
+	              <img id="bgu_logo" src="img/logotans.gif">
+	              </a>
 	              <div class="logo">
-	                 <h1><a href="index.html">BGUNET Sign Up</a></h1>
+	                 <h1><a href="index.html">Sign Up</a></h1>
 	              </div>
 	           </div>
 	        </div>
