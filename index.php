@@ -49,6 +49,7 @@
 						</div> -->
 		  				<div class="panel-body">
 							<div class='wapper'>
+							<img id="top_logo" src="img/logotop.gif">
 								<div class="elgg-page-body">
 									<h1>Welcome <?php echo $username ?></h1>
 								</div>
@@ -61,7 +62,7 @@
 		  			<div class="row">
 		  				<div class="col-md-12">
 		  					<div class="content-box-header">
-			  					<div class="panel-title">Welcome to bgunet platform</div>
+			  					<div class="panel-title">Welcome to Bgu.net platform</div>
 				  			</div>
 				  			<div class="content-box-large box-with-header">
 			  					<div class="sub_title_warpper">

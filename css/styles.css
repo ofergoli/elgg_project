@@ -662,7 +662,7 @@ body {
 }
 
 .col-md-6{
-  width: 80%;
+  width: 90%;
 }
 
 #login_status{
@@ -741,4 +741,10 @@ body {
 
 #topfix{
   float: left;
+}
+
+#top_logo{
+  height: 120px;
+  width: 160px;
+  float: right;
 }
