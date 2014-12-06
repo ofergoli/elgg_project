@@ -104,32 +104,9 @@
 
                while($row = $result->fetch_assoc()){
 //                  echo "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['network_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['network_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><input class=\"btn btn-danger\" type=\"submit\" name=\"CreateNewSN\" value=\"Delete\"  /><br /><br /></div></div></div></div>";
-               $print = "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['network_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['network_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><form action=\"my_social_networks.php\" method=\"post\" value=\"delete\"><input class=\"btn btn-danger\" type=\"submit\" name=\"delete\" value=\"Delete\"  /><input name=\"sn\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] .  "\"/></form><br /><br /></div></div></div></div>";
-               echo $print;
-
-
+                    $print = "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['network_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['network_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><form action=\"my_social_networks.php\" method=\"post\" value=\"delete\"><input class=\"btn btn-danger\" type=\"submit\" name=\"delete\" value=\"Delete\"  /><input name=\"sn\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] .  "\"/></form><br /><br /></div></div></div></div>";
+                    echo $print;
                }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
               // while($row = $result->fetch_assoc()){
               //   echo "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['sn_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['sn_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li><li class=\"sum_bgunet\">created in : " . $row['sn_date'] . "</li><li class=\"sum_bgunet\">email : " . $row['email'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><input class=\"btn btn-primary-del signup\" type=\"submit\" name=\"CreateNewSN\" value=\"Delete\"  /><br /><br /></div></div></div></div>";
               // }
