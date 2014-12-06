@@ -1,35 +1,19 @@
 <?php 
 	include_once("header.php");
-
+	session_start();
 	$db = new DataBase();
 
 	// if(isset($_GET['filename'])){
 	// 	export_csv($_GET['filename']);
 	// }
 	if(isset($_POST['Create'])){		// check isset <--- issues
-		if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['displayname']) && isset($_POST['sitename']) && isset($_POST['email'])){
-			$check = new SocialNetwork();
-			$status = $check->createSN();
-			if($status!="failed"){
-				$db->Query("CREATE DATABASE ".$status);
+		if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email'])){
+				$_SESSION['username'] = $_POST['username'];
+				$_SESSION['password'] = $_POST['password'];
 				
-				$getParam = array('username' => $_POST['username'],
-		 					       'password' => $_POST['password'],
-		 					       'displayname' => $_POST['displayname'] ,
-		 					       'sitename'=> $_POST['sitename'],
-		 					       'email'=>$_POST['email'],
-		 					       'path' =>  $status);
-				$date = date('Y-m-d H:i:s');
-				$sn_path = "/sites/elgg_project/soical_networks/" . $status . "/elgg-1.9.5/index.php";
-				$insert_new_user = "insert into users (sn_link,username,password,email,sn_name,sn_date) values ('" . $sn_path . "','" . $_POST['username'] .
-													 "','" . $_POST['password'] ."','" . $_POST['email'] . "','" . $_POST['sitename'] . "','" .  $date . "')";
-				$db->Query($insert_new_user);
-				
-				header('Location: auto_install.php?' . http_build_query($getParam));
-			}
-		}
-		else{
-			echo "please fill fields";
+				$user_query = "insert into users (username,password,email) values ('" . $_POST['username'] . "','" . $_POST['password'] . "','" . $_POST['email'] . "')";
+				$db->Query($user_query);
+				header('Location: index.php');
 		}
 	}
 	// $pass = md5("ofergoli" . "M0ABlCEl");
@@ -64,8 +48,8 @@
 				                <input class="form-control" type="password" name="password" placeholder="Password">
 				                <input class="form-control" type="text" name="email" placeholder="E-mail address">
 				               <!--  <input class="form-control" type="password" placeholder="Confirm Password"> -->
-				                <input class="form-control" type="text" name="displayname" placeholder="display name">
-				                <input class="form-control" type="text" name="sitename" placeholder="Social network name">
+<!-- 				                <input class="form-control" type="text" name="displayname" placeholder="display name">
+				                <input class="form-control" type="text" name="sitename" placeholder="Social network name"> -->
 				                <div class="action">
 				               		<input class="btn btn-primary signup" type="submit" name="Create" value="Create"  />
 				                   <!--  <a class="btn btn-primary signup" href="index.html">Sign Up</a> -->

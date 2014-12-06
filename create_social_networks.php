@@ -26,12 +26,9 @@
                      'sitename'=> $_POST['sitename'],
                      'email'=>$_POST['email'],
                      'path' =>  $status);
-        $date =date('Y-m-d H:i:s');
         $sn_path = "/sites/elgg_project/soical_networks/" . $status . "/elgg-1.9.5/index.php";
-        $insert_new_user = "insert into users (sn_link,username,password,email,sn_name,sn_date) values ('" . $sn_path . "','" . $_SESSION['username'] .
-                           "','" . $_SESSION['password'] ."','" . $_POST['email'] . "','" . $_POST['sitename'] . "','" .  $date .  "')";
-        $db->Query($insert_new_user);
-        
+        $query_network = "insert into networks (social_key,username,network_name,sn_link) values ('" . $status . "','" . $_SESSION['username'] . "','" . $_POST['sitename'] . "','" . $sn_path . "')";
+        $db->Query($query_network);
         header('Location: auto_install.php?' . http_build_query($getParam));
       }
     }

@@ -62,11 +62,15 @@
           </div> 
           <?php 
               $db = new DataBase();
-              $query = "select * from users where username='" . $_SESSION['username'] . "' and password='" . $_SESSION['password'] . "'";
+              $query = "select * from networks where username='" . $_SESSION['username'] . "'";
               $result = $db->Query($query);
-              while($row = $result->fetch_assoc()){
-                echo "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['sn_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['sn_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li><li class=\"sum_bgunet\">created in : " . $row['sn_date'] . "</li><li class=\"sum_bgunet\">email : " . $row['email'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><input class=\"btn btn-primary-del signup\" type=\"submit\" name=\"CreateNewSN\" value=\"Delete\"  /><br /><br /></div></div></div></div>";
-              }
+
+               while($row = $result->fetch_assoc()){
+                  echo "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['network_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['network_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><input class=\"btn btn-primary-del signup\" type=\"submit\" name=\"CreateNewSN\" value=\"Delete\"  /><br /><br /></div></div></div></div>";
+               }
+              // while($row = $result->fetch_assoc()){
+              //   echo "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['sn_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['sn_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li><li class=\"sum_bgunet\">created in : " . $row['sn_date'] . "</li><li class=\"sum_bgunet\">email : " . $row['email'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><input class=\"btn btn-primary-del signup\" type=\"submit\" name=\"CreateNewSN\" value=\"Delete\"  /><br /><br /></div></div></div></div>";
+              // }
           ?>
 <!--           <div class="col-md-6">
             <div class="row">
