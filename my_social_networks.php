@@ -1,5 +1,6 @@
 <?php 
   include_once("header.php");
+
   session_start();
   $username = "";
   if(isset($_SESSION['username'])){
@@ -9,7 +10,43 @@
     header('Location: login.php');
   }
   include_once("header.php");
+  $db = new DataBase();
 
+  if(isset($_POST['delete'])){
+      if(isset($_POST['sn'])){
+        $delete_from_networks = "DELETE FROM networks where social_key='" . $_POST['sn'] . "' and username='" . $_SESSION['username'] . "'";
+        $db->Query($delete_from_networks);
+
+        //need to drop data base ####
+        //if (is_dir("/sites/elgg_project/soical_networks/" . $_POST['sn'])){
+          //echo "ok";
+
+
+          $delete_folder = dirname(__FILE__) . "\soical_networks\\" . $_POST['sn'] ;
+          
+          function recursive_delete_folder($delete_folder){
+                $it = new RecursiveDirectoryIterator($delete_folder, RecursiveDirectoryIterator::SKIP_DOTS);
+                $files = new RecursiveIteratorIterator($it,
+                             RecursiveIteratorIterator::CHILD_FIRST);
+                foreach($files as $file) {
+                    if ($file->getFilename() === '.' || $file->getFilename() === '..') {
+                        continue;
+                    }
+                    if ($file->isDir()){
+                        rmdir($file->getRealPath());
+                    } else {
+                        unlink($file->getRealPath());
+                    }
+                }
+
+                rmdir($delete_folder);
+          }
+          recursive_delete_folder($delete_folder);
+
+        //}
+
+      }
+  }
 ?>
 <body>
 <?php 
@@ -23,7 +60,7 @@
                     <!-- Main menu -->
                     <li class="current"><a href="index.php"><i class="glyphicon glyphicon-home"></i>My Profile</a></li>
                     <li><a href="my_social_networks.php"><i class="glyphicon glyphicon-list"></i>My Social Networks</a></li>
-                    <li><a href="create_social_networks.php"><i class="glyphicon glyphicon-pencil"></i> Create Social Networks</a></li>
+                    <li><a href="create_social_networks.php"><i class="glyphicon glyphicon-pencil"></i> Create Social Network</a></li>
 <!--                     <li><a href="tables.html"><i class="glyphicon glyphicon-list"></i> Tables</a></li>
                     <li><a href="buttons.html"><i class="glyphicon glyphicon-record"></i> Buttons</a></li>
                     <li><a href="editors.html"><i class="glyphicon glyphicon-pencil"></i> Editors</a></li> -->
@@ -61,13 +98,38 @@
             </div>
           </div> 
           <?php 
-              $db = new DataBase();
+
               $query = "select * from networks where username='" . $_SESSION['username'] . "'";
               $result = $db->Query($query);
 
                while($row = $result->fetch_assoc()){
-                  echo "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['network_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['network_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><input class=\"btn btn-primary-del signup\" type=\"submit\" name=\"CreateNewSN\" value=\"Delete\"  /><br /><br /></div></div></div></div>";
+//                  echo "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['network_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['network_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><input class=\"btn btn-danger\" type=\"submit\" name=\"CreateNewSN\" value=\"Delete\"  /><br /><br /></div></div></div></div>";
+               $print = "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['network_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['network_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><form action=\"my_social_networks.php\" method=\"post\" value=\"delete\"><input class=\"btn btn-danger\" type=\"submit\" name=\"delete\" value=\"Delete\"  /><input name=\"sn\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] .  "\"/></form><br /><br /></div></div></div></div>";
+               echo $print;
+
+
                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               // while($row = $result->fetch_assoc()){
               //   echo "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['sn_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['sn_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li><li class=\"sum_bgunet\">created in : " . $row['sn_date'] . "</li><li class=\"sum_bgunet\">email : " . $row['email'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><input class=\"btn btn-primary-del signup\" type=\"submit\" name=\"CreateNewSN\" value=\"Delete\"  /><br /><br /></div></div></div></div>";
               // }
