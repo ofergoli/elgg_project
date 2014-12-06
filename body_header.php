@@ -3,8 +3,9 @@
           <div class="row">
              <div class="col-md-5">
                 <!-- Logo -->
+                <a href="index.php"><img id="bgu_logo" src="img/logotans.gif"></a>
                 <div class="logo">
-                   <h1><a href="index.php">Admin Center Bugnet</a></h1>
+                   <h1><a href="index.php">Admin Center</a></h1>
                 </div>
              </div>
              <div class="col-md-5">
@@ -24,7 +25,7 @@
                     <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                       <ul class="nav navbar-nav">
                         <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo ucfirst(strtolower($_SESSION['username']))?> Account <b class="caret"></b></a>
                           <ul class="dropdown-menu animated fadeInUp">
                             <li><a href="profile.html">Profile</a></li>
                             <li><a href="session_destroy.php">Logout</a></li>

@@ -651,12 +651,6 @@ body {
    }  
 }
 
-#elgg_img{
-  float: right;
-  margin-top: 580px;
-  margin-right: 24px;
-}
-
 #space{
   margin: 300px;
 }
@@ -727,4 +721,24 @@ body {
   color: #fff;
   background-color: #E8565E;
   border-color: #B33239;
+}
+
+#elgg_img{
+  float: right;
+  margin-top: 580px;
+  margin-right: 24px;
+  width: 150px;
+  height: 75px;
+}
+
+
+#bgu_logo{
+  width: 200px;
+  height: 30px;
+  margin-top: 10px;
+  float: left;
+}
+
+#topfix{
+  float: left;
 }
