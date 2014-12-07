@@ -23,8 +23,6 @@
 
          $delete_folder = dirname(__FILE__) . "\soical_networks\\" . $_POST['sn'] ;
          
-          echo $delete_folder;
-
          function recursive_delete_folder($delete_folder){
                $it = new RecursiveDirectoryIterator($delete_folder, RecursiveDirectoryIterator::SKIP_DOTS);
                $files = new RecursiveIteratorIterator($it,
