@@ -14,4 +14,5 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- styles -->
     <link href="css/styles.css" rel="stylesheet">
+    <script type="text/javascript" src="js/forms.js"></script>
   </head>

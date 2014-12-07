@@ -75,21 +75,57 @@
           <div class="col-md-6">
             <div class="content-box-large">
               <div class="panel-heading">
-              <div class="panel-title"><h2><?php echo $username ?> Create a new Social Network</div>
+              <div class="panel-title"><h3>Create New Social Network</div>
             </div>
               <div class="panel-body">
               <div class='wapper'>
                 <div class="elgg-page-body">
-
-
-
+                    <div class="sum_bgunet">Bgu.net platform let you create as much social networks as you want with only one simple one step.</div>
+                    <div class="sum_bgunet">As soon as the soical network created you'll  get an adminstrator Permissions to your new network.</div>
+                    <br/>
+                    <div class="sum_bgunet"><span id="im_note">importent!</span> your username and password will be the <b> same</b> as your bgu.net <b>username/password</b> .</div>
+                    <div class="sum_bgunet"><span id="im_note">You can change it from the elgg username password settings</span></div>
                 </div>
               </div>
               </div>
             </div>
           </div> 
 
-          <div class="col-md-6">
+          <div class="col-md-5">
+              <div class="content-box-large">
+              <br/>
+                <div class="panel-title">Please fill in the following:</div>
+                <br/>
+                <div class="panel-body">
+                  <form class="form-horizontal" role="form" action="create_social_networks.php" method="post" value="create_sn">
+                  <div class="form-group">
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" name="email"  placeholder="Email">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="displayname" placeholder="Social Network User Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="sitename" placeholder="Social Network Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                  </div>
+                  <div class="form-group pull-right">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" name="CreateNewSN" class="btn btn-primary">Create</button>
+                    </div>
+                  </div>
+                </form>
+                </div>
+              </div>
+            </div>
+
+<!--           <div class="col-md-6">
             <div class="row">
               <div class="col-md-12">
                 <div class="content-box-header">
@@ -110,7 +146,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
 
         <div id="space"></div>
