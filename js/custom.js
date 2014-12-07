@@ -18,14 +18,14 @@ $(document).ready(function(){
   });
 
 
-  $( "#search_text" ).autocomplete(
-    {
-       source:'ajaxsocial.php',
-       minLength: 1,
-       delay:0,
-       // select:function(){
-       //   $("#img1").attr('src',"images/flags/"  + $("#text").val() + ".png");
-       // }
-    });
+  // $( "#search_text" ).autocomplete(
+  //   {
+  //      source:'ajaxsocial.php',
+  //      minLength: 1,
+  //      delay:0,
+  //      // select:function(){
+  //      //   $("#img1").attr('src',"images/flags/"  + $("#text").val() + ".png");
+  //      // }
+  //   });
   
 });

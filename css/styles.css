@@ -748,3 +748,8 @@ body {
   width: 160px;
   float: right;
 }
+
+#im_note{
+  font-weight: bold;
+  color: #E83F66;
+}

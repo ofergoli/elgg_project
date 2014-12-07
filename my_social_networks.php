@@ -17,34 +17,31 @@
         $delete_from_networks = "DELETE FROM networks where social_key='" . $_POST['sn'] . "' and username='" . $_SESSION['username'] . "'";
         $db->Query($delete_from_networks);
 
-        //need to drop data base ####
-        //if (is_dir("/sites/elgg_project/soical_networks/" . $_POST['sn'])){
-          //echo "ok";
+        //Dropping DataBASE !!!
+        $drop_db = "DROP DATABASE " . $_POST['sn'];
+        $db->Query($drop_db); 
 
+         $delete_folder = dirname(__FILE__) . "\soical_networks\\" . $_POST['sn'] ;
+         
+          echo $delete_folder;
 
-          $delete_folder = dirname(__FILE__) . "\soical_networks\\" . $_POST['sn'] ;
-          
-          function recursive_delete_folder($delete_folder){
-                $it = new RecursiveDirectoryIterator($delete_folder, RecursiveDirectoryIterator::SKIP_DOTS);
-                $files = new RecursiveIteratorIterator($it,
-                             RecursiveIteratorIterator::CHILD_FIRST);
-                foreach($files as $file) {
-                    if ($file->getFilename() === '.' || $file->getFilename() === '..') {
-                        continue;
-                    }
-                    if ($file->isDir()){
-                        rmdir($file->getRealPath());
-                    } else {
-                        unlink($file->getRealPath());
-                    }
-                }
-
-                rmdir($delete_folder);
-          }
-          recursive_delete_folder($delete_folder);
-
-        //}
-
+         function recursive_delete_folder($delete_folder){
+               $it = new RecursiveDirectoryIterator($delete_folder, RecursiveDirectoryIterator::SKIP_DOTS);
+               $files = new RecursiveIteratorIterator($it,
+                            RecursiveIteratorIterator::CHILD_FIRST);
+               foreach($files as $file) {
+                   if ($file->getFilename() === '.' || $file->getFilename() === '..') {
+                       continue;
+                   }
+                   if ($file->isDir()){
+                       rmdir($file->getRealPath());
+                   } else {
+                       unlink($file->getRealPath());
+                   }
+               }
+               rmdir($delete_folder);
+         }
+         recursive_delete_folder($delete_folder);
       }
   }
 ?>
@@ -84,7 +81,7 @@
           <div class="col-md-6">
             <div class="content-box-large">
               <div class="panel-heading">
-              <div class="panel-title"><h2>All my Social Networks</div>
+              <div class="panel-title"><h2>My Social Networks</div>
             </div>
               <div class="panel-body">
               <div class='wapper'>
@@ -103,13 +100,8 @@
               $result = $db->Query($query);
 
                while($row = $result->fetch_assoc()){
-//                  echo "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['network_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['network_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><input class=\"btn btn-danger\" type=\"submit\" name=\"CreateNewSN\" value=\"Delete\"  /><br /><br /></div></div></div></div>";
-                    $print = "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['network_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['network_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><form action=\"my_social_networks.php\" method=\"post\" value=\"delete\"><input class=\"btn btn-danger\" type=\"submit\" name=\"delete\" value=\"Delete\"  /><input name=\"sn\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] .  "\"/></form><br /><br /></div></div></div></div>";
-                    echo $print;
+                    echo "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['network_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['network_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"  target=\"_blank\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><form action=\"my_social_networks.php\" method=\"post\" value=\"delete\"><input class=\"btn btn-danger\" type=\"submit\" name=\"delete\" value=\"Delete\"  /><input name=\"sn\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] .  "\"/></form><br /><br /></div></div></div></div>";
                }
-              // while($row = $result->fetch_assoc()){
-              //   echo "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['sn_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['sn_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li><li class=\"sum_bgunet\">created in : " . $row['sn_date'] . "</li><li class=\"sum_bgunet\">email : " . $row['email'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><input class=\"btn btn-primary-del signup\" type=\"submit\" name=\"CreateNewSN\" value=\"Delete\"  /><br /><br /></div></div></div></div>";
-              // }
           ?>
 <!--           <div class="col-md-6">
             <div class="row">
