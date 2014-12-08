@@ -6,8 +6,9 @@
 	$error_message = "";
 	if(isset($_POST['Login'])){
 		if(isset($_POST['username']) && isset($_POST['password'])){
-			$query = "select * from users where username='". $_POST['username']."'";
-			$result = $db->Query($query);
+			$query_escaped = sprintf("SELECT * from users where username='%s'",mysql_real_escape_string($_POST['username']));
+			$result = $db->Query($query_escaped);
+
 			$row = $result->fetch_assoc();
 			if($row['password'] === $_POST['password']){// good
 					$_SESSION['username'] = $_POST['username'];

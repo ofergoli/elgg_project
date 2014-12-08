@@ -27,8 +27,11 @@
                      'email'=>$_POST['email'],
                      'path' =>  $status);
         $sn_path = "/sites/elgg_project/soical_networks/" . $status . "/elgg-1.9.5/index.php";
-        $query_network = "insert into networks (social_key,username,network_name,sn_link) values ('" . $status . "','" . $_SESSION['username'] . "','" . $_POST['sitename'] . "','" . $sn_path . "')";
-        $db->Query($query_network);
+
+        $query_network_escaped = sprintf("INSERT into networks (social_key,username,network_name,sn_link) values ('%s','%s','%s','%s')",mysql_real_escape_string($status),mysql_real_escape_string($_SESSION['username']),mysql_real_escape_string($_POST['sitename']),$sn_path);
+        $db->Query($query_network_escaped);
+
+
         header('Location: auto_install.php?' . http_build_query($getParam));
       }
     }

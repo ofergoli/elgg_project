@@ -93,10 +93,8 @@
             </div>
           </div> 
           <?php 
-
-              $query = "select * from networks where username='" . $_SESSION['username'] . "'";
-              $result = $db->Query($query);
-
+              $query_network_escaped = sprintf("SELECT * from networks where username='%s'",mysql_real_escape_string($_SESSION['username']));
+              $result =$db->Query($query_network_escaped);
                while($row = $result->fetch_assoc()){
                     echo "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['network_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['network_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"  target=\"_blank\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><form action=\"my_social_networks.php\" method=\"post\" value=\"delete\"><input class=\"btn btn-danger\" type=\"submit\" name=\"delete\" value=\"Delete\"  /><input name=\"sn\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] .  "\"/></form><br /><br /></div></div></div></div>";
                }
