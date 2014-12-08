@@ -11,8 +11,15 @@
 				$_SESSION['username'] = $_POST['username'];
 				$_SESSION['password'] = $_POST['password'];
 				
-				$user_query = "insert into users (username,password,email) values ('" . $_POST['username'] . "','" . $_POST['password'] . "','" . $_POST['email'] . "')";
-				$db->Query($user_query);
+				// $user_query = "insert into users (username,password,email) values ('" . $_POST['username'] . "','" . $_POST['password'] . "','" . $_POST['email'] . "')";
+				// $db->Query($user_query);
+
+				$user_query_escaped = sprintf("INSERT into users (username,password,email) values ('%s','%s','%s')",
+				            mysql_real_escape_string($_POST['username']),
+				            mysql_real_escape_string($_POST['password']),
+				            mysql_real_escape_string($_POST['email']));
+				$db->Query($user_query_escaped);
+
 				header('Location: index.php');
 		}
 	}
