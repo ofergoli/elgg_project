@@ -127,10 +127,10 @@
               </div>
             </div>
             <div class="col-md-5">
-                <div class="content-box-header">
+<!--                 <div class="content-box-header">
                   <div class="panel-title">Make your own Social studies using BGU.net</div>
                 
-                </div>
+                </div> -->
                 <div class="content-box-large box-with-header">
                 <div class="sum_bgunet">Social studies that can conduct from our system will have great benefit to the whole educational system, benefits like :</div>
                   <ul>

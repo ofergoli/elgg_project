@@ -144,7 +144,7 @@
                         <th>#</th>
                         <th>Admin</th>
                         <th>Socian Network Name</th>
-                        <th></th>
+                        <th>Options</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -154,7 +154,7 @@
                             $index = 1;
                              while($row = $result->fetch_assoc()){
                                  // echo "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['network_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['network_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"  target=\"_blank\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><form action=\"my_social_networks.php\" method=\"post\" value=\"delete\"><input class=\"btn btn-danger\" type=\"submit\" name=\"delete\" value=\"Delete\"  /><input name=\"sn\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] .  "\"/></form><br /><br /></div></div></div></div>";
-                                 echo "<tr><td>" . $index . "</td><td>" . $row['username'] . "</td><td>" . $row['network_name'] . "</td><td><a href=\"". $row['sn_link'] . "\"  target=\"_blank\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a><form action=\"my_social_networks.php\" method=\"post\" value=\"delete\"><input class=\"btn btn-danger\" type=\"submit\" name=\"delete\" value=\"Delete\"  /><input name=\"sn\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] .  "\"/></form></td></tr>";
+                                 echo "<tr><td>" . $index . "</td><td>" . $row['username'] . "</td><td>" . $row['network_name'] . "</td><td>Delete/Enter Social Network<a href=\"". $row['sn_link'] . "\"  target=\"_blank\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a><form action=\"my_social_networks.php\" method=\"post\" value=\"delete\"><input class=\"btn btn-danger\" type=\"submit\" name=\"delete\" value=\"Delete\"  /><input name=\"sn\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] .  "\"/></form></td></tr>";
                                  $index++;
                              }
                         ?>
@@ -162,9 +162,10 @@
                   </table>
             </div>
           </div>
+          <i class="glyphicon glyphicon-remove"></i><span id="im_note">   Attention! - Click on <b>Delete</b> button will erase permanently the social network with all databases included!<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;requires your password authentication at bgu.net</span>
         </div>
-        <div id="space"></div>
 
+        <div id="space"></div>
       </div>
       <img id="mainpage_logo" src="img/elgg_logo_new.png">
     </div>

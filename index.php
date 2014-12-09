@@ -42,11 +42,8 @@
 		  </div>
 		  <div class="col-md-10">
 		  	<div class="row">
-		  		<div class="col-md-6">
+<!-- 		  		<div class="col-md-6">
 		  			<div class="content-box-large">
-<!-- 		  				<div class="panel-heading">
-							<div class="panel-title">New vs Returning Visitors</div>
-						</div> -->
 		  				<div class="panel-body">
 							<div class='wapper'>
 							<img id="top_logo" src="img/logotop.gif">
@@ -56,17 +53,19 @@
 							</div>
 		  				</div>
 		  			</div>
-		  		</div> 
+		  		</div>  -->
 
 		  		<div class="col-md-6">
 		  			<div class="row">
 		  				<div class="col-md-12">
 		  					<div class="content-box-header">
-			  					<div class="panel-title">Welcome to Bgu.net platform</div>
+			  					<div class="panel-title"><?php echo "<b>".ucfirst(strtolower($username))."</b>" ?> Welcome to Bgu.net platform</div>
 				  			</div>
 				  			<div class="content-box-large box-with-header">
+
 			  					<div class="sub_title_warpper">
 			  						<span class="sub_title" >Social Network</span>
+			  						<img id="top_logo" src="img/logotop.gif">
 								</div>
 								<ul>
 									<li class="sum_bgunet">
