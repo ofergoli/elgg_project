@@ -93,7 +93,6 @@
               </div>
             </div>
           </div> 
-
           <div class="col-md-5">
               <div class="content-box-large">
               <br/>
@@ -127,40 +126,34 @@
                 </div>
               </div>
             </div>
-
-<!--           <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-12">
+            <div class="col-md-5">
                 <div class="content-box-header">
-                  <div class="panel-title">Please fill the following field:</div>
+                  <div class="panel-title">Make your own Social studies using BGU.net</div>
+                
                 </div>
                 <div class="content-box-large box-with-header">
-                      <form action="create_social_networks.php" method="post" value="create_sn">
-                        <input class="form-control-cus" type="text" name="email" placeholder="E-mail address">
-                        <input class="form-control-cus" type="text" name="displayname" placeholder="display name">
-                        <input class="form-control-cus" type="text" name="sitename" placeholder="Social network name">
-                        <div class="action">
-                          <input class="btn btn-primary-cus signup" type="submit" name="CreateNewSN" value="Create"  />
-                           <!--  <a class="btn btn-primary signup" href="index.html">Sign Up</a> -->
-                        </div>
-                      </form>       
-                   <br /><br />
+                <div class="sum_bgunet">Social studies that can conduct from our system will have great benefit to the whole educational system, benefits like :</div>
+                  <ul>
+                    <li>Teacher will know which topics are hard to “digest” by the students, and can take
+                    action to prevent those difficulties among the students.</li>
+                    <br/>
+                    <li>The teacher will have Indicators of accessing materiel, and question and answer in
+                    course groups.</li>
+                    <br/>
+                    <li>This system can provide a lot of data( and meta-data) that can be analyzed for a
+                    better education in the future.</li>
+                    <br/>
+                  </ul>
+                <br><br>
               </div>
               </div>
-            </div>
-          </div>
-        </div> 
-
-
         <div id="space"></div>
-<!--        <div class="content-box-large">
-        <br /><br />
-        </div> -->
+
       </div>
-      <img id="mainpage_logo" src="img/elgg_logo_new.png">
+         <img id="mainpage_logo" src="img/elgg_logo_new.png">
     </div>
     </div>
-    
+ 
     <footer>
          <div class="container">
          

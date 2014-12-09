@@ -11,6 +11,12 @@
   }
   include_once("header.php");
   $db = new DataBase();
+  $alert="";
+  $query_network_escaped_alert = sprintf("SELECT * from networks where username='%s'",mysql_real_escape_string($_SESSION['username']));
+  $result_alert = $db->Query($query_network_escaped_alert);
+  if(!$result_alert->fetch_assoc())
+     $alert=" you don't any have Social Networks yet.";           
+
 
   if(isset($_POST['delete'])){
       if(isset($_POST['sn'])){
@@ -128,7 +134,7 @@
 <div class="col-md-6">
 <div class="content-box-large">
           <div class="panel-heading">
-          <div class="panel-title">My Active Social Networks</div>
+          <div class="panel-title">My Active Social Networks<span id="im_note"><?php echo $alert ?></span></div>
         </div>
           <div class="panel-body">
             <div class="table-responsive">
@@ -149,6 +155,7 @@
                              while($row = $result->fetch_assoc()){
                                  // echo "<div class=\"col-md-6\"><div class=\"row\"><div class=\"col-md-12\"><div class=\"content-box-header\"><div class=\"panel-title\">". $row['network_name'] . "</div></div><div class=\"content-box-large box-with-header\"><h3>". $row['network_name'] . "</h3><ul><li class=\"sum_bgunet\">Admin : " . $row['username'] . "</li></ul><div class=\"action\"><a href=\"". $row['sn_link'] . "\"  target=\"_blank\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a></div><form action=\"my_social_networks.php\" method=\"post\" value=\"delete\"><input class=\"btn btn-danger\" type=\"submit\" name=\"delete\" value=\"Delete\"  /><input name=\"sn\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] .  "\"/></form><br /><br /></div></div></div></div>";
                                  echo "<tr><td>" . $index . "</td><td>" . $row['username'] . "</td><td>" . $row['network_name'] . "</td><td><a href=\"". $row['sn_link'] . "\"  target=\"_blank\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a><form action=\"my_social_networks.php\" method=\"post\" value=\"delete\"><input class=\"btn btn-danger\" type=\"submit\" name=\"delete\" value=\"Delete\"  /><input name=\"sn\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] .  "\"/></form></td></tr>";
+                                 $index++;
                              }
                         ?>
                     </tbody>
@@ -156,11 +163,8 @@
             </div>
           </div>
         </div>
-</div>
         <div id="space"></div>
-<!--        <div class="content-box-large">
-        <br /><br />
-        </div> -->
+
       </div>
       <img id="mainpage_logo" src="img/elgg_logo_new.png">
     </div>
