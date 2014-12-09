@@ -162,7 +162,7 @@
                   </table>
             </div>
           </div>
-          <i class="glyphicon glyphicon-remove"></i><span id="im_note">   Attention! - Click on <b>Delete</b> button will erase permanently the social network with all databases included!<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;requires your password authentication at bgu.net</span>
+          <i class="glyphicon glyphicon-remove"></i><span id="im_note">   Attention! - Click on <b>Delete</b> button will erase permanently the social network with all databases included!<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bgu.net password authentication required</span>
         </div>
 
         <div id="space"></div>
