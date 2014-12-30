@@ -1,5 +1,5 @@
 <?php
-
+	//do post object use in order to make the installtion automaticlly
 	function doPost($parameters,$url){
 		$options = array(
 		    'http' => array(

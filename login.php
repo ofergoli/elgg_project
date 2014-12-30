@@ -1,15 +1,20 @@
 <?php 
 	include_once('header.php');
+	//including the session
 	session_start();
 	
 	$db = new DataBase();
 	$error_message = "";
+	//check if user post a login
 	if(isset($_POST['Login'])){
+		//if the form submitted (user posted) check if param entered
 		if(isset($_POST['username']) && isset($_POST['password'])){
+			//check if user name and pass valid with db users table
 			$query_escaped = sprintf("SELECT * from users where username='%s'",mysql_real_escape_string($_POST['username']));
 			$result = $db->Query($query_escaped);
 
 			$row = $result->fetch_assoc();
+			//insert into session global object the user & pass
 			if($row['password'] === $_POST['password']){// good
 					$_SESSION['username'] = $_POST['username'];
 					$_SESSION['password'] = $_POST['password'];

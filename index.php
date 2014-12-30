@@ -1,7 +1,9 @@
 <?php 
 	include_once("header.php");
+	//include session
 	session_start();
 	$username = "";
+	//check if session alive else redirect to login page
 	if(isset($_SESSION['username'])){
 		$username = $_SESSION['username'];
 	}
@@ -59,6 +61,7 @@
 		  			<div class="row">
 		  				<div class="col-md-12">
 		  					<div class="content-box-header">
+		  						<!-- add user name to wellcome -->
 			  					<div class="panel-title"><?php echo "<b>".ucfirst(strtolower($username))."</b>" ?> Welcome to Bgu.net platform</div>
 				  			</div>
 				  			<div class="content-box-large box-with-header">

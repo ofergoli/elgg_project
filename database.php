@@ -1,4 +1,5 @@
 <?php
+	//database object member -> connection from db_connection.php
 	class DataBase{
 
 		var $connection;

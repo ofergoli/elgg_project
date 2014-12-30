@@ -25,6 +25,7 @@
                     <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                       <ul class="nav navbar-nav">
                         <li class="dropdown">
+                          <!-- take user name from session and echo into top bar -->
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo ucfirst(strtolower($_SESSION['username']))?> Account <b class="caret"></b></a>
                           <ul class="dropdown-menu animated fadeInUp">
                             <li><a href="profile.html">Profile</a></li>

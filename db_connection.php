@@ -1,4 +1,5 @@
 <?php
+	//db connection
 	define("Host", "localhost");
 	define("UserName","root");
 	define("Pass","ofer");

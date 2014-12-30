@@ -1,23 +1,30 @@
 <?php 
   include_once("header.php");
+  //include session
   session_start();
   $username = "";
+  //check if session alive else redirect to login page
   if(isset($_SESSION['username'])){
     $username = $_SESSION['username'];
   }
   else{
     header('Location: login.php');
   }
-
+  //include header
   include_once("header.php");
-
   $db = new DataBase();
-
-  if(isset($_POST['CreateNewSN'])){    // check isset <--- issues
-    if(isset($_POST['displayname']) && isset($_POST['sitename']) && isset($_POST['email'])){
+  //check if user post a new request in order to create a new social network
+  if(isset($_POST['CreateNewSN'])){    // post set
+    if(isset($_POST['displayname']) && isset($_POST['sitename']) && isset($_POST['email'])){ // check params sets
+      //  create a new social network
+      //  if status!="failed" status will be the md5 that generated
+      //  the name of the new folder that under elgg_project/soical_networks/md5
+      //  the zip file is extract into this folder if not failed returned
       $check = new SocialNetwork();
-      $status = $check->createSN();
+      $status = $check->createSN(); 
+
       if($status!="failed"){
+        //create database base on the md5 token!
         $db->Query("CREATE DATABASE ".$status);
         
         $getParam = array('username' => $_SESSION['username'],
@@ -27,11 +34,11 @@
                      'email'=>$_POST['email'],
                      'path' =>  $status);
         $sn_path = "/sites/elgg_project/soical_networks/" . $status . "/elgg-1.9.5/index.php";
-
+        //insert new s_n into networks table
         $query_network_escaped = sprintf("INSERT into networks (social_key,username,network_name,sn_link) values ('%s','%s','%s','%s')",mysql_real_escape_string($status),mysql_real_escape_string($_SESSION['username']),mysql_real_escape_string($_POST['sitename']),$sn_path);
+        //execute
         $db->Query($query_network_escaped);
-
-
+        //redirect into auto_install ---> need to put getParam on the session and not on a get request
         header('Location: auto_install.php?' . http_build_query($getParam));
       }
     }

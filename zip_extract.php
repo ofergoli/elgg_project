@@ -1,4 +1,6 @@
 <?php
+	//extreacting the file. opens a new folder with a given md5 hash create folder and execut the 
+	//soical network into the md5 folder
 	class SocialNetwork{
 		var $zip;
 

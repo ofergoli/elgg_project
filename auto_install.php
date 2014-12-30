@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	include_once('post.php');
-
+	//using get param and do the 6 steps to install elgg and redirect to my_social_networks.php
 	if(isset($_GET['username']) && isset($_GET['password']) && isset($_GET['displayname']) && 
 									isset($_GET['sitename']) && isset($_GET['email']) && isset($_GET['path'])) {
 

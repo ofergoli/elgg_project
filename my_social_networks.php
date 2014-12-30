@@ -1,8 +1,9 @@
 <?php 
   include_once("header.php");
-
+  //including the session
   session_start();
   $username = "";
+  //check if session alive else redirect to login page
   if(isset($_SESSION['username'])){
     $username = $_SESSION['username'];
   }
@@ -12,23 +13,26 @@
   include_once("header.php");
   $db = new DataBase();
   $alert="";
+  //for the red alert if user have or dont have a social networks
   $query_network_escaped_alert = sprintf("SELECT * from networks where username='%s'",mysql_real_escape_string($_SESSION['username']));
   $result_alert = $db->Query($query_network_escaped_alert);
   if(!$result_alert->fetch_assoc())
      $alert=" you don't any have Social Networks yet.";           
 
-
+  //if user name press on delete button (posted)
   if(isset($_POST['delete'])){
+      //get param from request
       if(isset($_POST['sn'])){
+        //delete the social network from the table
         $delete_from_networks = "DELETE FROM networks where social_key='" . $_POST['sn'] . "' and username='" . $_SESSION['username'] . "'";
         $db->Query($delete_from_networks);
 
         //Dropping DataBASE !!!
         $drop_db = "DROP DATABASE " . $_POST['sn'];
         $db->Query($drop_db); 
-
+         //deleting all files in the $_POST['sn'] folder name --> all the folder of the social network
          $delete_folder = dirname(__FILE__) . "\soical_networks\\" . $_POST['sn'] ;
-         
+         //recursive function that delete in a given path all files in that folder
          function recursive_delete_folder($delete_folder){
                $it = new RecursiveDirectoryIterator($delete_folder, RecursiveDirectoryIterator::SKIP_DOTS);
                $files = new RecursiveIteratorIterator($it,
@@ -45,6 +49,7 @@
                }
                rmdir($delete_folder);
          }
+         //calling remove recursive
          recursive_delete_folder($delete_folder);
       }
   }
@@ -149,6 +154,9 @@
                     </thead>
                     <tbody>
                         <?php 
+                            //get all user social networks and create a dynamic row for each one
+                            // each row represents a social network. the delete buttons warpped with form and a hidden textbox with md5 value
+                            // on each row we can know what soical network md5 
                             $query_network_escaped = sprintf("SELECT * from networks where username='%s'",mysql_real_escape_string($_SESSION['username']));
                             $result =$db->Query($query_network_escaped);
                             $index = 1;
