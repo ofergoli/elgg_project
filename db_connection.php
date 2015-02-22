@@ -2,7 +2,7 @@
 	//db connection
 	define("Host", "localhost");
 	define("UserName","root");
-	define("Pass","ofer");
+	define("Pass","root");
 	define("Shecma","social_network");
 	$conn = mysqli_connect(Host,UserName,Pass,Shecma);
 	if(mysqli_connect_errno()){

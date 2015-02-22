@@ -39,7 +39,10 @@
         //execute
         $db->Query($query_network_escaped);
         //redirect into auto_install ---> need to put getParam on the session and not on a get request
-        header('Location: auto_install.php?' . http_build_query($getParam));
+        
+        $_SESSION['autoInstallParams'] = $getParam;
+        //header('Location: auto_install.php?' . http_build_query($getParam));
+        header('Location: auto_install.php');
       }
     }
     else{
