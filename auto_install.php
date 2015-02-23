@@ -2,18 +2,19 @@
 	session_start();
 	include_once('post.php');
 	//using get param and do the 6 steps to install elgg and redirect to my_social_networks.php
-	if(isset($_GET['username']) && isset($_GET['password']) && isset($_GET['displayname']) && 
-									isset($_GET['sitename']) && isset($_GET['email']) && isset($_GET['path'])) {
+	$paramters = $_SESSION['autoInstallParams'];
 
-		$username = $_GET['username'];
-		$password = $_GET['password'];
-		$displayname = $_GET['displayname'];
-		$sitename = $_GET['sitename'];
-		$email = $_GET['email'];
-		$path = $_GET['path'];
+	if(isset($paramters['username']) && isset($paramters['password']) && isset($paramters['displayname'])
+ 	 		&& isset($paramters['sitename']) && isset($paramters['email']) && isset($paramters['path'])){
+		$username = $paramters['username'];
+		$password = $paramters['password'];
+		$displayname = $paramters['displayname'];
+		$sitename = $paramters['sitename'];
+		$email = $paramters['email'];
+		$path = $paramters['path'];
 
 		$dataBaseParam = array('dbuser' => 'root',
-							   'dbpassword' => 'ofer',
+							   'dbpassword' => 'root',
 							   'dbname' => $path ,
 							   'dbhost'=>'localhost',
 							   'dbprefix'=>'elgg_');
@@ -46,6 +47,5 @@
 	}
 	// else{//redirect to index.php with error message
 	// 	header('Location: http://localhost/sites/elgg_project/index.php?install_error=install_fatal_error');		
-	// }
-
+	// }		
 ?>
