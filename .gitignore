@@ -1,1 +1,2 @@
-social_networks
+social_networks/*
+!social_networks/elgg-1.9.5.zip
