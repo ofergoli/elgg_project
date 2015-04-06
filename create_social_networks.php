@@ -18,7 +18,7 @@
     if(isset($_POST['displayname']) && isset($_POST['sitename']) && isset($_POST['email'])){ // check params sets
       //  create a new social network
       //  if status!="failed" status will be the md5 that generated
-      //  the name of the new folder that under elgg_project/soical_networks/md5
+      //  the name of the new folder that under elgg_project/social_networks/md5
       //  the zip file is extract into this folder if not failed returned
       $check = new SocialNetwork();
       $status = $check->createSN(); 
@@ -33,7 +33,7 @@
                      'sitename'=> $_POST['sitename'],
                      'email'=>$_POST['email'],
                      'path' =>  $status);
-        $sn_path = "/sites/elgg_project/soical_networks/" . $status . "/elgg-1.9.5/index.php";
+        $sn_path = $Url . "/social_networks/" . $status . "/elgg-1.9.5/index.php";
         //insert new s_n into networks table
         $query_network_escaped = sprintf("INSERT into networks (social_key,username,network_name,sn_link) values ('%s','%s','%s','%s')",mysql_real_escape_string($status),mysql_real_escape_string($_SESSION['username']),mysql_real_escape_string($_POST['sitename']),$sn_path);
         //execute
@@ -94,7 +94,7 @@
               <div class='wapper'>
                 <div class="elgg-page-body">
                     <div class="sum_bgunet">Bgu.net platform let you create as much social networks as you want with only one simple one step.</div>
-                    <div class="sum_bgunet">As soon as the soical network created you'll  get an adminstrator Permissions to your new network.</div>
+                    <div class="sum_bgunet">As soon as the social network created you'll  get an adminstrator Permissions to your new network.</div>
                     <br/>
                     <div class="sum_bgunet"><span id="im_note">importent!</span> your username and password will be the <b> same</b> as your bgu.net <b>username/password</b> .</div>
                     <div class="sum_bgunet"><span id="im_note">You can change it from the elgg username password settings</span></div>
