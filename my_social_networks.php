@@ -23,34 +23,34 @@ if(!$result_alert->fetch_assoc())
 if(isset($_POST['delete'])){
       //get param from request
   if(isset($_POST['sn'])){
-        //delete the social network from the table
-    $delete_from_networks = "DELETE FROM networks where social_key='" . $_POST['sn'] . "' and username='" . $_SESSION['username'] . "'";
-    $db->Query($delete_from_networks);
+   //      //delete the social network from the table
+   //  $delete_from_networks = "DELETE FROM networks where social_key='" . $_POST['sn'] . "' and username='" . $_SESSION['username'] . "'";
+   //  $db->Query($delete_from_networks);
 
-        //Dropping DataBASE !!!
-    $drop_db = "DROP DATABASE " . $_POST['sn'];
-    $db->Query($drop_db); 
-         //deleting all files in the $_POST['sn'] folder name --> all the folder of the social network
-    $delete_folder = dirname(__FILE__) . "\social_networks\\" . $_POST['sn'] ;
-         //recursive function that delete in a given path all files in that folder
-    function recursive_delete_folder($delete_folder){
-     $it = new RecursiveDirectoryIterator($delete_folder, RecursiveDirectoryIterator::SKIP_DOTS);
-     $files = new RecursiveIteratorIterator($it,
-      RecursiveIteratorIterator::CHILD_FIRST);
-     foreach($files as $file) {
-       if ($file->getFilename() === '.' || $file->getFilename() === '..') {
-         continue;
-       }
-       if ($file->isDir()){
-         rmdir($file->getRealPath());
-       } else {
-         unlink($file->getRealPath());
-       }
-     }
-     rmdir($delete_folder);
-   }
-         //calling remove recursive
-   recursive_delete_folder($delete_folder);
+   //      //Dropping DataBASE !!!
+   //  $drop_db = "DROP DATABASE " . $_POST['sn'];
+   //  $db->Query($drop_db); 
+   //       //deleting all files in the $_POST['sn'] folder name --> all the folder of the social network
+   //  $delete_folder = dirname(__FILE__) . "\social_networks\\" . $_POST['sn'] ;
+   //       //recursive function that delete in a given path all files in that folder
+   //  function recursive_delete_folder($delete_folder){
+   //   $it = new RecursiveDirectoryIterator($delete_folder, RecursiveDirectoryIterator::SKIP_DOTS);
+   //   $files = new RecursiveIteratorIterator($it,
+   //    RecursiveIteratorIterator::CHILD_FIRST);
+   //   foreach($files as $file) {
+   //     if ($file->getFilename() === '.' || $file->getFilename() === '..') {
+   //       continue;
+   //     }
+   //     if ($file->isDir()){
+   //       rmdir($file->getRealPath());
+   //     } else {
+   //       unlink($file->getRealPath());
+   //     }
+   //   }
+   //   rmdir($delete_folder);
+   // }
+   //       //calling remove recursive
+   // recursive_delete_folder($delete_folder);
  }
 }
 ?>
@@ -91,6 +91,7 @@ if(isset($_POST['delete'])){
                   <div class="content-box-large">
                     <div class="panel-heading">
                       <div class="panel-title"><h2>My Social Networks</div>
+                      <div id="spinner" class="three-quarters" style="display:none;"></div>
                     </div>
                     <div class="panel-body">
                       <div class='wapper'>
@@ -160,7 +161,7 @@ if(isset($_POST['delete'])){
                     $result =$db->Query($query_network_escaped);
                     $index = 1;
                     while($row = $result->fetch_assoc()){
-                       echo "<tr><td>" . $index . "</td><td>" . $row['username'] . "</td><td>" . $row['network_name'] . "</td><td>Delete/Enter Social Network<a href=\"". $row['sn_link'] . "\"  target=\"_blank\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a><form action=\"my_social_networks.php\" method=\"post\" value=\"delete\"><input class=\"btn btn-danger\" type=\"submit\" name=\"delete\" value=\"Delete\"  /><input name=\"sn\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] .  "\"/></form></td></tr>";
+                       echo "<tr><td>" . $index . "</td><td>" . $row['username'] . "</td><td>" . $row['network_name'] . "</td><td>Delete/Enter Social Network<a href=\"". $row['sn_link'] . "\"  target=\"_blank\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a><form action=\"my_social_networks.php\" method=\"post\" value=\"delete\"><input class=\"btn btn-danger\" type=\"button\" id=\"delete_bt\" name=\"delete\" value=\"Delete\"  /><input name=\"sn\" class=\"hidden_input\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] .  "\"/></form></td></tr>";
                        $index++;
                     }
                    ?>
@@ -168,7 +169,7 @@ if(isset($_POST['delete'])){
                </table>
              </div>
            </div>
-           <i class="glyphicon glyphicon-remove"></i><span id="im_note">   Attention! - Click on <b>Delete</b> button will erase permanently the social network with all databases included!<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bgu.net password authentication required</span>
+           <i class="glyphicon glyphicon-remove"></i><span id="im_note">   Attention! - Click on <b>Delete</b> button will erase permanently the social network with all databases included!<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bgu.net username/password authentication required</span>
          </div>
 
          <div id="space"></div>

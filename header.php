@@ -15,5 +15,5 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- styles -->
     <link href="css/styles.css" rel="stylesheet">
-    <script type="text/javascript" src="js/forms.js"></script>
+    <link rel="stylesheet" href="css/three-quarters.css" type="text/css">
   </head>
