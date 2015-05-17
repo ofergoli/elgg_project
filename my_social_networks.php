@@ -149,6 +149,7 @@ if(isset($_POST['delete'])){
                       <th>#</th>
                       <th>Admin</th>
                       <th>Socian Network Name</th>
+                      <th>Invite Users</th>
                       <th>Options</th>
                     </tr>
                   </thead>
@@ -161,7 +162,21 @@ if(isset($_POST['delete'])){
                     $result =$db->Query($query_network_escaped);
                     $index = 1;
                     while($row = $result->fetch_assoc()){
-                       echo "<tr><td>" . $index . "</td><td>" . $row['username'] . "</td><td>" . $row['network_name'] . "</td><td>Delete/Enter Social Network<a href=\"". $row['sn_link'] . "\"  target=\"_blank\"><br/><br/><input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  /></a><form action=\"my_social_networks.php\" method=\"post\" value=\"delete\"><input class=\"btn btn-danger\" type=\"button\" id=\"delete_bt\" name=\"delete\" value=\"Delete\"  /><input name=\"sn\" class=\"hidden_input\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] .  "\"/></form></td></tr>";
+                       echo "<tr>
+                                <td>" . $index . "</td>
+                                <td>" . $row['username'] . "</td>
+                                <td>" . $row['network_name'] . "</td>
+                                <td>Delete/Enter Social Network
+                                  <a href=\"". $row['sn_link'] . "\"  target=\"_blank\">
+                                     <br/><br/>
+                                       <input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  />
+                                  </a>
+                                  <form action=\"my_social_networks.php\" method=\"post\" value=\"delete\">
+                                      <input class=\"btn btn-danger\" type=\"button\" id=\"delete_bt\" name=\"delete\" value=\"Delete\"  />
+                                      <input name=\"sn\" class=\"hidden_input\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] .  "\"/>
+                                  </form>
+                                </td>
+                             </tr>";
                        $index++;
                     }
                    ?>
