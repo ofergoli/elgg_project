@@ -112,17 +112,24 @@
                   <form class="form-horizontal" role="form" action="create_social_networks.php" method="post" value="create_sn">
                   <div class="form-group">
                     <div class="col-sm-10">
+                      <div class="col-sm-10">
                       <input type="email" class="form-control" name="email"  placeholder="Email">
+                      </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-sm-10">
+                      <div class="col-sm-10">
                       <input type="text" class="form-control" name="displayname" placeholder="Social Network User Name">
+                      </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="sitename" placeholder="Social Network Name">
+                      <div class="col-sm-10">
+                      <input type="text" class="form-control" name="sitename" placeholder="Social Network Name" />
+                      </div>
+                      <div id="spinner" class="three-quarters" style="display:none;"></div>
                     </div>
                   </div>
                   <div class="form-group">

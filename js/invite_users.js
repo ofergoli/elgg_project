@@ -1,21 +1,21 @@
 $(document).ready(function(){
-    $(".btn-danger").click(function(){
-        var md5_social_hash = $(this).parent().children(".hidden_input").val();
+    $("#inviteusers").click(function(){
         bootbox.dialog({
             title: "Enter BGU.NET credentials :",
-            message: '<div class="row">  ' +
-            '<div class="col-md-12"> ' +
-            '<form class="form-horizontal"> ' +
+            message: 
+            '<div class="row">  ' +
+                '<div class="col-md-12"> ' +
+                  '<form class="form-horizontal"> ' +
+                    '<div class="form-group"> ' +
+                       '<label class="col-md-4 control-label" for="name">Username :</label> ' +
+                      '<div class="col-md-4"> ' +
+                      '<input id="username" name="name" type="text" placeholder="username" class="form-control input-md"> ' +
+                    '</div> ' +
+                '</div> '+
             '<div class="form-group"> ' +
-            '<label class="col-md-4 control-label" for="name">Username :</label> ' +
-            '<div class="col-md-4"> ' +
-            '<input id="username" name="name" type="text" placeholder="username" class="form-control input-md"> ' +
-            '</div> ' +
-            '</div> '+
-            '<div class="form-group"> ' +
-            '<label class="col-md-4 control-label" for="name">Password :</label> ' +
-            '<div class="col-md-4"> ' +
-            '<input id="password" name="name" type="password" placeholder="password" class="form-control input-md"> ' +
+               '<label class="col-md-4 control-label" for="name">Password :</label> ' +
+                 '<div class="col-md-4"> ' +
+                 '<textarea rows="20" cols="55" style="resize: none;"></textarea>' +
             '</div> ' +
             '</div> </div>' +
             '</form> </div>  </div>',
@@ -41,12 +41,7 @@ $(document).ready(function(){
                             type:"POST",
                             data:data,
                             success : function(result){
-                                $("#spinner").hide();
-                                if(result.status=="success")
-                                    window.location.replace("http://localhost/sites/elgg_project/my_social_networks.php");
-                                else{
-                                    alert(result.status);
-                                }
+
                             }
                         });
                     }

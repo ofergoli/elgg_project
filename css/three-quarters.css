@@ -78,12 +78,12 @@
 
 /* :not(:required) hides this rule from IE9 and below */
 .three-quarters:not(:required) {
-  -webkit-animation: three-quarters 1250ms infinite linear;
-  -moz-animation: three-quarters 1250ms infinite linear;
-  -ms-animation: three-quarters 1250ms infinite linear;
-  -o-animation: three-quarters 1250ms infinite linear;
-  animation: three-quarters 1250ms infinite linear;
-  border: 8px solid #3388ee;
+  -webkit-animation: three-quarters 600ms infinite linear;
+  -moz-animation: three-quarters 600ms infinite linear;
+  -ms-animation: three-quarters 600ms infinite linear;
+  -o-animation: three-quarters 600ms infinite linear;
+  animation: three-quarters 600ms infinite linear;
+  border: 8px solid #A0B7EB;
   border-right-color: transparent;
   border-radius: 16px;
   box-sizing: border-box;

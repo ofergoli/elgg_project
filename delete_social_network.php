@@ -46,7 +46,7 @@
 		echo json_encode($response);
 	}
 	else{// invalid password
-		$response = array('status' => 'invalid password');
+		$response = array('status' => 'invalid credentials');
 		header('Content-Type: application/json');
 		echo json_encode($response);
 	}
