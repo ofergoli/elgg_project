@@ -12,13 +12,20 @@
 			//check if user name and pass valid with db users table
 			$query_escaped = sprintf("SELECT * from users where username='%s'",mysql_real_escape_string($_POST['username']));
 			$result = $db->Query($query_escaped);
-
 			$row = $result->fetch_assoc();
 			//insert into session global object the user & pass
 			if($row['password'] === $_POST['password']){// good
 					$_SESSION['username'] = $_POST['username'];
 					$_SESSION['password'] = $_POST['password'];
-				header('Location: index.php');
+					
+					$social_networks_key_val = array();
+				    $query_network_escaped = sprintf("SELECT * from networks where username='%s'",mysql_real_escape_string($_SESSION['username']));
+                    $result =$db->Query($query_network_escaped);
+                    while($row = $result->fetch_assoc()){
+                    	$social_networks_key_val[$row['network_name']] = $row['social_key'];
+                    }
+                    $_SESSION['social_networks_key_val'] = $social_networks_key_val;
+				    header('Location: index.php');
 			}
 			else{// bad
 				$error_message = "Please check your username/password";

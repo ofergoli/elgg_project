@@ -1,24 +1,36 @@
 <?php
-	if($_FILES['file']['upload'] != "" )
-	{
-	   copy( $_FILES['file']['upload'], "C:"\xampp"\htdocs"\sites"\elgg_project" ) or 
-	           die( "Could not copy file!");
-	}
-	else
-	{
-	    die("No file specified!");
-	}
+
+echo $_POST['select'];
+
+$csv = array();
+// check there are no errors
+if($_FILES['csv']['error'] == 0){
+    $name = $_FILES['csv']['name'];
+    $ext = strtolower(end(explode('.', $_FILES['csv']['name'])));
+    $type = $_FILES['csv']['type'];
+    $tmpName = $_FILES['csv']['tmp_name'];
+
+    // check the file is a csv
+    if($ext === 'csv'){
+        if(($handle = fopen($tmpName, 'r')) !== FALSE) {
+            // necessary if a large csv file
+            set_time_limit(0);
+
+            $row = 0;
+
+            while(($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
+                // number of fields in the csv
+                $col_count = count($data);
+                // get the values from the csv
+                $csv[$row]['col1'] = $data[0];
+                $csv[$row]['col2'] = $data[1];
+                $csv[$row]['col3'] = $data[2];
+                // inc the row
+                $row++;
+            }
+            fclose($handle);
+        }
+    }
+}
+print_r($csv);  
 ?>
-<html>
-<head>
-<title>Uploading Complete</title>
-</head>
-	<body>
-		<h2>Uploaded File Info:</h2>
-	<ul>
-		<li>Sent file: <?php echo $_FILES['file']['name'];  ?>
-		<li>File size: <?php echo $_FILES['file']['size'];  ?> bytes
-		<li>File type: <?php echo $_FILES['file']['type'];  ?>
-	</ul>
-	</body>
-</html>
