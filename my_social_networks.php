@@ -17,42 +17,7 @@ $alert="";
 $query_network_escaped_alert = sprintf("SELECT * from networks where username='%s'",mysql_real_escape_string($_SESSION['username']));
 $result_alert = $db->Query($query_network_escaped_alert);
 if(!$result_alert->fetch_assoc())
- $alert=" you don't any have Social Networks yet.";           
-
-  //if user name press on delete button (posted)
-if(isset($_POST['delete'])){
-      //get param from request
-  if(isset($_POST['sn'])){
-   //      //delete the social network from the table
-   //  $delete_from_networks = "DELETE FROM networks where social_key='" . $_POST['sn'] . "' and username='" . $_SESSION['username'] . "'";
-   //  $db->Query($delete_from_networks);
-
-   //      //Dropping DataBASE !!!
-   //  $drop_db = "DROP DATABASE " . $_POST['sn'];
-   //  $db->Query($drop_db); 
-   //       //deleting all files in the $_POST['sn'] folder name --> all the folder of the social network
-   //  $delete_folder = dirname(__FILE__) . "\social_networks\\" . $_POST['sn'] ;
-   //       //recursive function that delete in a given path all files in that folder
-   //  function recursive_delete_folder($delete_folder){
-   //   $it = new RecursiveDirectoryIterator($delete_folder, RecursiveDirectoryIterator::SKIP_DOTS);
-   //   $files = new RecursiveIteratorIterator($it,
-   //    RecursiveIteratorIterator::CHILD_FIRST);
-   //   foreach($files as $file) {
-   //     if ($file->getFilename() === '.' || $file->getFilename() === '..') {
-   //       continue;
-   //     }
-   //     if ($file->isDir()){
-   //       rmdir($file->getRealPath());
-   //     } else {
-   //       unlink($file->getRealPath());
-   //     }
-   //   }
-   //   rmdir($delete_folder);
-   // }
-   //       //calling remove recursive
-   // recursive_delete_folder($delete_folder);
- }
-}
+ $alert=" you don't any have Social Networks yet.";
 ?>
 <body>
   <?php 
