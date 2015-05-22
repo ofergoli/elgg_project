@@ -1,8 +1,10 @@
 <?php 
   include_once("header.php");
+  include_once("upload.php");
   //include session
   session_start();
   $username = "";
+  $message="";
   //check if session alive else redirect to login page
   if(isset($_SESSION['username'])){
     $username = $_SESSION['username'];
@@ -10,7 +12,17 @@
   else{
     header('Location: login.php');
   }
-  //$_SESSION['social_networks_key_val']
+
+  if(isset($_POST['select'])){
+    if(uploadCsv($_FILES['csv'])){
+       $message = "The file uploaded!";
+    }
+    else{
+      $message = "The file must be a CSV File ! , Please try again";
+    }
+
+  }
+
   ?>
 <body>
 <?php
@@ -51,7 +63,7 @@
               <div class='wapper'>
                 <div class="elgg-page-body">
                   <div class="col-md-6">
-                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                    <form action="invite_users.php" method="post" enctype="multipart/form-data">
                         <div class="col-md-3">
                           <select class="form-control" id="selectSocial" name="select">
                               <?php
@@ -95,6 +107,7 @@
                 </div>
               </div>
               </div>
+               <span id="im_note"><?php echo $message ?></span>
             </div>
           </div> 
         <div id="space"></div>
