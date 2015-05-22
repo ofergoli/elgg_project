@@ -11,14 +11,13 @@ if (isset($_POST['Create'])) {        // check isset <--- issues
 	//check params
 	if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email'])) {
 		$_SESSION['username'] = $_POST['username'];
-		$_SESSION['password'] = $_POST['password'];
 
 		// $user_query = "insert into users (username,password,email) values ('" . $_POST['username'] . "','" . $_POST['password'] . "','" . $_POST['email'] . "')";
 		// $db->Query($user_query);
 		//insert the new user to users table need to check if username isn't allready exiest! not written yet
 		$user_query_escaped = sprintf("INSERT into users (username,password,email) values ('%s','%s','%s')",
 			mysql_real_escape_string($_POST['username']),
-			mysql_real_escape_string($_POST['password']),
+			password_hash($_POST['password'], PASSWORD_DEFAULT),
 			mysql_real_escape_string($_POST['email']));
 		$db->Query($user_query_escaped);
 

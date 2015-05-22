@@ -14,9 +14,8 @@ if (isset($_POST['Login'])) {
 		$result = $db->Query($query_escaped);
 		$row = $result->fetch_assoc();
 		//insert into session global object the user & pass
-		if ($row['password'] === $_POST['password']) {// good
+		if (password_verify($_POST['password'], $row['password'])) {// good
 			$_SESSION['username'] = $_POST['username'];
-			$_SESSION['password'] = $_POST['password'];
 
 			$social_networks_key_val = array();
 			$query_network_escaped = sprintf("SELECT * from networks where username='%s'", mysql_real_escape_string($_SESSION['username']));
