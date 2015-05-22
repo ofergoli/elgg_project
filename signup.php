@@ -52,17 +52,26 @@ if (isset($_POST['Create'])) {        // check isset <--- issues
 					<div class="box">
 						<div class="content-wrap">
 							<h6>Sign Up</h6>
-
-							<form action="signup.php" method="post" value="create_sn">
-								<input class="form-control" type="text" name="username" placeholder="user name">
-								<input class="form-control" type="password" name="password" placeholder="Password">
-								<input class="form-control" type="text" name="email" placeholder="E-mail address">
-								<!--  <input class="form-control" type="password" placeholder="Confirm Password"> -->
-								<!-- 				                <input class="form-control" type="text" name="displayname" placeholder="display name">
-																<input class="form-control" type="text" name="sitename" placeholder="Social network name"> -->
-								<div class="action">
+							<form action="signup.php" method="post" data-toggle="validator">
+								<div class="form-group">
+									<input class="form-control" type="text" name="username" maxlength="20" pattern="^([_A-z0-9]){6,}$" placeholder="Username" data-error="Username must be at least 6 characters long alphanumeric string" required />
+									<div class="help-block with-errors"></div>
+								</div>
+								<div class="form-group">
+									<input id="inputPassword" data-minlength="6" class="form-control" type="password" name="password" placeholder="Password" required>
+									<div class="help-block with-errors"></div>
+								</div>
+								<div class="form-group">
+									<input id="inputPasswordConfirm" class="form-control" type="password" placeholder="Confirm Password" data-match="#inputPassword"
+										data-match-error="Passowrds don't match" required>
+									<div class="help-block with-errors"></div>
+								</div>
+								<div class="form-group">
+									<input class="form-control" type="email" name="email" placeholder="E-mail Address" data-error="Invalid e-mail address" required>
+									<div class="help-block with-errors"></div>
+								</div>
+								<div class="form-group">
 									<input class="btn btn-primary signup" type="submit" name="Create" value="Create"/>
-									<!--  <a class="btn btn-primary signup" href="index.html">Sign Up</a> -->
 								</div>
 							</form>
 						</div>
