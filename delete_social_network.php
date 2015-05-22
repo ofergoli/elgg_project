@@ -12,7 +12,7 @@ $result = $db->Query($query_escaped);
 
 $row = $result->fetch_assoc();
 //insert into session global object the user & pass
-if ($row['password'] === $password) {// good
+if (password_verify($password, $row['password'])) {// good
 
 	$foundNetwork = false;
 	$networkQuery_escaped = sprintf("SELECT social_key from networks where username='%s'", mysql_real_escape_string($username));
@@ -34,7 +34,7 @@ if ($row['password'] === $password) {// good
 		$drop_db = "DROP DATABASE " . $hash;
 		$db->Query($drop_db);
 		//deleting all files in the $hash folder name --> all the folder of the social network
-		$delete_folder = dirname(__FILE__) . "\social_networks\\" . $hash;
+		$delete_folder = dirname(__FILE__) . "social_networks\\" . $hash;
 		//recursive function that delete in a given path all files in that folder
 		function recursive_delete_folder($delete_folder)
 		{
