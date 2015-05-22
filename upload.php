@@ -1,36 +1,29 @@
 <?php
-
-echo $_POST['select'];
-
-$csv = array();
-// check there are no errors
-if($_FILES['csv']['error'] == 0){
-    $name = $_FILES['csv']['name'];
-    $ext = strtolower(end(explode('.', $_FILES['csv']['name'])));
-    $type = $_FILES['csv']['type'];
-    $tmpName = $_FILES['csv']['tmp_name'];
-
-    // check the file is a csv
-    if($ext === 'csv'){
-        if(($handle = fopen($tmpName, 'r')) !== FALSE) {
-            // necessary if a large csv file
-            set_time_limit(0);
-
-            $row = 0;
-
-            while(($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
-                // number of fields in the csv
-                $col_count = count($data);
-                // get the values from the csv
-                $csv[$row]['col1'] = $data[0];
-                $csv[$row]['col2'] = $data[1];
-                $csv[$row]['col3'] = $data[2];
-                // inc the row
-                $row++;
+    include_once('post.php');
+    include_once('utility.php');
+    if($_POST['select']){
+        if($_FILES['csv']['error'] == 0){
+            $name = $_FILES['csv']['name'];
+            $ext = strtolower(end(explode('.', $_FILES['csv']['name'])));
+            $type = $_FILES['csv']['type'];
+            $tmpName = $_FILES['csv']['tmp_name'];
+            if($ext === 'csv'){
+                if(($handle = fopen($tmpName, 'r')) !== FALSE) {
+                    while(($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
+                            $newUser = array('username' => $data[0],
+                                             'password' => $data[1],
+                                             'name' => $data[3] ,
+                                             'email'=>$data[2]);
+                            $path = $Url . "/social_networks/".$_POST['select']."/elgg-1.9.5/engine/start.php";
+                            doPost($newUser,$path);
+                     }
+                }
             }
-            fclose($handle);
         }
+        header("Location:invite_users.php"); 
     }
-}
-print_r($csv);  
+    else{
+
+    }
+
 ?>

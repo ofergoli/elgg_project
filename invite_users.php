@@ -62,23 +62,32 @@
                               ?>
                           </select>
                         </div>
-                     <div class="col-md-6">
-                      <div class="sum_bgunet">
-                        You can upload a csv containing the following fields:
-                      </div>
-                      <ul>
-                        <li>Bgu Username</li>
-                        <li>Bgu Password</li>
-                        <li>Bgu Email</li>
-                      </ul>
-                    </div>
-                    <br/><br/><br/>
-                        <div class="col-md-5">
-                            <input type="file" class="filestyle" data-buttonName="btn-primary" name="csv" value="" />
+                        <div class="col-md-6">
+                          <div class="sum_bgunet">
+                            Upload a CSV containing the following fields:
+                          </div>
+                          <ul>
+                            <li>Bgu Username</li>
+                            <li>Bgu Password (At least 6 characters)</li>
+                            <li>Bgu Email (Valid email)</li>
+                            <li>Bgu Name</li>
+                          </ul>
                         </div>
-                        <div class="col-md-3">
-                            <input type="submit" class="btn btn-primary" name="submit" value="Upload CSV" />
-                        </div>
+                          <div class="col-md-6">
+                              <div class="sum_bgunet">
+                                  Upload a CSV file where the records seperate by commas.
+                                   <input type="button" id="exampleCsv" class="btn btn-primary" value="Example" />
+                              </div>
+                          </div>
+                          <div class="col-md-12">
+                            <br/><br/><br/>
+                            <div class="col-md-5">
+                                <input type="file" class="filestyle" data-buttonName="btn-primary" name="csv" value="" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="submit" class="btn btn-primary" name="submit" value="Upload CSV" />
+                            </div>
+                          </div>
                       </form>
                   </div>
                 </div>
@@ -93,11 +102,10 @@
          <img id="mainpage_logo" src="img/elgg_logo_new.png">
     </div>
     </div>
- 
     <footer>
          <div class="container">
             <div class="copy text-center">
-               Copyright 2014 <a href='#'>Website</a>
+               Copyright 2015 <a href='#'>Website</a>
             </div>
             
          </div>
