@@ -63,7 +63,7 @@ if (isset($_POST['Create'])) {        // check isset <--- issues
 								</div>
 								<div class="form-group">
 									<input id="inputPasswordConfirm" class="form-control" type="password" placeholder="Confirm Password" data-match="#inputPassword"
-										data-match-error="Passowrds don't match" required>
+										data-match-error="Passwords don't match" required>
 									<div class="help-block with-errors"></div>
 								</div>
 								<div class="form-group">

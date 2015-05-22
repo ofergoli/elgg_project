@@ -78,7 +78,7 @@ include_once('body_header.php');
 								<tr>
 									<th>#</th>
 									<th>Admin</th>
-									<th>Socian Network Name</th>
+									<th>Social Network Name</th>
 									<th>Invite Users</th>
 									<th>Options</th>
 								</tr>

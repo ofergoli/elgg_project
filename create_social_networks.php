@@ -29,7 +29,7 @@ if (isset($_POST['CreateNewSN'])) {    // post set
 			$db->Query("CREATE DATABASE " . $status);
 
 			$getParam = array('username' => $_SESSION['username'],
-				'password' => $_SESSION['password'],
+				'password' => $_POST['password'],
 				'displayname' => $_POST['displayname'],
 				'sitename' => $_POST['sitename'],
 				'email' => $_POST['email'],
@@ -114,47 +114,53 @@ include_once('body_header.php');
 					<div class="col-md-5">
 						<div class="content-box-large">
 							<br/>
-
 							<div class="panel-title">Please fill in the following:</div>
 							<br/>
-
 							<div class="panel-body">
 								<form class="form-horizontal" role="form" action="create_social_networks.php"
-									  method="post" value="create_sn">
+									  method="post" value="create_sn" data-toggle="validator">
 									<div class="form-group">
-										<div class="col-sm-10">
-											<div class="col-sm-10">
-												<input type="email" class="form-control" name="email"
-													   placeholder="Email">
-											</div>
-										</div>
+										<input class="form-control" type="text" name="sitename" maxlength="20"
+											   pattern="^([_A-z0-9]){6,}$" placeholder="Social Network Name"
+											   data-error="Must be at least 6 characters long alphanumeric string"
+											   required/>
+
+										<div class="help-block with-errors"></div>
 									</div>
 									<div class="form-group">
-										<div class="col-sm-10">
-											<div class="col-sm-10">
-												<input type="text" class="form-control" name="displayname"
-													   placeholder="Social Network User Name">
-											</div>
-										</div>
+										<input class="form-control" type="email" name="email"
+											   placeholder="E-mail Address" data-error="Invalid e-mail address"
+											   required>
+
+										<div class="help-block with-errors"></div>
 									</div>
 									<div class="form-group">
-										<div class="col-sm-10">
-											<div class="col-sm-10">
-												<input type="text" class="form-control" name="sitename"
-													   placeholder="Social Network Name"/>
-											</div>
-											<div id="spinner" class="three-quarters" style="display:none;"></div>
-										</div>
+										<input class="form-control" type="text" name="displayname" maxlength="20"
+											   pattern="^([_A-z0-9]){6,}$" placeholder="Social Network Username"
+											   data-error="Must be at least 6 characters long alphanumeric string"
+											   required/>
+
+										<div class="help-block with-errors"></div>
 									</div>
 									<div class="form-group">
+										<input id="inputPassword" data-minlength="6" class="form-control"
+											   type="password" name="password" placeholder="Password" required>
+
+										<div class="help-block with-errors"></div>
 									</div>
-									<div class="form-group pull-right">
-										<div class="col-sm-offset-2 col-sm-10">
-											<button type="submit" name="CreateNewSN" class="btn btn-primary">Create
-											</button>
-										</div>
+									<div class="form-group">
+										<input id="inputPasswordConfirm" class="form-control" type="password"
+											   placeholder="Confirm Password" data-match="#inputPassword"
+											   data-match-error="Passwords don't match" required>
+
+										<div class="help-block with-errors"></div>
+									</div>
+									<div class="form-group">
+										<button type="submit" name="CreateNewSN" class="btn btn-primary">Create
+										</button>
 									</div>
 								</form>
+
 							</div>
 						</div>
 					</div>
