@@ -1,17 +1,22 @@
 <?php
-	//database object member -> connection from db_connection.php
-	class DataBase{
 
-		var $connection;
+//database object member -> connection from db_connection.php
+class DataBase
+{
 
-		public function DataBase(){
-			require("db_connection.php");
-			$this->connection = $conn;
-		}
+	var $connection;
 
-		function Query($query){
-			$result = mysqli_query($this->connection,$query);
-			return $result;
-		}
+	public function DataBase()
+	{
+		require("db_connection.php");
+		$this->connection = $conn;
 	}
+
+	function Query($query)
+	{
+		$result = mysqli_query($this->connection, $query);
+		return $result;
+	}
+}
+
 ?>
