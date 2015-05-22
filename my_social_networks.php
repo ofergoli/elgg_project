@@ -102,7 +102,7 @@ include_once('body_header.php');
                                        <input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  />
                                   </a>
                                   <form action=\"my_social_networks.php\" method=\"post\" value=\"delete\">
-                                      <input class=\"btn btn-danger\" type=\"button\" id=\"delete_bt\" name=\"delete\" value=\"Delete\"  />
+                                      <input class=\"btn btn-danger delete-network-btn\" type=\"button\" id=\"delete_bt\" name=\"delete\" value=\"Delete\"  />
                                       <input name=\"sn\" class=\"hidden_input\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] . "\"/>
                                   </form>
                                 </td>
@@ -114,7 +114,6 @@ include_once('body_header.php');
 							</table>
 						</div>
 					</div>
-					<i class="glyphicon glyphicon-remove"></i><span id="im_note">   Attention! - Click on <b>Delete</b> button will erase permanently the social network with all databases included!<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bgu.net username/password authentication required</span>
 				</div>
 				<div id="space"></div>
 			</div>
