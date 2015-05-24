@@ -41,7 +41,7 @@ class DataQueries
 		return AdoHelper::ExecuteDataSet("social_network",$query,$parameters);
 	}
 
-	public static function GetNetwork($userName)
+	public static function GetNetworkByUser($userName)
 	{
 		$query = "SELECT * FROM networks WHERE username = ?";
 		$parameters = array($userName);
@@ -49,7 +49,13 @@ class DataQueries
 		return AdoHelper::ExecuteDataSet("social_network",$query,$parameters);
 	}
 
+	public static function GetNetworkBySocialKey($socialKey)
+	{
+		$query = "SELECT * FROM networks WHERE social_key = ?";
+		$parameters = array($socialKey);
 
+		return AdoHelper::ExecuteDataSet("social_network",$query,$parameters);
+	}
 	public static function SetNetwork($socialKey, $userName, $networkName, $SNLink)
 	{
 
