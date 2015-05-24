@@ -15,7 +15,7 @@ $db = new DataBase();
 $alert = "";
 //for the red alert if user have or dont have a social networks
 //$query_network_escaped_alert = sprintf("SELECT * from networks where username='%s'", mysql_real_escape_string($_SESSION['username']));
-$result_alert = array(DataQueries::GetNetwork($_SESSION['username']));
+$result_alert = DataQueries::GetNetworkByUser($_SESSION['username']);
 if (empty($result_alert))
 	$alert = " you don't any have Social Networks yet.";
 ?>
@@ -90,7 +90,7 @@ include_once('body_header.php');
 								// each row represents a social network. the delete buttons warpped with form and a hidden textbox with md5 value
 								// on each row we can know what social network md5
 //								$query_network_escaped = sprintf("SELECT * from networks where username='%s'", mysql_real_escape_string($_SESSION['username']));
-								$result = DataQueries::GetNetwork($_SESSION['username']);
+								$result = DataQueries::GetNetworkByUser($_SESSION['username']);
 
 								if (!empty($result) && !empty($result[0])) {
 

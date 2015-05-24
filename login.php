@@ -12,9 +12,9 @@ if (isset($_POST['Login'])) {
 	if (isset($_POST['username']) && isset($_POST['password'])) {
 		//check if user name and pass valid with db users table
 //		$query_escaped = sprintf("SELECT * from users where username='%s'", mysql_real_escape_string($_POST['username']));
-		$DBresult = array(DataQueries::GetUser($_POST['username']));
+		$DBresult = DataQueries::GetUser($_POST['username']);
 		if (!empty($DBresult) && !empty($DBresult[0])) {
-			$row = $DBresult[0][0];
+			$row = $DBresult[0];
 
 			if ($row['password'] === $_POST['password']) {// good
 				$_SESSION['username'] = $_POST['username'];

@@ -41,6 +41,7 @@ $(document).ready(function () {
 							type: "POST",
 							data: data,
 							success: function (result) {
+								alert("Sucssues!");
 								$("#spinner").hide();
 								if (result.status == "success")
 									window.location.replace("my_social_networks.php");
