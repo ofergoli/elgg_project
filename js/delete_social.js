@@ -43,13 +43,14 @@ $(document).ready(function () {
 							hash: md5_social_hash
 						};
 						$.ajax({
-							url: "http://localhost/sites/elgg_project/delete_social_network.php",
+							url: "delete_social_network.php",
 							type: "POST",
 							data: data,
 							success: function (result) {
+								alert("Sucssues!");
 								$("#spinner").hide();
 								if (result.status == "success")
-									window.location.replace("http://localhost/sites/elgg_project/my_social_networks.php");
+									window.location.replace("my_social_networks.php");
 								else {
 									alert(result.status);
 								}

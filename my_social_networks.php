@@ -1,5 +1,6 @@
 <?php
 include_once("header.php");
+include_once('DB/DataQueries.php');
 //including the session
 session_start();
 $username = "";
@@ -13,9 +14,8 @@ include_once("header.php");
 $db = new DataBase();
 $alert = "";
 //for the red alert if user have or dont have a social networks
-$query_network_escaped_alert = sprintf("SELECT * from networks where username='%s'", mysql_real_escape_string($_SESSION['username']));
-$result_alert = $db->Query($query_network_escaped_alert);
-if (!$result_alert->fetch_assoc())
+$result_alert = DataQueries::GetNetworkByUser($_SESSION['username']);
+if (empty($result_alert))
 	$alert = " you don't any have Social Networks yet.";
 ?>
 	<body>
@@ -58,8 +58,6 @@ include_once('body_header.php');
 					<div class="panel-body">
 						<div class='wapper'>
 							<div class="elgg-page-body">
-
-
 							</div>
 						</div>
 					</div>
@@ -78,7 +76,7 @@ include_once('body_header.php');
 								<tr>
 									<th>#</th>
 									<th>Admin</th>
-									<th>Social Network Name</th>
+									<th>Socian Network Name</th>
 									<th>Invite Users</th>
 									<th>Options</th>
 								</tr>
@@ -88,16 +86,21 @@ include_once('body_header.php');
 								//get all user social networks and create a dynamic row for each one
 								// each row represents a social network. the delete buttons warpped with form and a hidden textbox with md5 value
 								// on each row we can know what social network md5
-								$query_network_escaped = sprintf("SELECT * from networks where username='%s'", mysql_real_escape_string($_SESSION['username']));
-								$result = $db->Query($query_network_escaped);
-								$index = 1;
-								while ($row = $result->fetch_assoc()) {
+//								$query_network_escaped = sprintf("SELECT * from networks where username='%s'", mysql_real_escape_string($_SESSION['username']));
+								$result = DataQueries::GetNetworkByUser($_SESSION['username']);
+
+								if (!empty($result) && !empty($result[0])) {
+
+
+
+								for($i = 0; $i < count($result); $i++){
+//								while ($row = $result->fetch_assoc()) {
 									echo "<tr>
-                                <td>" . $index . "</td>
-                                <td>" . $row['username'] . "</td>
-                                <td>" . $row['network_name'] . "</td>
+                                <td>" . ($i+1) . "</td>
+                                <td>" . $result[$i]['username'] . "</td>
+                                <td>" . $result[$i]['network_name'] . "</td>
                                 <td>Delete/Enter Social Network
-                                  <a href=\"" . $row['sn_link'] . "\"  target=\"_blank\">
+                                  <a href=\"" . $result[$i]['sn_link'] . "\"  target=\"_blank\">
                                      <br/><br/>
                                        <input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  />
                                   </a>
@@ -120,7 +123,6 @@ include_once('body_header.php');
 			<img id="mainpage_logo" src="img/elgg_logo_new.png">
 		</div>
 	</div>
-
 	<footer>
 		<div class="container">
 

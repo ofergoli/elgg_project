@@ -1,8 +1,8 @@
 <?php
 include_once("header.php");
+include_once('DB/DataQueries.php');
 session_start();
 $db = new DataBase();
-
 // if(isset($_GET['filename'])){
 // 	export_csv($_GET['filename']);
 // }
@@ -11,15 +11,10 @@ if (isset($_POST['Create'])) {        // check isset <--- issues
 	//check params
 	if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email'])) {
 		$_SESSION['username'] = $_POST['username'];
-
 		// $user_query = "insert into users (username,password,email) values ('" . $_POST['username'] . "','" . $_POST['password'] . "','" . $_POST['email'] . "')";
 		// $db->Query($user_query);
 		//insert the new user to users table need to check if username isn't allready exiest! not written yet
-		$user_query_escaped = sprintf("INSERT into users (username,password,email) values ('%s','%s','%s')",
-			mysql_real_escape_string($_POST['username']),
-			password_hash($_POST['password'], PASSWORD_DEFAULT),
-			mysql_real_escape_string($_POST['email']));
-		$db->Query($user_query_escaped);
+		DataQueries::InsertUser($_POST['username'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['email']);
 
 		header('Location: index.php');
 	}
@@ -27,6 +22,7 @@ if (isset($_POST['Create'])) {        // check isset <--- issues
 // $pass = md5("ofergoli" . "M0ABlCEl");
 // echo $pass;
 ?>
+
 	<body class="login-bg">
 	<div class="header">
 		<div class="container">
@@ -63,7 +59,7 @@ if (isset($_POST['Create'])) {        // check isset <--- issues
 								</div>
 								<div class="form-group">
 									<input id="inputPasswordConfirm" class="form-control" type="password" placeholder="Confirm Password" data-match="#inputPassword"
-										data-match-error="Passwords don't match" required>
+										   data-match-error="Passwords don't match" required>
 									<div class="help-block with-errors"></div>
 								</div>
 								<div class="form-group">

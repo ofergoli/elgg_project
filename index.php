@@ -1,5 +1,6 @@
 <?php
 include_once("header.php");
+include_once('DB/DataQueries.php');
 //include session
 session_start();
 $username = "";

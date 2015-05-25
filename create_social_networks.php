@@ -1,5 +1,6 @@
 <?php
 include_once("header.php");
+include_once('DB/DataQueries.php');
 //include session
 session_start();
 $username = "";
@@ -26,19 +27,22 @@ if (isset($_POST['CreateNewSN'])) {    // post set
 			$_SESSION['social_networks_key_val'][$_POST['sitename']] = $status;
 
 			//create database base on the md5 token!
-			$db->Query("CREATE DATABASE " . $status);
-
+		//	$db->Query("CREATE DATABASE " . $status);  (Old Ofer code)
+			DataQueries::CreateDB($status);
 			$getParam = array('username' => $_SESSION['username'],
-				'password' => $_POST['password'],
+				'password' => $_SESSION['password'],
 				'displayname' => $_POST['displayname'],
 				'sitename' => $_POST['sitename'],
 				'email' => $_POST['email'],
 				'path' => $status);
 			$sn_path = $Url . "/social_networks/" . $status . "/elgg-1.9.5/index.php";
-			//insert new s_n into networks table
-			$query_network_escaped = sprintf("INSERT into networks (social_key,username,network_name,sn_link) values ('%s','%s','%s','%s')", mysql_real_escape_string($status), mysql_real_escape_string($_SESSION['username']), mysql_real_escape_string($_POST['sitename']), $sn_path);
-			//execute
-			$db->Query($query_network_escaped);
+
+//			//insert new s_n into networks table
+//			$query_network_escaped = sprintf("INSERT into networks (social_key,username,network_name,sn_link) values ('%s','%s','%s','%s')", mysql_real_escape_string($status), mysql_real_escape_string($_SESSION['username']), mysql_real_escape_string($_POST['sitename']), $sn_path);
+//			//execute
+//			$db->Query($query_network_escaped);
+
+			DataQueries::SetNetwork($status, $_SESSION['username'], $_POST['sitename'], $sn_path);
 			//redirect into auto_install ---> need to put getParam on the session and not on a get request
 
 			$_SESSION['autoInstallParams'] = $getParam;
@@ -160,7 +164,6 @@ include_once('body_header.php');
 										</button>
 									</div>
 								</form>
-
 							</div>
 						</div>
 					</div>

@@ -1,5 +1,6 @@
 <?php
 include_once('header.php');
+include_once('DB/DataQueries.php');
 //including the session
 session_start();
 
@@ -10,24 +11,39 @@ if (isset($_POST['Login'])) {
 	//if the form submitted (user posted) check if param entered
 	if (isset($_POST['username']) && isset($_POST['password'])) {
 		//check if user name and pass valid with db users table
-		$query_escaped = sprintf("SELECT * from users where username='%s'", mysql_real_escape_string($_POST['username']));
-		$result = $db->Query($query_escaped);
-		$row = $result->fetch_assoc();
-		//insert into session global object the user & pass
-		if (password_verify($_POST['password'], $row['password'])) {// good
-			$_SESSION['username'] = $_POST['username'];
+		$DBresult = DataQueries::GetUser($_POST['username']);
+		if (!empty($DBresult) && !empty($DBresult[0])) {
+			$row = $DBresult[0];
 
-			$social_networks_key_val = array();
-			$query_network_escaped = sprintf("SELECT * from networks where username='%s'", mysql_real_escape_string($_SESSION['username']));
-			$result = $db->Query($query_network_escaped);
-			while ($row = $result->fetch_assoc()) {
-				$social_networks_key_val[$row['network_name']] = $row['social_key'];
+			if ($row['password'] === $_POST['password']) {// good
+				$_SESSION['username'] = $_POST['username'];
+				$_SESSION['password'] = $_POST['password'];
+
+//				$social_networks_key_val = array();
+//
+//				$result = array(DataQueries::GetNetwork($_SESSION['username']));
+//
+//				if (!empty($result)) {
+//					$networksDB = $result[0];
+//
+//					for($i = 0; $i < count($networksDB) ; $i++ ) {
+//						$social_networks_key_val[$networksDB[$i]['network_name']] = $networksDB[$i]['social_key'];
+//					}
+//
+//				}
+//				$_SESSION['social_networks_key_val'] = $social_networks_key_val;
+				header('Location: index.php');
+			} else {
+				$error_message = "Incorrect password.";
 			}
-			$_SESSION['social_networks_key_val'] = $social_networks_key_val;
-			header('Location: index.php');
-		} else {// bad
-			$error_message = "Please check your username/password";
+
+
+		} else {
+			$error_message = "Username not exists.";
 		}
+
+	} else {
+		$error_message = "Username not exists.";
 	}
 }
 ?>
@@ -64,7 +80,6 @@ if (isset($_POST['Login'])) {
 	                                </span>
 								<span class="text">Sign in with Facebook</span>
 							</a>
-
 							<div class="division">
 								<hr class="left">
 								<span>or</span>
@@ -74,7 +89,6 @@ if (isset($_POST['Login'])) {
 						<form action="login.php" method="post" value="create_sn">
 							<input class="form-control" type="text" name="username" placeholder="user name">
 							<input class="form-control" type="password" name="password" placeholder="Password">
-
 							<div class="action">
 								<input class="btn btn-primary signup" type="submit" name="Login" value="Login"/>
 							</div>
