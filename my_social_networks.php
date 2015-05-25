@@ -86,31 +86,28 @@ include_once('body_header.php');
 								//get all user social networks and create a dynamic row for each one
 								// each row represents a social network. the delete buttons warpped with form and a hidden textbox with md5 value
 								// on each row we can know what social network md5
-//								$query_network_escaped = sprintf("SELECT * from networks where username='%s'", mysql_real_escape_string($_SESSION['username']));
+								//								$query_network_escaped = sprintf("SELECT * from networks where username='%s'", mysql_real_escape_string($_SESSION['username']));
 								$result = DataQueries::GetNetworkByUser($_SESSION['username']);
 
 								if (!empty($result) && !empty($result[0])) {
-
-
-
-								for($i = 0; $i < count($result); $i++){
-//								while ($row = $result->fetch_assoc()) {
-									echo "<tr>
-                                <td>" . ($i+1) . "</td>
-                                <td>" . $result[$i]['username'] . "</td>
-                                <td>" . $result[$i]['network_name'] . "</td>
-                                <td>Delete/Enter Social Network
-                                  <a href=\"" . $result[$i]['sn_link'] . "\"  target=\"_blank\">
-                                     <br/><br/>
-                                       <input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  />
-                                  </a>
-                                  <form action=\"my_social_networks.php\" method=\"post\" value=\"delete\">
-                                      <input class=\"btn btn-danger delete-network-btn\" type=\"button\" id=\"delete_bt\" name=\"delete\" value=\"Delete\"  />
-                                      <input name=\"sn\" class=\"hidden_input\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] . "\"/>
-                                  </form>
-                                </td>
-                             </tr>";
-									$index++;
+									for ($i = 0; $i < count($result); $i++) {
+										echo "<tr>
+											<td>" . ($i + 1) . "</td>
+                            			    <td>" . $result[$i]['username'] . "</td>
+                                			<td>" . $result[$i]['network_name'] . "</td>
+                                			<td>Delete/Enter Social Network
+                                  			<a href=\"" . $result[$i]['sn_link'] . "\"  target=\"_blank\">
+                                     			<br/><br/>
+                                       			<input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  />
+                                  			</a>
+											  <form action=\"my_social_networks.php\" method=\"post\" value=\"delete\">
+												  <input class=\"btn btn-danger delete-network-btn\" type=\"button\" id=\"delete_bt\" name=\"delete\" value=\"Delete\"  />
+												  <input name=\"sn\" class=\"hidden_input\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] . "\"/>
+											  </form>
+											</td>
+										 </tr>";
+										$index++;
+									}
 								}
 								?>
 								</tbody>
