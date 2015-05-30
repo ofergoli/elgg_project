@@ -6,7 +6,7 @@ Our main goal is to create a system that combines from one hand a social network
 ## Open issues:
  
 
-1. Add Profile page. (Not implmemented yet) - Ofer
+1. Add Profile page. (Not implmemented yet)
 2. Change theme of the ELGG network (Orange with camels) - Ofer
 3. Autmate installation of the DB. (For the network to run at the first time) - Ofer
 4. Create API for the side project of Lior.
