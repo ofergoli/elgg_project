@@ -1,8 +1,22 @@
 <?php
 require_once("AdoHelper.php");
 
-class DataQueries
-{
+class DataQueries {
+	public static function UpdateUserPassword($userid, $password) {
+		$query = "UPDATE users
+			      SET password = ?
+			      WHERE uid = ?";
+		$parameters = array(password_hash($password, PASSWORD_DEFAULT), $userid);
+		AdoHelper::ExecuteNonQuery("bgunet_db", $query, $parameters);
+	}
+
+	public static function UpdateUserEmail($userid, $email) {
+		$query = "UPDATE users
+			      SET email = ?
+			      WHERE uid = ?";
+		$parameters = array($email, $userid);
+		AdoHelper::ExecuteNonQuery("bgunet_db", $query, $parameters);
+	}
 
 	public static function VerifyUser($username, $password) {
 		$query = "SELECT * FROM users WHERE username = ?";
