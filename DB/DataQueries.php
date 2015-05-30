@@ -108,5 +108,23 @@ class DataQueries
 		AdoHelper::DeleteDB($DBName);
 	}
 
+	public static function GetGroups($Social_Key)
+	{
+		$query = "SELECT * FROM elgg_groups_entity";
+		return AdoHelper::ExecuteDataSet($Social_Key,$query,null);
+	}
+
+	public static function GetGroupById($Social_Key,$groupId)
+	{
+		$query = "SELECT * FROM elgg_groups_entity WHERE guid = ?";
+		$parameters = array($groupId);
+		return AdoHelper::ExecuteDataSet($Social_Key,$query,$parameters);
+	}
+
+	public static function GetUserSocialNetworks($user){
+		$query = "SELECT * FROM networks WHERE username = ?";
+		$parameters = array($user);
+		return AdoHelper::ExecuteDataSet('social_network',$query,$parameters);
+	}
 }
 
