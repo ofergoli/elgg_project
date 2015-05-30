@@ -16,8 +16,7 @@ Our main goal is to create a system that combines from one hand a social network
 
 ## Installation
 
-
- <h3>Email system configuration: (for the mail service to work in "localhost" environment) </h3>
+ <h4>Email system configuration:  </h4>
 
   1.In PHP.INI :
       A. Uncomment this line : 'sendmail_path = "\"C:\xampp\sendmail\sendmail.exe\" -t" '.
@@ -32,7 +31,7 @@ Our main goal is to create a system that combines from one hand a social network
       Account:  "BGU.NET.Service@gmail.com".
       Password: "bguforever".
 
- Database Pre-Configure:
+ <h4>Database Pre-Configure: </h4>
  
  Create database 'social_network' with two tables 'networks', 'users'.
 
