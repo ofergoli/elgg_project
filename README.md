@@ -5,14 +5,14 @@ Our main goal is to create a system that combines from one hand a social network
 
 ## Open issues:
  
-1. Fix Delete Social Network page.
-2. Add Profile page. (Not implmemented yet)
-3. Change theme of the ELGG network (Orange with camels).
-4. Autmate installation of the DB. (For the network to run at the first time)
-5. Create API for the side project of Lior.
-6. Continue the development of the Invite Users process.
-7. Affiliation of users to specific groups inside a network.
-8. Fix CSV Exporter (Ofer), lines 17-24.
+
+1. Add picutre to Profile page (picture at '''img/User-icon.png'''.
+2. Change theme of the ELGG network (Orange with camels) - Ofer
+3. Autmate installation of the DB. (For the network to run at the first time) - Ofer
+4. Create API for the side project of Lior.
+5. Continue the development of the Invite Users process - Ofer
+6. Affiliation of users to specific groups inside a network.
+
 
 ## Installation
 
@@ -34,7 +34,35 @@ Our main goal is to create a system that combines from one hand a social network
  <h4>Database Pre-Configure: </h4>
  
  Create database 'social_network' with two tables 'networks', 'users'.
+ Use the following SQL statements to configure database:
+ ```
+CREATE SCHEMA `bgunet_db`;
 
+CREATE TABLE `bgunet_db`.`users` (
+  `uid` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(255) NULL,
+  `password` VARCHAR(255) NULL,
+  `email` VARCHAR(255) NULL,
+  PRIMARY KEY (`uid`),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC)
+);
+
+
+CREATE TABLE `bgunet_db`.`social_networks` (
+  `nid` VARCHAR(255) NOT NULL,
+  `uid` INT NULL,
+  `name` VARCHAR(255) NULL,
+  `url` VARCHAR(255) NULL,
+  PRIMARY KEY (`nid`),
+  INDEX `user_in_network_idx` (`uid` ASC),
+  CONSTRAINT `social_network_FK_uid`
+    FOREIGN KEY (`uid`)
+    REFERENCES `bgunet_db`.`users` (`uid`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+```
 ## Usage
 
 Create, manage and delete networks.

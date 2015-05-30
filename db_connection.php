@@ -4,8 +4,8 @@
 	define("Host", "localhost");
 	define("UserName",$DBUser);
 	define("Pass",$DBPass);
-	define("Shecma","social_network");
-	$conn = mysqli_connect(Host,UserName,Pass,Shecma);
+	define("Schema","bgunet_db");
+	$conn = mysqli_connect(Host,UserName,Pass,Schema);
 	if(mysqli_connect_errno()){
 		die("database problem:". mysqli_connect_error() );
 	}
