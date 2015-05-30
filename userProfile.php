@@ -53,11 +53,11 @@ include_once('body_header.php');
 						<div >
 							<dl class="dl-horizontal">
 								<dt>Password:</dt>
-								<dd><a href="userProfile.php">Change Password</a></dd>
+								<dd><button id="change-password-btn" class="btn btn-sm btn-default">Change Password</button></dd>
 							</dl>
 							<dl class="dl-horizontal">
 								<dt>Email:</dt>
-								<dd><a href="">Change Email</a></dd>
+								<dd><button id="change-email-btn" class="btn btn-sm btn-default">Change Email</button></dd>
 							</dl>
 						</div>
 					</div>
