@@ -95,16 +95,16 @@ include_once('body_header.php');
 									for ($i = 0; $i < count($result); $i++) {
 										echo "<tr>
 											<td>" . ($i + 1) . "</td>
-                            			    <td>" . $result[$i]['username'] . "</td>
-                                			<td>" . $result[$i]['network_name'] . "</td>
+                            			    <td>" . $_SESSION['username'] . "</td>
+                                			<td>" . $result[$i]['name'] . "</td>
                                 			<td>Delete/Enter Social Network
-                                  			<a href=\"" . $result[$i]['sn_link'] . "\"  target=\"_blank\">
+                                  			<a href=\"" . $result[$i]['url'] . "\"  target=\"_blank\">
                                      			<br/><br/>
                                        			<input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  />
                                   			</a>
 											  <form action=\"my_social_networks.php\" method=\"post\" value=\"delete\">
 												  <input class=\"btn btn-danger delete-network-btn\" type=\"button\" id=\"delete_bt\" name=\"delete\" value=\"Delete\"  />
-												  <input name=\"sn\" class=\"hidden_input\" style=\"visibility: hidden;\" value=\"" . $result[$i]['social_key'] . "\"/>
+												  <input name=\"sn\" class=\"hidden_input\" style=\"visibility: hidden;\" value=\"" . $result[$i]['nid'] . "\"/>
 											  </form>
 											</td>
 										 </tr>";
