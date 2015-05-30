@@ -34,6 +34,26 @@ Our main goal is to create a system that combines from one hand a social network
  <h4>Database Pre-Configure: </h4>
  
  Create database 'social_network' with two tables 'networks', 'users'.
+ Use the following SQL statements to configure database:
+ ```
+ CREATE TABLE 'users' (
+  username varchar(200) NOT NULL,
+  password varchar(200) NOT NULL,
+  email varchar(200) NOT NULL,
+  PRIMARY KEY ('username')
+ ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+
+CREATE TABLE 'networks' (
+  'social_key' varchar(255) NOT NULL DEFAULT '',
+  'username' varchar(255) DEFAULT NULL,
+  'network_name' varchar(255) NOT NULL,
+  'sn_link' varchar(255) NOT NULL,
+  PRIMARY KEY ('social_key'),
+  KEY 'username' ('username'),
+  CONSTRAINT 'networks_ibfk_1' FOREIGN KEY ('username') REFERENCES 'users' ('username')
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+```
 
 ## Usage
 
