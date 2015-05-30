@@ -16,7 +16,25 @@ Our main goal is to create a system that combines from one hand a social network
 
 ## Installation
 
-Create database 'social_network' with two tables 'networks', 'users'.
+
+ Email system configuration: (for the mail service to work in "localhost" environment)
+
+  1.In PHP.INI :
+      A. Uncomment this line : 'sendmail_path = "\"C:\xampp\sendmail\sendmail.exe\" -t" '.
+      B. Comment this line : 'sendmail_path="C:\xampp\mailtodisk\mailtodisk.exe"'.
+
+  2.In SendMail.INI:
+      A. The line "smtp_server=" should be "smtp_server=smtp.gmail.com".
+      B. The line "smtp_port=" should be "smtp_port=587".
+      C. Enter credentials in the lines : "auth_username=" and "auth_password=".
+
+  3.Credentials:
+      Account:  "BGU.NET.Service@gmail.com".
+      Password: "bguforever".
+
+ Database Pre-Configure:
+ 
+ Create database 'social_network' with two tables 'networks', 'users'.
 
 ## Usage
 
