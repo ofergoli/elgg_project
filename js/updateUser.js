@@ -59,4 +59,56 @@ $(function () {
 			}
 		});
 	});
+
+	$('#change-email-btn').click(function () {
+		bootbox.dialog({
+			title: "Change User Email:",
+			message: '<form class="form-horizontal" data-toggle="validator">' +
+			'<div class="form-group">' +
+			'<label for="password" class="col-md-4 control-label">Password:</label>' +
+			'<div class="col-md-4">' +
+			'<input id="password" name="password" type="password" placeholder="Password" class="form-control input-md" />' +
+			'</div>' +
+			'</div>' +
+			'<div class="form-group">' +
+			'<label for="newEmail" class="col-md-4 control-label">New Email:</label>' +
+			'<div class="col-md-4">' +
+			'<input id="newEmail" name="newEmail" type="email" placeholder="New Email" class="form-control input-md" />' +
+			'</div>' +
+			'</div>' +
+			'</form>'
+			, buttons: {
+				fail: {
+					label: "Cancel",
+					className: "btn btn-primary"
+				},
+				success: {
+					label: "Change Email",
+					className: "btn btn-danger",
+					callback: function () {
+						$("#spinner").show();
+						var password = $('#password').val();
+						var newEmail = $('#newEmail').val();
+						var data = {
+							oldPassword: password,
+							newPassword: newEmail
+						};
+						$.ajax({
+							url: "userProfile.php",
+							type: "POST",
+							data: data,
+							success: function (result) {
+								$("#spinner").hide();
+								if (result.status == "success")
+									window.location.replace("userProfile.php");
+								else {
+									alert(result.status);
+								}
+							}
+						});
+					}
+				}
+			}
+		});
+	});
 });
