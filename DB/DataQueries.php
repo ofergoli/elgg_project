@@ -79,7 +79,7 @@ class DataQueries
 	public static function GetUserSocialNetworks($user){
 		$query = "SELECT * FROM networks WHERE username = ?";
 		$parameters = array($user);
-		return AdoHelper::ExecuteDataSet('social_network',$query,$parameters);
+		return AdoHelper::ExecuteDataSet('bgunet_db',$query,$parameters);
 	}
 
 }
