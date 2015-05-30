@@ -18,6 +18,7 @@ if (isset($_POST['Create'])) {        // check isset <--- issues
 
 		header('Location: index.php');
 	}
+}
 	// $pass = md5("ofergoli" . "M0ABlCEl");
 	// echo $pass;
 ?>
