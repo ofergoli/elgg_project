@@ -104,11 +104,10 @@ include_once('body_header.php');
                                   			</a>
 											  <form action=\"my_social_networks.php\" method=\"post\" value=\"delete\">
 												  <input class=\"btn btn-danger delete-network-btn\" type=\"button\" id=\"delete_bt\" name=\"delete\" value=\"Delete\"  />
-												  <input name=\"sn\" class=\"hidden_input\" style=\"visibility: hidden;\" value=\"" . $row['social_key'] . "\"/>
+												  <input name=\"sn\" class=\"hidden_input\" style=\"visibility: hidden;\" value=\"" . $result[$i]['social_key'] . "\"/>
 											  </form>
 											</td>
 										 </tr>";
-										$index++;
 									}
 								}
 								?>
