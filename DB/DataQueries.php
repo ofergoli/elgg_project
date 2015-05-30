@@ -3,13 +3,21 @@ require_once("AdoHelper.php");
 
 class DataQueries
 {
+	public static function VerifyUser($username, $password)
+	{
+		$query = "SELECT * FROM users WHERE username = ?";
+		$parameters = array($username);
+		$users = AdoHelper::ExecuteDataSet("social_network", $query, $parameters);
+		if(!empty($users) && password_verify($password, $users[0]["password"])) {
+			return $users[0];
+		}
+		return null;
+	}
 
 	public static function InsertUser($userName, $password, $email)
 	{
-
 		$query = "INSERT into users (username,password,email) values (?,?,?)";
-		$parameters = array($userName, $password, $email);
-
+		$parameters = array($userName, password_hash($password, PASSWORD_DEFAULT), $email);
 		AdoHelper::ExecuteNonQuery("social_network", $query, $parameters);
 	}
 
@@ -75,9 +83,6 @@ class DataQueries
 
 	public static function GetProductQuantity($productId)
 	{
-		//// $a_bind_params = array('Rami', 'Robzz');
-		//// $sql='SELECT * FROM users WHERE firstname = ? AND lastname = ?';
-
 		$query = "SELECT quantity FROM products WHERE ID = ?";
 		$parameters = array($productId);
 
@@ -102,7 +107,6 @@ class DataQueries
 	{
 		AdoHelper::DeleteDB($DBName);
 	}
-
 
 }
 

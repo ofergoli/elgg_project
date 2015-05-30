@@ -3,24 +3,15 @@ include_once("header.php");
 include_once('DB/DataQueries.php');
 session_start();
 $db = new DataBase();
-// if(isset($_GET['filename'])){
-// 	export_csv($_GET['filename']);
-// }
-//check if user request and post new user creation
 if (isset($_POST['Create'])) {        // check isset <--- issues
 	//check params
 	if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email'])) {
 		$_SESSION['username'] = $_POST['username'];
-		// $user_query = "insert into users (username,password,email) values ('" . $_POST['username'] . "','" . $_POST['password'] . "','" . $_POST['email'] . "')";
-		// $db->Query($user_query);
 		//insert the new user to users table need to check if username isn't allready exiest! not written yet
-		DataQueries::InsertUser($_POST['username'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['email']);
-
+		DataQueries::InsertUser($_POST['username'], $_POST['password'], $_POST['email']);
 		header('Location: index.php');
 	}
 }
-	// $pass = md5("ofergoli" . "M0ABlCEl");
-	// echo $pass;
 ?>
 
 	<body class="login-bg">

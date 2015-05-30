@@ -8,36 +8,33 @@ $password = $_POST['password'];
 $networkSocialKey = $_POST['hash'];
 
 // Get User details from DB.
-$user  = DataQueries::GetUser($username);
-
+$user = DataQueries::VerifyUser($username, $password);
 
 // Authenticate User:
-if(empty($user) || !($user["password"] === $password))
-{
+if (!isset($user)) {
 	// Invalid credentials.
-	$response = array('status' => 'invalid credentials');
+	$response = array('status' => 'Invalid Credentials');
 	header('Content-Type: application/json');
 	echo json_encode($response);
+} else {
+	// Get Network from DB.
+	$network = DataQueries::GetNetworkBySocialKey($networkSocialKey);
+	// Check if Network exists.
+	if (!empty($network)) {
+		// Delete Network from the DB, its DB and files on HD.
+		DataQueries::DeleteNetwork($networkSocialKey, $username);
+		DataQueries::DeleteDB($networkSocialKey);
+		recursive_delete_folder($networkSocialKey);
+
+		// Return response (success).
+		$response = array('status' => 'success');
+		header('Content-Type: application/json');
+		echo json_encode($response);
+		//	header('Location: index.php');
+
+	}
 }
 
-// Get Network from DB.
-$network =  DataQueries::GetNetworkBySocialKey($networkSocialKey);
-
-// Check if Network exists.
-if(!empty($network))
-{
-	// Delete Network from the DB, its DB and files on HD.
-	DataQueries::DeleteNetwork($networkSocialKey,$username);
-	DataQueries::DeleteDB($networkSocialKey);
-	recursive_delete_folder($networkSocialKey);
-
-	// Return response (success).
-	$response = array('status' => 'success');
-	header('Content-Type: application/json');
-	echo json_encode($response);
-//	header('Location: index.php');
-
-}
 
 function recursive_delete_folder($socialKey)
 {

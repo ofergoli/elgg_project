@@ -11,36 +11,15 @@ if (isset($_POST['Login'])) {
 	//if the form submitted (user posted) check if param entered
 	if (isset($_POST['username']) && isset($_POST['password'])) {
 		//check if user name and pass valid with db users table
-		$DBresult = DataQueries::GetUser($_POST['username']);
-		if (!empty($DBresult) && !empty($DBresult[0])) {
-			$row = $DBresult[0];
-
-			if ($row['password'] === $_POST['password']) {// good
-				$_SESSION['username'] = $_POST['username'];
-				$_SESSION['password'] = $_POST['password'];
-
-//				$social_networks_key_val = array();
-//
-//				$result = array(DataQueries::GetNetwork($_SESSION['username']));
-//
-//				if (!empty($result)) {
-//					$networksDB = $result[0];
-//
-//					for($i = 0; $i < count($networksDB) ; $i++ ) {
-//						$social_networks_key_val[$networksDB[$i]['network_name']] = $networksDB[$i]['social_key'];
-//					}
-//
-//				}
-//				$_SESSION['social_networks_key_val'] = $social_networks_key_val;
-				header('Location: index.php');
-			} else {
-				$error_message = "Incorrect password.";
-			}
-
-
+		$DBresult = DataQueries::VerifyUser($_POST["username"], $_POST["password"]);
+		if ($DBresult != null) {
+			$_SESSION['username'] = $_POST['username'];
+			header('Location: index.php');
 		} else {
-			$error_message = "Username not exists.";
+			$error_message = "Incorrect password.";
 		}
+	} else {
+		$error_message = "Username not exists.";
 	}
 }
 ?>
@@ -82,12 +61,11 @@ if (isset($_POST['Login'])) {
 							</div>
 						</div>
 						<form action="login.php" method="post" value="create_sn">
-							<input class="form-control" type="text" name="username" placeholder="user name">
+							<input class="form-control" type="text" name="username" placeholder="Username">
 							<input class="form-control" type="password" name="password" placeholder="Password">
 							<div class="action">
 								<input class="btn btn-primary signup" type="submit" name="Login" value="Login"/>
 							</div>
-							<!--    <div class="error_login"><?php echo $error_message ?></div>  -->
 						</form>
 
 					</div>
