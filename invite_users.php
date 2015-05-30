@@ -13,14 +13,13 @@
     header('Location: login.php');
   }
 
-  if(isset($_POST['select'])){
+  if(isset($_POST['selectNet']) && isset($_POST['selectGrp'])){
     if(uploadCsv($_FILES['csv'])){
        $message = "The file uploaded!";
     }
     else{
       $message = "The file must be a CSV File ! , Please try again";
     }
-
   }
 
   ?>
@@ -65,14 +64,22 @@
                   <div class="col-md-6">
                     <form action="invite_users.php" method="post" enctype="multipart/form-data">
                         <div class="col-md-3">
-                          <select class="form-control" id="selectSocial" name="select">
+<!--                           <select class="form-control" id="selectSocial" name="select">
                               <?php
                                 while ($currSocial = current($_SESSION['social_networks_key_val'])) {
                                     echo "<option value=" .$currSocial .">" . key($_SESSION['social_networks_key_val']) . "</option>";
                                     next($_SESSION['social_networks_key_val']);
                                 }
                               ?>
-                          </select>
+                          </select> -->
+                           <h4>Select Social Network : </h4>
+                           <select class="form-control" id="network" name="selectNet">
+
+                           </select>
+                           <h4>Select Group : </h4>
+                           <select class="form-control" id="groups" name="selectGrp">
+
+                           </select>
                         </div>
                         <div class="col-md-6">
                           <div class="sum_bgunet">

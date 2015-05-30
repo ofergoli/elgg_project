@@ -17,9 +17,8 @@
 
 class MailService {
 
-
     // Simple mail sender function.
-    public static function Send($address, $subject, $message)
+    function Send($address, $subject, $message)
     {
         $headers = 'From: BGU.NET.Service@gmail.com' . "\r\n" .
                    'Reply-To: BGU.NET.Service@gmail.com' . "\r\n" .
@@ -30,7 +29,7 @@ class MailService {
 
     // Invitations sender function that will iterate over addresses array and send
     // to each address an invite.
-    public static function SendInvitations($addresses)
+    function SendInvitations($addresses)
     {
         $_subject = "Subject Test";
         $_message = "Message Test";
