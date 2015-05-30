@@ -42,6 +42,7 @@ if (isset($_POST['Login'])) {
 			$error_message = "Username not exists.";
 		}
 	}
+}
 ?>
   <body class="login-bg">
   	<div class="header">
@@ -99,6 +100,8 @@ if (isset($_POST['Login'])) {
 			</div>
 		</div>
 	</div>
+</div>
+
 
 <img id="elgg_img" src="img/elgg_logo_new.png">
 
