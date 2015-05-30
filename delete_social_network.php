@@ -30,8 +30,7 @@ if (!isset($user)) {
 		$response = array('status' => 'success');
 		header('Content-Type: application/json');
 		echo json_encode($response);
-		//	header('Location: index.php');
-
+		//header('Location: index.php');
 	}
 }
 

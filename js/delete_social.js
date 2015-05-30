@@ -48,7 +48,6 @@ $(document).ready(function () {
 							data: data,
 							success: function (result) {
 								$("#spinner").hide();
-								debugger;
 								if (result.status == "success")
 									window.location.replace("my_social_networks.php");
 								else {

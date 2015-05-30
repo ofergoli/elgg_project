@@ -36,25 +36,33 @@ Our main goal is to create a system that combines from one hand a social network
  Create database 'social_network' with two tables 'networks', 'users'.
  Use the following SQL statements to configure database:
  ```
- CREATE TABLE 'users' (
-  username varchar(200) NOT NULL,
-  password varchar(200) NOT NULL,
-  email varchar(200) NOT NULL,
-  PRIMARY KEY ('username')
- ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+CREATE SCHEMA `bgunet_db`;
+
+CREATE TABLE `bgunet_db`.`users` (
+  `uid` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(255) NULL,
+  `password` VARCHAR(255) NULL,
+  `email` VARCHAR(255) NULL,
+  PRIMARY KEY (`uid`),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC)
+);
 
 
-CREATE TABLE 'networks' (
-  'social_key' varchar(255) NOT NULL DEFAULT '',
-  'username' varchar(255) DEFAULT NULL,
-  'network_name' varchar(255) NOT NULL,
-  'sn_link' varchar(255) NOT NULL,
-  PRIMARY KEY ('social_key'),
-  KEY 'username' ('username'),
-  CONSTRAINT 'networks_ibfk_1' FOREIGN KEY ('username') REFERENCES 'users' ('username')
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+CREATE TABLE `bgunet_db`.`social_networks` (
+  `nid` VARCHAR(255) NOT NULL,
+  `uid` INT NULL,
+  `name` VARCHAR(255) NULL,
+  `url` VARCHAR(255) NULL,
+  PRIMARY KEY (`nid`),
+  INDEX `user_in_network_idx` (`uid` ASC),
+  CONSTRAINT `social_network_FK_uid`
+    FOREIGN KEY (`uid`)
+    REFERENCES `bgunet_db`.`users` (`uid`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
 ```
-
 ## Usage
 
 Create, manage and delete networks.

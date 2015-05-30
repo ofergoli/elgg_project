@@ -28,7 +28,7 @@ if (isset($_POST['CreateNewSN'])) {    // post set
 
 			//create database base on the md5 token!
 			DataQueries::CreateDB($status);
-			$getParam = array('username' => $_SESSION['username'],
+			$getParam = array('username' => $_POST['username'],
 				'password' => $_POST['password'],
 				'displayname' => $_POST['displayname'],
 				'sitename' => $_POST['sitename'],
@@ -159,10 +159,6 @@ if (isset($_POST['CreateNewSN'])) {    // post set
 						</div>
 					</div>
 					<div class="col-md-5">
-						<!--                 <div class="content-box-header">
-										  <div class="panel-title">Make your own Social studies using BGU.net</div>
-
-										</div> -->
 						<div class="content-box-large box-with-header">
 							<div class="sum_bgunet">Social studies that can conduct from our system will have great
 								benefit to the whole educational system, benefits like :
