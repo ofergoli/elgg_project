@@ -28,7 +28,7 @@
                           <!-- take user name from session and echo into top bar -->
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo ucfirst(strtolower($_SESSION['username']))?> Account <b class="caret"></b></a>
                           <ul class="dropdown-menu animated fadeInUp">
-                            <li><a href="profile.html">Profile</a></li>
+                            <li><a href="userProfile.php">Profile</a></li>
                             <li><a href="session_destroy.php">Logout</a></li>
                           </ul>
                         </li>
