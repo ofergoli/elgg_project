@@ -9,9 +9,7 @@ Our main goal is to create a system that combines from one hand a social network
 1. Add picutre to Profile page (picture at '''img/User-icon.png'''.
 2. Change theme of the ELGG network (Orange with camels) - Ofer
 3. Autmate installation of the DB. (For the network to run at the first time) - Ofer
-4. Create API for the side project of Lior.
-5. Continue the development of the Invite Users process - Ofer
-6. Affiliation of users to specific groups inside a network.
+
 
 
 ## Installation
