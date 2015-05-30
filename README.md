@@ -5,14 +5,14 @@ Our main goal is to create a system that combines from one hand a social network
 
 ## Open issues:
  
-1. Fix Delete Social Network page.
-2. Add Profile page. (Not implmemented yet)
-3. Change theme of the ELGG network (Orange with camels).
-4. Autmate installation of the DB. (For the network to run at the first time)
-5. Create API for the side project of Lior.
-6. Continue the development of the Invite Users process.
-7. Affiliation of users to specific groups inside a network.
-8. Fix CSV Exporter (Ofer), lines 17-24.
+
+1. Add Profile page. (Not implmemented yet) - Ofer
+2. Change theme of the ELGG network (Orange with camels) - Ofer
+3. Autmate installation of the DB. (For the network to run at the first time) - Ofer
+4. Create API for the side project of Lior.
+5. Continue the development of the Invite Users process - Ofer
+6. Affiliation of users to specific groups inside a network.
+
 
 ## Installation
 
