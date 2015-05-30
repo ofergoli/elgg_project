@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require_once("database.php");
 include_once('DB/DataQueries.php');
@@ -56,3 +57,4 @@ function recursive_delete_folder($socialKey)
 	}
 	rmdir($delete_folder);
 }
+

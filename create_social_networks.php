@@ -56,9 +56,9 @@ if (isset($_POST['CreateNewSN'])) {    // post set
 // $pass = md5("ofergoli" . "M0ABlCEl");
 // echo $pass;
 ?>
-	<body>
+<body>
 <?php
-include_once('body_header.php');
+  include_once('body_header.php');
 ?>
 	<div class="page-content">
 		<div class="row">
@@ -209,7 +209,6 @@ include_once('body_header.php');
 
 			</div>
 		</footer>
-
 <?php
   include_once('footer.php');
 ?>

@@ -18,9 +18,8 @@ if (isset($_POST['Create'])) {        // check isset <--- issues
 
 		header('Location: index.php');
 	}
-}
-// $pass = md5("ofergoli" . "M0ABlCEl");
-// echo $pass;
+	// $pass = md5("ofergoli" . "M0ABlCEl");
+	// echo $pass;
 ?>
 
 	<body class="login-bg">
@@ -73,15 +72,15 @@ if (isset($_POST['Create'])) {        // check isset <--- issues
 						</div>
 					</div>
 
-					<div class="already">
-						<p>Have an account already?</p>
-						<a href="login.php">Login</a>
-					</div>
-				</div>
+			        <div class="already">
+			            <p>Have an account already?</p>
+			            <a href="login.php">Login</a>
+			        </div>
+			    </div>
 			</div>
 		</div>
 	</div>
 	<img id="elgg_img" src="img/elgg_logo_new.png">
 <?php
-include_once('footer.php');
+	include_once('footer.php');
 ?>

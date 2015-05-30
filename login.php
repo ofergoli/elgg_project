@@ -41,40 +41,34 @@ if (isset($_POST['Login'])) {
 		} else {
 			$error_message = "Username not exists.";
 		}
-
-	} else {
-		$error_message = "Username not exists.";
 	}
-}
 ?>
-	<body class="login-bg">
-<div class="header">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<!-- Logo -->
-				<a href="login.php">
-					<img id="bgu_logo" src="img/logotans.gif">
-				</a>
-
-				<div class="logo">
-					<h1 id="topfix"><a href="login.php">Login</a></h1>
-				</div>
-			</div>
-		</div>
+  <body class="login-bg">
+  	<div class="header">
+	     <div class="container">
+	        <div class="row">
+	           <div class="col-md-12">
+	              <!-- Logo -->
+	              <a href="login.php">
+	              <img id="bgu_logo" src="img/logotans.gif">
+	              </a>
+	              <div class="logo">
+	                 <h1 id="topfix"><a href="login.php">Login</a></h1>
+	              </div>
+	           </div>
+	        </div>
+	     </div>
 	</div>
-</div>
 
-<div class="page-content container">
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
-			<div class="login-wrapper">
-				<div class="box">
-					<div class="content-wrap">
-						<h6>Sign In</h6>
-
-						<div class="social">
-							<a class="face_login" href="#">
+	<div class="page-content container">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<div class="login-wrapper">
+			        <div class="box">
+			            <div class="content-wrap">
+			                <h6>Sign In</h6>
+			                <div class="social">
+	                            <a class="face_login" href="#">
 	                                <span class="face_icon">
 	                                    <img src="img/facebook.png" alt="fb">
 	                                </span>
@@ -105,10 +99,9 @@ if (isset($_POST['Login'])) {
 			</div>
 		</div>
 	</div>
-</div>
 
 <img id="elgg_img" src="img/elgg_logo_new.png">
 
-<?php
-include_once('footer.php');
+<?php 
+	include_once('footer.php');
 ?>

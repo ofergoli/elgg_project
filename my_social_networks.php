@@ -1,14 +1,16 @@
-<?php
+<?php 
 include_once("header.php");
 include_once('DB/DataQueries.php');
 //including the session
+
 session_start();
 $username = "";
-//check if session alive else redirect to login page
-if (isset($_SESSION['username'])) {
-	$username = $_SESSION['username'];
-} else {
-	header('Location: login.php');
+  //check if session alive else redirect to login page
+if(isset($_SESSION['username'])){
+  $username = $_SESSION['username'];
+}
+else{
+  header('Location: login.php');
 }
 include_once("header.php");
 $db = new DataBase();

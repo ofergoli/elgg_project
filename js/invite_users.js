@@ -11,9 +11,9 @@ $(document).ready(function () {
 					className: "btn btn-primary",
 					callback: function () {
 
-					}
-				}
-			}
-		});
-	});
+                    }
+                }
+            }
+        });
+    });
 });
