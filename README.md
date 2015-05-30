@@ -17,7 +17,7 @@ Our main goal is to create a system that combines from one hand a social network
 ## Installation
 
 
- Email system configuration: (for the mail service to work in "localhost" environment)
+ <h3>Email system configuration: (for the mail service to work in "localhost" environment) </h3>
 
   1.In PHP.INI :
       A. Uncomment this line : 'sendmail_path = "\"C:\xampp\sendmail\sendmail.exe\" -t" '.
