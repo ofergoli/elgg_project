@@ -8,7 +8,7 @@ $username = "";
 if (isset($_SESSION['username'])) {
 	$username = $_SESSION['username'];
 } else {
-	//header('Location: login.php');
+	header('Location: login.php');
 }
 
 include_once('body_header.php');
