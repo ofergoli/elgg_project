@@ -46,10 +46,7 @@ if (isset($_POST['CreateNewSN'])) {    // post set
 		echo "please fill fields";
 	}
 }
-?>
-<body>
-<?php
-  include_once('body_header.php');
+include_once('body_header.php');
 ?>
 	<div class="page-content">
 		<div class="row">
@@ -109,8 +106,10 @@ if (isset($_POST['CreateNewSN'])) {    // post set
 					<div class="col-md-5">
 						<div class="content-box-large">
 							<br/>
+
 							<div class="panel-title">Please fill in the following:</div>
 							<br/>
+
 							<div class="panel-body">
 								<form class="form-horizontal" role="form" action="create_social_networks.php"
 									  method="post" value="create_sn" data-toggle="validator">
