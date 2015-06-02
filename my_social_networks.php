@@ -1,16 +1,15 @@
-<?php 
+<?php
 include_once("header.php");
 include_once('DB/DataQueries.php');
 //including the session
 
 session_start();
 $username = "";
-  //check if session alive else redirect to login page
-if(isset($_SESSION['username'])){
-  $username = $_SESSION['username'];
-}
-else{
-  header('Location: login.php');
+//check if session alive else redirect to login page
+if (isset($_SESSION['username'])) {
+	$username = $_SESSION['username'];
+} else {
+	header('Location: login.php');
 }
 include_once("header.php");
 $db = new DataBase();
@@ -19,9 +18,6 @@ $alert = "";
 $result_alert = DataQueries::GetNetworksByUser($_SESSION['username']);
 if (empty($result_alert))
 	$alert = " you don't any have Social Networks yet.";
-?>
-	<body>
-<?php
 include_once('body_header.php');
 ?>
 <div class="page-content">
@@ -103,6 +99,7 @@ include_once('body_header.php');
                                        			<input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  />
                                   			</a>
 											  <form action=\"my_social_networks.php\" method=\"post\" value=\"delete\">
+												  <a class=\"btn btn-default\" href=\"dashboard.php\">Tools</a>
 												  <input class=\"btn btn-danger delete-network-btn\" type=\"button\" id=\"delete_bt\" name=\"delete\" value=\"Delete\"  />
 												  <input name=\"sn\" class=\"hidden_input\" style=\"visibility: hidden;\" value=\"" . $result[$i]['nid'] . "\"/>
 											  </form>
@@ -131,6 +128,6 @@ include_once('body_header.php');
 		</div>
 	</footer>
 
-<?php
-include_once('footer.php');
-?>
+	<?php
+	include_once('footer.php');
+	?>
