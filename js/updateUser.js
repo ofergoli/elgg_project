@@ -18,9 +18,7 @@ $(function () {
 			'<div class="form-group">' +
 			'<label for="confirmPassword" class="col-md-4 control-label">Confirm New Password:</label>' +
 			'<div class="col-md-4">' +
-			'<input id="confirmPassword" type="password" placeholder="Confirm New Password" class="form-control input-md" ' +
-			'data-match="#newPassword" ' +
-			'data-match-error="Passwords don\'t match" required />' +
+			'<input id="confirmPassword" type="password" placeholder="Confirm New Password" class="form-control input-md" / >' +
 			'<div class="help-block with-errors"></div>' +
 			'</div>' +
 			'</div>' +
@@ -34,7 +32,6 @@ $(function () {
 					label: "Change Password",
 					className: "btn btn-danger",
 					callback: function () {
-						$("#spinner").show();
 						var oldPassword = $('#oldPassword').val();
 						var newPassword = $('#newPassword').val();
 						var data = {
@@ -46,11 +43,12 @@ $(function () {
 							type: "POST",
 							data: data,
 							success: function (result) {
-								$("#spinner").hide();
-								if (result.status == "success")
+								if (result.status == "success") {
+									alert('success');
 									window.location.replace("userProfile.php");
+								}
 								else {
-									alert(result.status);
+									alert("Error");
 								}
 							}
 						});
@@ -86,7 +84,6 @@ $(function () {
 					label: "Change Email",
 					className: "btn btn-danger",
 					callback: function () {
-						$("#spinner").show();
 						var password = $('#password').val();
 						var newEmail = $('#newEmail').val();
 						var data = {
@@ -98,7 +95,6 @@ $(function () {
 							type: "POST",
 							data: data,
 							success: function (result) {
-								$("#spinner").hide();
 								if (result.status == "success")
 									window.location.replace("userProfile.php");
 								else {

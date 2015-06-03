@@ -1,14 +1,53 @@
 <?php
+session_start();
 include_once('header.php');
 include_once('DB/DataQueries.php');
 
-session_start();
 $username = "";
 //check if session alive else redirect to login page
 if (isset($_SESSION['username'])) {
 	$username = $_SESSION['username'];
 } else {
 	header('Location: login.php');
+}
+
+if(isset($_POST['oldPassword']) && isset($_POST['newPassword']) )
+{
+	$user = DataQueries::VerifyUser($username,$_POST['oldPassword']);
+
+	if($user == false)
+	{
+		// Invalid credentials.
+		$response = array('status' => 'Invalid Credentials');
+		header('Content-Type: application/json');
+		echo json_encode($response);
+	}
+
+	DataQueries::UpdateUserPassword($user["uid"],$_POST['newPassword']);
+
+	$response = array('status' => 'success');
+	header('Content-Type: application/json');
+	echo json_encode($response);
+}
+elseif(isset($_POST['newEmail']) && isset($_POST['password']) )
+{
+	$user = DataQueries::VerifyUser($username,$_POST['password']);
+
+	if($user == false)
+	{
+		// Invalid credentials.
+		$response = array('status' => 'Invalid Credentials');
+		header('Content-Type: application/json');
+		echo json_encode($response);
+	}
+
+		DataQueries::UpdateUserEmail($user["uid"], $_POST["newEmail"]);
+
+		$response = array('status' => 'success');
+		header('Content-Type: application/json');
+		echo json_encode($response);
+
+
 }
 
 include_once('body_header.php');
