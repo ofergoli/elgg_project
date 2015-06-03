@@ -96,5 +96,9 @@ class DataQueries {
 		return AdoHelper::ExecuteDataSet('bgunet_db',$query,$parameters);
 	}
 
+	public static function GetAllTables($dbName) {
+		$query = "SHOW TABLES";
+		return AdoHelper::ExecuteDataSet($dbName, $query, null);
+	}
 }
 

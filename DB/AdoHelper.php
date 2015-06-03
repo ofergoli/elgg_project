@@ -1,7 +1,7 @@
 <?php
 // define("ADODB_PATH", "\ADOdb\adodb.inc.php");
 
-require_once("\ADOdb\adodb.inc.php");
+require_once("/ADOdb/adodb.inc.php");
 
 /**
  * Ado Helper class
@@ -118,7 +118,6 @@ class AdoHelper
 		// Close connection
 		$conn->close();
 	}
-
 }
 
 ?>
