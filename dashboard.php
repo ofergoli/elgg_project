@@ -7,12 +7,14 @@ $username = "";
 //check if session alive else redirect to login page
 if (isset($_SESSION['username'])) {
 	$username = $_SESSION['username'];
-} else {
+}
+else {
 	header('Location: login.php');
 }
 
 include_once('body_header.php');
 ?>
+
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
@@ -54,7 +56,7 @@ include_once('body_header.php');
 		</div>
 	</div>
 
-<?
+<?php
 
 include_once("footer.php");
 
