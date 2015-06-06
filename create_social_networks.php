@@ -28,17 +28,17 @@ if (isset($_POST['CreateNewSN'])) {    // post set
 
 			//create database base on the md5 token!
 			DataQueries::CreateDB($status);
-			$getParam = array('username' => $_POST['username'],
+			$getParam = array('username' => $_SESSION['username'],
 				'password' => $_POST['password'],
 				'displayname' => $_POST['displayname'],
 				'sitename' => $_POST['sitename'],
 				'email' => $_POST['email'],
 				'path' => $status);
 			$sn_path = $Url . "/social_networks/" . $status . "/elgg-1.9.5/index.php";
-
+			
 			DataQueries::SetNetwork($status, $_SESSION['username'], $_POST['sitename'], $sn_path);
 			//redirect into auto_install ---> need to put getParam on the session and not on a get request
-
+			
 			$_SESSION['autoInstallParams'] = $getParam;
 			header('Location: auto_install.php');
 		}

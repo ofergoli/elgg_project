@@ -47,14 +47,12 @@ class DataQueries
 	}
 
 	public static function SetNetwork($socialKey, $username, $networkName, $url) {
-
 		$query = "INSERT INTO social_networks(nid, uid, name, url)
 		          SELECT ?, u.uid, ?, ?
                   FROM users u WHERE username = ?";
 		$parameters = array($socialKey, $networkName, $url, $username);
 		AdoHelper::ExecuteNonQuery("bgunet_db", $query, $parameters);
 	}
-
 	public static function CreateDB($DBName) {
 		AdoHelper::CreateDB($DBName);
 	}
@@ -76,11 +74,20 @@ class DataQueries
 		return AdoHelper::ExecuteDataSet($Social_Key,$query,$parameters);
 	}
 
-	public static function GetUserSocialNetworks($user){
-		$query = "SELECT * FROM networks WHERE username = ?";
-		$parameters = array($user);
+	public static function GetUserSocialNetworks($userId){
+		$query = "SELECT * FROM social_networks WHERE uid = ?";
+		$parameters = array($userId);
 		return AdoHelper::ExecuteDataSet('bgunet_db',$query,$parameters);
 	}
 
+	public static function GetUserByName($username){
+		$query = "SELECT * FROM users WHERE username = ?";
+		$parameters = array($username);
+		return AdoHelper::ExecuteDataSet('bgunet_db',$query,$parameters);
+	}
+
+	public static function CreateTable($DBName,$command){
+		AdoHelper::ExecuteNonQuery($DBName,$command,null);
+	}
 }
 
