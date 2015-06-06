@@ -89,22 +89,22 @@ include_once('body_header.php');
 
 								if (!empty($result) && !empty($result[0])) {
 									for ($i = 0; $i < count($result); $i++) {
-										echo "<tr>
-											<td>" . ($i + 1) . "</td>
-                            			    <td>" . $_SESSION['username'] . "</td>
-                                			<td>" . $result[$i]['name'] . "</td>
+										echo '<tr>
+											<td>' . ($i + 1) . '</td>
+                            			    <td>' . $_SESSION['username'] . '</td>
+                                			<td>' . $result[$i]['name'] . '</td>
                                 			<td>Delete/Enter Social Network
-                                  			<a href=\"" . $result[$i]['url'] . "\"  target=\"_blank\">
+                                  			<a href="' . $result[$i]['url'] . '"  target="_blank">
                                      			<br/><br/>
-                                       			<input class=\"btn btn-primary signup\" id=\"dynamic\" type=\"submit\" name=\"CreateNewSN\" value=\"Enter Social Network\"  />
+                                       			<input class="btn btn-primary signup" id="dynamic" type="submit" name="CreateNewSN" value="Enter Social Network"/>
                                   			</a>
-											  <form action=\"my_social_networks.php\" method=\"post\" value=\"delete\">
-												  <a class=\"btn btn-default\" href=\"dashboard.php\">Tools</a>
-												  <input class=\"btn btn-danger delete-network-btn\" type=\"button\" id=\"delete_bt\" name=\"delete\" value=\"Delete\"  />
-												  <input name=\"sn\" class=\"hidden_input\" style=\"visibility: hidden;\" value=\"" . $result[$i]['nid'] . "\"/>
+											  <form action="my_social_networks.php" method="post" value="delete">
+												  <a class="btn btn-default" href="dashboard.php?sn=' . $result[$i]['nid'] . '&name=' . $result[$i]['name'] . '">Tools</a>
+												  <input class="btn btn-danger delete-network-btn" type="button" id="delete_bt" name="delete" value="Delete"  />
+												  <input name="sn" class="hidden_input" style="visibility: hidden;" value="' . $result[$i]['nid'] . '"/>
 											  </form>
 											</td>
-										 </tr>";
+										 </tr>';
 									}
 								}
 								?>

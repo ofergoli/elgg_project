@@ -1,6 +1,6 @@
 <?php
-include_once("header.php");
-include_once('DB/DataQueries.php');
+require_once("header.php");
+require_once('DB/DataQueries.php');
 //include session
 session_start();
 $username = "";
@@ -21,13 +21,13 @@ include_once('body_header.php');
 				<div class="page-header">
 					<h3>
 						<span class="glyphicon glyphicon-dashboard"></span>
-						Experiment Tools
+						<?php echo "Tools for " . $_GET['name'] . " network" ?>
 					</h3>
 				</div>
 				<div role="tabpanel">
 					<ul class="nav nav-tabs nav-justified" role="tablist">
 						<li role="presentation" class="active">
-							<a href="#backup" aria-controls="backup" role="tab" data-toggle="tab">Backup</a>
+							<a href="#backup" aria-controls="backup" role="tab" data-toggle="tab">Backup & Restore</a>
 						</li>
 						<li role="presentation">
 							<a href="#snapshots" aria-controls="snapshots" role="tab" data-toggle="tab">Snapshots</a>
@@ -44,6 +44,7 @@ include_once('body_header.php');
 				</div>
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="backup">
+						<?php include_once('backup_restore.php'); ?>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="snapshots">
 					</div>

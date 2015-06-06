@@ -1,5 +1,7 @@
 <?php
 require_once("AdoHelper.php");
+require_once("csv_io.php");
+
 
 class DataQueries {
 	public static function UpdateUserPassword($userid, $password) {
@@ -98,7 +100,15 @@ class DataQueries {
 
 	public static function GetAllTables($dbName) {
 		$query = "SHOW TABLES";
-		return AdoHelper::ExecuteDataSet($dbName, $query, null);
+		$tables = AdoHelper::ExecuteDataSet($dbName, $query, null);
+		$path = "tmp/" . $dbName;
+		foreach($tables as $table) {
+			$table_name = $table[array_keys($table)[0]];
+			$select = "SELECT * FROM " . $table_name;
+			$table_data = AdoHelper::ExecuteDataSet($dbName, $select, null);
+			build_csv($path . "/" . $table_name, $table_data);
+		}
+		return $path;
 	}
 }
 
