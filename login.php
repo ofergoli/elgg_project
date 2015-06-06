@@ -1,4 +1,5 @@
 <?php
+include_once('init_database.php');
 include_once('header.php');
 include_once('DB/DataQueries.php');
 //including the session

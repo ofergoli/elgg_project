@@ -119,6 +119,13 @@ class AdoHelper
 		$conn->close();
 	}
 
+	public static function CheckDBInit(){
+		$conn = mysqli_connect(self::$_DBServer, self::$_DBUser, self::$_DBPass);
+		$result = $conn->query("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'bgunet_db' ");
+		$row = mysqli_fetch_row($result); 
+		return $row[0];
+	}
+
 }
 
 ?>

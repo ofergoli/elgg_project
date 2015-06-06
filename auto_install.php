@@ -6,6 +6,8 @@
 	//using get param and do the 6 steps to install elgg and redirect to my_social_networks.php
 	$paramters = $_SESSION['autoInstallParams'];
 
+	print_r($paramters);
+
 	if(isset($paramters['username']) && isset($paramters['password']) && isset($paramters['displayname'])
  	 		&& isset($paramters['sitename']) && isset($paramters['email']) && isset($paramters['path'])){
 		$username = $paramters['username'];

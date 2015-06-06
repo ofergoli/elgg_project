@@ -26,11 +26,12 @@
                             $UrlToSocial =  $Url . "/social_networks/".$_POST['selectNet']."/elgg-1.9.5/index.php";
                             $path = $Url . "/social_networks/".$_POST['selectNet']."/elgg-1.9.5/engine/start.php";
                             doPost($newUser,$path);
-                            $text = 'Wellcome to ' . $social_name[0]['network_name'] . 'Network you can click the link below to enter the Social Network ';
-                            $text.= 'use Your BGU username and password in order to login to the network '; 
-                            $text.= 'You are signed already to ' . $group_name[0]['name'] . ' Group ';
-                            $text.= 'Link :' . $UrlToSocial;
-                            $MAIL->Send("ofergolib@gmail.com","Wellcome to " . $social_name[0]['network_name'] . " Network",$text);
+                            $text = "Welcome to " . $social_name[0]['name'] . " Network\n\n";
+                            $text = "You can click the link below to enter the Social Network\n";
+                            $text.= "Use Your BGU username and password in order to login to the network \n"; 
+                            $text.= "You are signed already to " . $group_name[0]['name'] . " Group \n\n";
+                            $text.= "Link to " . $social_name[0]['name'] .  +" :" . $UrlToSocial;
+                            $MAIL->Send("ofergolib@gmail.com","Welcome to " . $social_name[0]['name'] . " Network",$text);
                         }
                     }
                     return true;
@@ -43,6 +44,3 @@
         }
     }
 ?>
-<!-- //  echo $_POST['selectNet'];
- echo $_POST['selectGrp'];
-echo $_SESSION['username']; -->

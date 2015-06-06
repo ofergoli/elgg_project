@@ -11,7 +11,7 @@
 	
 		function createSN(){
 			$folderName = md5(uniqid(rand(), true));
-			mkdir('./soical_networks/'.$folderName);
+			mkdir('./social_networks/'.$folderName);
 			$res = $this->zip->open('./social_networks/elgg-1.9.5.zip');
 			if ($res === TRUE) {
 			    $this->zip->extractTo('./social_networks/' . $folderName);
