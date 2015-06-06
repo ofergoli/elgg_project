@@ -44,7 +44,7 @@ include_once('body_header.php');
 				</div>
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="backup">
-						<?php include_once('backup_restore.php'); ?>
+						<?php require_once('backup_restore.php'); ?>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="snapshots">
 					</div>

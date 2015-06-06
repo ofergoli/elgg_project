@@ -24,31 +24,28 @@ function create_zip($path)
 		RecursiveIteratorIterator::LEAVES_ONLY
 	);
 
-	foreach($files as $file) {
-		if(!$file->isDir()) {
+	foreach ($files as $file) {
+		if (!$file->isDir()) {
 			$filePath = $file->getRealPath();
 			$relativePath = substr($filePath, strlen($rootPath) + 1);
-
 			$zip->addFile($filePath, $relativePath);
 		}
 	}
 
 	$zip->close();
-
-//	foreach($files as $file) {
-//		chmod($file, 0750);
-//		unlink($file);
-//	}
 	return $path . ".zip";
 }
 
 ?>
 
-<h3>Backup & Restore</h3>
-<div class="content-box">
-	<h4>Export database to CSV:</h4>
+<div class="content-box tab-content">
+	<h3>
+		Export database to CSV:
+		<img id="db-img" class="pull-right" src="img/db.png" alt=""/>
+	</h3>
+
 	<button id="export-db" class="btn btn-default">Export to CSV</button>
 	<?php echo '<input id="sn-key" class="hidden_input" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
 	<h3><i class="fa fa-spinner fa-pulse"></i></h3>
-	<a id="csv-download" class="btn btn-default" href="" download="File">Download CSV filesV</a>
+	<a id="csv-download" class="btn btn-default" href="" download="File">Download CSV files</a>
 </div>
