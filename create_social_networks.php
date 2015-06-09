@@ -28,17 +28,17 @@ if (isset($_POST['CreateNewSN'])) {    // post set
 
 			//create database base on the md5 token!
 			DataQueries::CreateDB($status);
-			$getParam = array('username' => $_POST['username'],
+			$getParam = array('username' => $_SESSION['username'],
 				'password' => $_POST['password'],
 				'displayname' => $_POST['displayname'],
 				'sitename' => $_POST['sitename'],
 				'email' => $_POST['email'],
 				'path' => $status);
 			$sn_path = $Url . "/social_networks/" . $status . "/elgg-1.9.5/index.php";
-
+			
 			DataQueries::SetNetwork($status, $_SESSION['username'], $_POST['sitename'], $sn_path);
 			//redirect into auto_install ---> need to put getParam on the session and not on a get request
-
+			
 			$_SESSION['autoInstallParams'] = $getParam;
 			header('Location: auto_install.php');
 		}
@@ -46,10 +46,7 @@ if (isset($_POST['CreateNewSN'])) {    // post set
 		echo "please fill fields";
 	}
 }
-?>
-<body>
-<?php
-  include_once('body_header.php');
+include_once('body_header.php');
 ?>
 	<div class="page-content">
 		<div class="row">
@@ -109,8 +106,10 @@ if (isset($_POST['CreateNewSN'])) {    // post set
 					<div class="col-md-5">
 						<div class="content-box-large">
 							<br/>
+
 							<div class="panel-title">Please fill in the following:</div>
 							<br/>
+
 							<div class="panel-body">
 								<form class="form-horizontal" role="form" action="create_social_networks.php"
 									  method="post" value="create_sn" data-toggle="validator">

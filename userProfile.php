@@ -38,7 +38,7 @@ if (isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
 		header('Content-Type: application/json');
 		echo json_encode($response);
 	} else {
-		DataQueries::UpdateUserEmail($_POST["newEmail"], $user['uid']);
+		DataQueries::UpdateUserEmail($user['uid'], $_POST["newEmail"]);
 		$response['status'] = 'success';
 		header('Content-Type: application/json');
 		echo json_encode($response);
