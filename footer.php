@@ -9,5 +9,6 @@
 <script type="text/javascript" src="js/networks_groups.js"></script>
 <script type="text/javascript" src="js/updateUser.js"></script>
 <script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>
+<script src="js/dashboard.js"></script>
 </body>
 </html>
