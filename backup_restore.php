@@ -38,14 +38,43 @@ function create_zip($path)
 
 ?>
 
-<div class="content-box tab-content">
-	<h3>
-		Export database to CSV:
-		<img id="db-img" class="pull-right" src="img/db.png" alt=""/>
-	</h3>
-
-	<button id="export-db" class="btn btn-default">Export to CSV</button>
-	<?php echo '<input id="sn-key" class="hidden_input" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
-	<h3><i class="fa fa-spinner fa-pulse"></i></h3>
-	<a id="csv-download" class="btn btn-default" href="" download="File">Download CSV files</a>
+<div class="row">
+	<div class="col-sm-5">
+		<legend>
+			Export Database
+		</legend>
+		<dl class="dl-horizontal">
+			<dt>Export database to CSV:</dt>
+			<dd>
+				<button id="export-db" class="btn btn-default">
+					<i class="glyphicon glyphicon-export"></i>
+					Export to CSV
+				</button>
+				<?php echo '<input id="sn-key" class="hidden_input" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
+			</dd>
+			<dt></dt>
+			<dd>
+				<h3><i class="fa fa-spinner fa-pulse"></i></h3>
+				<a id="csv-download" class="btn btn-default" href="" download="File">Download CSV files</a>
+			</dd>
+		</dl>
+	</div>
+	<div class="col-sm-5">
+		<legend>
+			Import Database
+		</legend>
+		<dl class="dl-horizontal">
+			<dt>Import database from CSV:</dt>
+			<dd>
+				<button id="import-db" class="btn btn-default">
+					<i class="glyphicon glyphicon-import"></i>
+					Import from CSV
+				</button>
+				<?php echo '<input id="sn-key" class="hidden_input" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
+			</dd>
+		</dl>
+	</div>
+	<div class="col-sm-2">
+		<img id="db-img" class="pull-right" src="img/db.png" alt="Database"/>
+	</div>
 </div>

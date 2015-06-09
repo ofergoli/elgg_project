@@ -756,5 +756,18 @@ body {
 
 #db-img {
 	width: 80px;
+	position: relative;
+	top: 12px;
 }
 
+.tab-content {
+	-webkit-border-top-left-radius: 0;
+	-moz-border-radius-topleft: 0;
+	-webkit-border-top-right-radius: 0;
+	-moz-border-radius-topright: 0;
+
+}
+
+.tab-content .row {
+	padding: inherit;
+}
