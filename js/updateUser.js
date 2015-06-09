@@ -2,7 +2,7 @@ $(function () {
 	$('#change-password-btn').click(function () {
 		bootbox.dialog({
 			title: "Change User Password:",
-			message: '<form class="form-horizontal" data-toggle="validator">' +
+			message: '<form name="changePassword" class="form-horizontal">' +
 			'<div class="form-group">' +
 			'<label for="oldPassword" class="col-md-4 control-label">Old Password:</label>' +
 			'<div class="col-md-4">' +
@@ -16,9 +16,9 @@ $(function () {
 			'</div>' +
 			'</div>' +
 			'<div class="form-group">' +
-			'<label for="confirmPassword" class="col-md-4 control-label">Confirm New Password:</label>' +
+			'<label for="confirmPassword" class="col-md-4 control-label">Confirm Password:</label>' +
 			'<div class="col-md-4">' +
-			'<input id="confirmPassword" type="password" placeholder="Confirm New Password" class="form-control input-md" / >' +
+			'<input id="confirmPassword" type="password" placeholder="Confirm Password" class="form-control input-md" / >' +
 			'<div class="help-block with-errors"></div>' +
 			'</div>' +
 			'</div>' +
@@ -44,11 +44,11 @@ $(function () {
 							data: data,
 							success: function (result) {
 								if (result.status == "success") {
-									alert('success');
+									alert('Password changed successfully');
 									window.location.replace("userProfile.php");
 								}
 								else {
-									alert("Error");
+									alert("Wrong username or password");
 								}
 							}
 						});
@@ -87,18 +87,20 @@ $(function () {
 						var password = $('#password').val();
 						var newEmail = $('#newEmail').val();
 						var data = {
-							oldPassword: password,
-							newPassword: newEmail
+							password: password,
+							newEmail: newEmail
 						};
 						$.ajax({
 							url: "userProfile.php",
 							type: "POST",
 							data: data,
 							success: function (result) {
-								if (result.status == "success")
+								if (result.status == "success") {
+									alert('Email changed successfully');
 									window.location.replace("userProfile.php");
+								}
 								else {
-									alert(result.status);
+									alert('Wrong password');
 								}
 							}
 						});

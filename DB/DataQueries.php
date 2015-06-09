@@ -10,7 +10,7 @@ class DataQueries {
 		AdoHelper::ExecuteNonQuery("bgunet_db", $query, $parameters);
 	}
 
-	public static function UpdateUserEmail($userid, $email) {
+	public static function UpdateUserEmail($email, $userid) {
 		$query = "UPDATE users
 			      SET email = ?
 			      WHERE uid = ?";
