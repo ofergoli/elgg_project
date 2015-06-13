@@ -9,8 +9,10 @@ Our main goal is to create a system that combines from one hand a social network
 1. Add picutre to Profile page (picture at '''img/User-icon.png'''.
 2. Change theme of the ELGG network (Orange with camels) - Ofer
 3. Autmate installation of the DB. (For the network to run at the first time) - Ofer
-
-
+4. Backup & Restore DB to/from CSV files.
+5. DB snapshots by date.
+6. Statistical analysis.
+7. User management and invitations to experiments.
 
 ## Installation
 
