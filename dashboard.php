@@ -25,7 +25,13 @@ include_once('body_header.php');
 				</div>
 				<div role="tabpanel">
 					<ul class="nav nav-tabs nav-justified" role="tablist">
+
 						<li role="presentation" class="active">
+							<a href="#statistics" aria-controls="statistics" role="tab" data-toggle="tab">
+								Statistics </a>
+						</li>
+
+						<li role="presentation" >
 							<a href="#backup" aria-controls="backup" role="tab" data-toggle="tab">Backup & Restore</a>
 						</li>
 						<li role="presentation">
@@ -35,6 +41,8 @@ include_once('body_header.php');
 							<a href="#user-management" aria-controls="user-management" role="tab" data-toggle="tab">User
 								Management</a>
 						</li>
+
+
 <!--						<li role="presentation">-->
 <!--							<a href="#file-validation" aria-controls="file-validation" role="tab" data-toggle="tab">File-->
 <!--								Validation</a>-->
@@ -42,13 +50,22 @@ include_once('body_header.php');
 					</ul>
 				</div>
 				<div class="tab-content">
-					<div role="tabpanel" class="tab-pane active" id="backup">
+
+					<div role="tabpanel" class="tab-pane active" id="statistics">
+						<div class="content-box tab-content">
+							<?php require_once('statistics.php'); ?>
+
+						</div>
+					</div>
+
+					<div role="tabpanel" class="tab-pane" id="backup">
 						<div class="content-box tab-content">
 							<?php require_once('backup_restore.php'); ?>
 						</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="snapshots">
 						<div class="content-box tab-content">
+							<?php require_once('snapshot_manager.php'); ?>
 
 						</div>
 					</div>
