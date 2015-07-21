@@ -7,6 +7,7 @@ function build_csv($path, $tableData) {
 	}
 	$fp = fopen($path . '.csv', 'w');
 	foreach($tableData as $row) {
+
 		fputcsv($fp, $row);
 	}
 	fclose($fp);

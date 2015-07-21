@@ -5,7 +5,7 @@ if (isset($_GET['sn'])) {
 	$sn_key = $_GET['sn'];
 }
 
-if ($_FILES["zip_file"]["name"]) {
+if (isset($_FILES["zip_file"]["name"])) {
 	$filename = $_FILES["zip_file"]["name"];
 	$source = $_FILES["zip_file"]["tmp_name"];
 	$type = $_FILES["zip_file"]["type"];
@@ -24,20 +24,28 @@ if ($_FILES["zip_file"]["name"]) {
 		$message = "The file you are trying to upload is not a .zip file. Please try again.";
 	}
 
+
+
 	$target_path = "C:/xampp/htdocs/elgg_project/tmp/upload/" . $filename;  // change this to the correct site path
 	if (move_uploaded_file($source, $target_path)) {
 		$zip = new ZipArchive();
 		$x = $zip->open($target_path);
 		if ($x === true) {
-			$zip->extractTo("C:/xampp/htdocs/elgg_project/tmp/upload/" . substr($filename, 0, strlen($filename) - 4)); // change this to the correct site path
+			$folder_path = "C:/xampp/htdocs/elgg_project/tmp/upload/" . substr($filename, 0, strlen($filename) - 4);
+			$zip->extractTo($folder_path); // change this to the correct site path
 			$zip->close();
 
 			unlink($target_path);
+			import_to_database($folder_path, substr($filename, 0, strlen($filename) - 4));
 		}
 		$message = "Your .zip file was uploaded and unpacked.";
 	} else {
 		$message = "There was a problem with the upload. Please try again.";
 	}
+
+	echo $message;
+
+
 }
 
 
@@ -78,9 +86,20 @@ function create_zip($path)
 	return $path . ".zip";
 }
 
-function extract_zip($zipFile)
+function import_to_database($path, $dbName)
 {
-
+	$csvFiles = scandir($path);
+	foreach($csvFiles as $filename) {
+		$file = fopen($path . "/" . $filename, "r");
+		$table_name = substr($filename, 0, -4);
+		if($file) {
+			$lines = array();
+			while($line = fgets($file)) {
+				array_push($lines, "'" . str_replace(",", "','", $line) ."'");
+			}
+			DataQueries::ReplaceIntoTable($dbName, $table_name, $lines);
+		}
+	}
 }
 
 ?>

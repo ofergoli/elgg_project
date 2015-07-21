@@ -75,7 +75,6 @@ class AdoHelper
 		self::$_dsn = self::$_DBType . "://" . self::$_DBUser . ":" . self::$_DBPass . "@" . self::$_DBServer . "/" . $DBName . self::$_dsn_options;
 		self::$_DBCon = NewADOConnection(self::$_dsn);
 
-
 		$rs = self::$_DBCon->Execute($query, $a_bind_params);
 
 		self::$_DBCon->Close();
@@ -100,6 +99,19 @@ class AdoHelper
 		$conn->query("CREATE DATABASE " . $DBName);
 
 		// Close connection
+		$conn->close();
+	}
+
+	public static function ExecuteMultiQuery($DBName, $query) {
+		$conn = mysqli_connect(self::$_DBServer, self::$_DBUser, self::$_DBPass, $DBName);
+
+		if(mysqli_connect_errno()) {
+			die("database problem:" . mysqli_connect_error());
+		}
+		echo "Fuck BGU and PHP";
+
+		echo $conn->query($query);
+
 		$conn->close();
 	}
 

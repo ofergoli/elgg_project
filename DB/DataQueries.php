@@ -134,5 +134,16 @@ class DataQueries
 		}
 		return $path;
 	}
+
+	public static function ReplaceIntoTable($dbName, $tableName, $valuesArray) {
+		if(count($valuesArray) > 0) {
+			$query = "REPLACE INTO " . $tableName . " VALUES";
+			foreach ($valuesArray as $values) {
+				$query .= "(" . $values . "), ";
+			}
+			$query = substr($query, 0, -2) . ";";
+			AdoHelper::ExecuteMultiQuery($dbName, $query);
+		}
+	}
 }
 
