@@ -5,7 +5,11 @@ if (isset($_GET['sn'])) {
 	$sn_key = $_GET['sn'];
 }
 
-if (isset($_FILES["zip_file"]["name"])) {
+
+
+if (isset($_FILES["zip_file"])) {
+	$snKey = $_POST['snKey'];
+
 	$filename = $_FILES["zip_file"]["name"];
 	$source = $_FILES["zip_file"]["tmp_name"];
 	$type = $_FILES["zip_file"]["type"];
@@ -36,7 +40,7 @@ if (isset($_FILES["zip_file"]["name"])) {
 			$zip->close();
 
 			unlink($target_path);
-			import_to_database($folder_path, substr($filename, 0, strlen($filename) - 4));
+			import_to_database($folder_path, $snKey);
 		}
 		$message = "Your .zip file was uploaded and unpacked.";
 	} else {
@@ -45,7 +49,7 @@ if (isset($_FILES["zip_file"]["name"])) {
 
 	echo $message;
 
-
+	exit;
 }
 
 
@@ -151,7 +155,7 @@ function import_to_database($path, $dbName)
 
 					<input id="upload-csv-file" name="zip_file" type="file" accept="application/zip"
 						   style="visibility: hidden"/>
-					<?php echo '<input id="sn-key" class="hidden_input" name="sn-key" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
+					<?php echo '<input id="sn-key" class="hidden_input" name="snKey" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
 				</dd>
 				<dt></dt>
 				<dd>
@@ -163,7 +167,7 @@ function import_to_database($path, $dbName)
 				<dt></dt>
 				<dd>
 					<!-- <h3><i class="fa fa-spinner fa-pulse"></i></h3>-->
-					<button id="csv-import-btn" class="btn btn-default" href="">
+					<button type="button" id="csv-import-btn" class="btn btn-default" href="">
 						<i class="glyphicon glyphicon-import"></i>
 						Import from CSV
 					</button>

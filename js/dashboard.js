@@ -33,4 +33,22 @@
             });
     });
 
+    csvImportBtn.on('click', function () {
+        var data = new FormData();
+        data.append('zip_file', $('#upload-csv-file')[0].files[0]);
+        data.append('snKey', $('#sn-key').val());
+        data.append('overrideData', $('#override-data-cb input:checkbox').prop('checked'));
+        $.ajax({
+            url: 'backup_restore.php',
+            data: data,
+            cache: false,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success:function (res) {
+                debugger;
+            }
+        });
+    });
+
 })();
