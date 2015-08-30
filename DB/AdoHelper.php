@@ -108,9 +108,8 @@ class AdoHelper
 		if(mysqli_connect_errno()) {
 			die("database problem:" . mysqli_connect_error());
 		}
-		echo "Fuck BGU and PHP";
 
-		echo $conn->query($query);
+		$conn->query($query);
 
 		$conn->close();
 	}

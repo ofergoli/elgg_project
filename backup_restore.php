@@ -19,19 +19,19 @@ if (isset($_FILES["zip_file"]["name"])) {
 		}
 	}
 
-	$continue = strtolower($name[1]) == 'zip' ? true : false;
+	$continue = (strtolower($name[1]) == 'zip');
 	if (!$continue) {
 		$message = "The file you are trying to upload is not a .zip file. Please try again.";
 	}
 
 
 
-	$target_path = "C:/xampp/htdocs/elgg_project/tmp/upload/" . $filename;  // change this to the correct site path
+	$target_path = getcwd() . "/tmp/upload/" . $filename;  // change this to the correct site path
 	if (move_uploaded_file($source, $target_path)) {
 		$zip = new ZipArchive();
 		$x = $zip->open($target_path);
 		if ($x === true) {
-			$folder_path = "C:/xampp/htdocs/elgg_project/tmp/upload/" . substr($filename, 0, strlen($filename) - 4);
+			$folder_path = getcwd() . "/tmp/upload/" . substr($filename, 0, strlen($filename) - 4);
 			$zip->extractTo($folder_path); // change this to the correct site path
 			$zip->close();
 
@@ -151,7 +151,7 @@ function import_to_database($path, $dbName)
 
 					<input id="upload-csv-file" name="zip_file" type="file" accept="application/zip"
 						   style="visibility: hidden"/>
-					<?php echo '<input id="sn-key" class="hidden_input" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
+					<?php echo '<input id="sn-key" class="hidden_input" name="sn-key" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
 				</dd>
 				<dt></dt>
 				<dd>
