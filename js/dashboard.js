@@ -1,5 +1,4 @@
 (function () {
-
     var csvDownloadBtn = $('#csv-download').hide(),
         csvImportBtn = $('#csv-import-btn').hide(),
         overrideDataCb = $('#override-data-cb').hide(),
@@ -44,11 +43,10 @@
             cache: false,
             type: 'POST',
             contentType: false,
-            processData: false,
-            success:function (res) {
-                debugger;
-            }
+            processData: false
         });
     });
 
+	$( "#import_datepicker" ).datepicker();
+	$( "#export_datepicker" ).datepicker();
 })();

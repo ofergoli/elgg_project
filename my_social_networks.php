@@ -26,7 +26,7 @@ include_once('body_header.php');
 			<div class="sidebar content-box" style="display: block;">
 				<ul class="nav">
 					<!-- Main menu -->
-					<li class="current"><a href="index.php"><i class="glyphicon glyphicon-home"></i>My Profile</a></li>
+					<li class="current"><a href="index.php"><i class="glyphicon glyphicon-home"></i>Home Page</a></li>
 					<li><a href="my_social_networks.php"><i class="glyphicon glyphicon-list"></i>My Social Networks</a>
 					</li>
 					<li><a href="create_social_networks.php"><i class="glyphicon glyphicon-pencil"></i> Create Social
