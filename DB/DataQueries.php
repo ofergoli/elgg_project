@@ -70,6 +70,13 @@ class DataQueries
 		return AdoHelper::ExecuteDataSet("bgunet_db", $query, $parameters);
 	}
 
+	public static function GetAllNetworks()
+	{
+		$query = "SELECT nid FROM social_networks";
+
+		return AdoHelper::ExecuteDataSet("bgunet_db", $query, null);
+	}
+
 	public static function SetNetwork($socialKey, $username, $networkName, $url)
 	{
 		$query = "INSERT INTO social_networks(nid, uid, name, url)
@@ -135,8 +142,9 @@ class DataQueries
 		return $path;
 	}
 
-	public static function ReplaceIntoTable($dbName, $tableName, $valuesArray) {
-		if(count($valuesArray) > 0) {
+	public static function ReplaceIntoTable($dbName, $tableName, $valuesArray)
+	{
+		if (count($valuesArray) > 0) {
 			$query = "REPLACE INTO " . $tableName . " VALUES";
 			foreach ($valuesArray as $values) {
 				$query .= "(" . $values . "), ";
@@ -144,6 +152,11 @@ class DataQueries
 			$query = substr($query, 0, -2) . ";";
 			AdoHelper::ExecuteMultiQuery($dbName, $query);
 		}
+	}
+
+	public static function ShowAllDatabases()
+	{
+		$query = "SHOW ";
 	}
 }
 
