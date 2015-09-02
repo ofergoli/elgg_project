@@ -9,6 +9,8 @@ foreach($allNetworksArray as $network) {
 	createSnapshot($network['nid']);
 }
 
+echo "Successfully created snapshots for all networks";
+
 function createSnapshot($dbName)
 {
 
@@ -23,11 +25,9 @@ function createSnapshot($dbName)
 
 	$sqlFilename = $currentDate["mday"] . "_" . $currentDate["mon"] . "_" . $currentDate["year"] . ".sql";
 
-	echo $Path . $dbPath;
 	if (!is_dir($Path . $dbPath)) {
 		mkdir($Path . $dbPath);
 	}
 	$commandString = "mysqldump -u " . $DBUser . " --password=" . $DBPass . " " . $dbName . " > " . $Path . $dbPath . "\\" . $sqlFilename;
-	echo $commandString;
 	shell_exec($commandString);
 }

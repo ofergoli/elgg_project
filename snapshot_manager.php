@@ -12,28 +12,28 @@ if (isset($_GET['sn'])) {
 	<div class="col-md-5">
 		<div class="row">
 			<legend>
-				Create Snapshot
+				View Snapshot
 			</legend>
 		</div>
 		<div class="row">
 			<dl class="dl-horizontal">
 				<dt>Date:</dt>
 				<dd>
-					<input type="text" id="export_datepicker">
+					<input type="date" id="view-datepicker" style="height: 28px;">
 				</dd>
 				<dt style="padding-top: 15px;">Snapshot:</dt>
 				<dd style="padding-top: 15px;">
 					<?php echo '<input id="sn-key" class="hidden_input" name="snKey" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
-					<button class="btn btn-default btn-xs">
-						Download
+					<button id="view-snapshot-btn" class="btn btn-default btn-xs">
+						View
 					</button>
 				</dd>
 			</dl>
 		</div>
 		<div class="row">
 			<div class="well well-sm">
-				You can download a snapshot of previous state of the network. <br/>
-				Please choose a date and than press the Download button.
+				You can view a snapshot of previous state of the network. <br/>
+				Please choose a date and then press the View button.
 			</div>
 		</div>
 	</div>
@@ -47,12 +47,12 @@ if (isset($_GET['sn'])) {
 			<dl class="dl-horizontal">
 				<dt>Date:</dt>
 				<dd>
-					<input type="text" id="import_datepicker">
+					<input type="date" id="load-datepicker" style="height: 28px;">
 				</dd>
 				<dt style="padding-top: 15px;">Snapshot:</dt>
 				<dd style="padding-top: 15px;">
 					<?php echo '<input id="sn-key" class="hidden_input" name="snKey" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
-					<button class="btn btn-default btn-xs">
+					<button id="load-snapshot-btn" class="btn btn-default btn-xs">
 						<!--						<i class="glyphicon glyphicon-export"></i>-->
 						Load
 					</button>
@@ -62,7 +62,7 @@ if (isset($_GET['sn'])) {
 		<div class="row">
 			<div class="well well-sm">
 				You can Import a snapshot of previous state of the network. <br/>
-				Please choose a date and than press the Load button.
+				Please choose a date and then press the Load button.
 			</div>
 		</div>
 	</div>

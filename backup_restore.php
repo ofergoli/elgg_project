@@ -130,17 +130,6 @@ function import_to_database($path, $dbName)
 		</dl>
 	</div>
 	<div id="import-container" class="col-sm-5">
-
-
-
-<!--		<form enctype="multipart/form-data" method="post" action="backup_restore.php">-->
-<!--			<label>Choose a zip file to upload: <input type="file" name="zip_file"/></label>-->
-<!--			<br/>-->
-<!--			<input type="submit" name="submit" value="Upload"/>-->
-<!--		</form>-->
-
-
-
 		<legend>
 			Import Database
 		</legend>
@@ -152,7 +141,6 @@ function import_to_database($path, $dbName)
 					<button type="button" id="upload-csv-btn" class="btn btn-default">
 						Upload CSV files
 					</button>
-
 					<input id="upload-csv-file" name="zip_file" type="file" accept="application/zip"
 						   style="visibility: hidden"/>
 					<?php echo '<input id="sn-key" class="hidden_input" name="snKey" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>

@@ -3,7 +3,11 @@
         csvImportBtn = $('#csv-import-btn').hide(),
         overrideDataCb = $('#override-data-cb').hide(),
         snKey = $('input#sn-key').val(),
-        inputFile = $('#upload-csv-file');
+        inputFile = $('#upload-csv-file'),
+        viewSnapshotButton = $('#view-snapshot-btn'),
+        loadSnapshotButton = $('#load-snapshot-btn'),
+        viewDatepicker = $('#view-datepicker'),
+        loadDatepicker = $('#load-datepicker');
 
     $('.fa-spinner').hide();
 
@@ -43,10 +47,44 @@
             cache: false,
             type: 'POST',
             contentType: false,
-            processData: false
+            processData: false,
+            success: function () {
+                alert("Successfully imported data to social network");
+            }
         });
     });
 
-	$( "#import_datepicker" ).datepicker();
-	$( "#export_datepicker" ).datepicker();
+    viewSnapshotButton.on('click', function () {
+
+    });
+
+    loadSnapshotButton.on('click', function () {
+        if(!loadDatepicker.val() || loadDatepicker.val() === '' || loadDatepicker.val().split('-').length !== 3) {
+            alert('Choose the date of snapshot you would like to load');
+        }
+        else {
+            var snapshotData = {
+                snapshotFilename: convertDateToFilename(loadDatepicker.val()),
+                snKey: $('#sn-key').val()
+            };
+            debugger;
+            $.ajax({
+                type: 'POST',
+                data: snapshotData,
+                url: 'load_snapshot.php',
+                success: function (response) {
+
+                },
+                failure: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+    });
+
+    function convertDateToFilename(date) {
+        var asTokens = date.split('-');
+        return asTokens[2] + '_' + asTokens[1] + '_' + asTokens[0] + '.sql';
+    }
+
 })();
