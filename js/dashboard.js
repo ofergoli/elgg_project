@@ -67,13 +67,12 @@
                 snapshotFilename: convertDateToFilename(loadDatepicker.val()),
                 snKey: $('#sn-key').val()
             };
-            debugger;
             $.ajax({
                 type: 'POST',
                 data: snapshotData,
                 url: 'load_snapshot.php',
                 success: function (response) {
-
+                    console.log(response);
                 },
                 failure: function (error) {
                     console.log(error);
@@ -84,6 +83,11 @@
 
     function convertDateToFilename(date) {
         var asTokens = date.split('-');
+        for(var i in asTokens) {
+            if(asTokens[i].charAt(0) === '0') {
+                asTokens[i] = asTokens[i].substr(1);
+            }
+        }
         return asTokens[2] + '_' + asTokens[1] + '_' + asTokens[0] + '.sql';
     }
 
