@@ -3,14 +3,6 @@
 
 Our main goal is to create a system that combines from one hand a social network and on the other hand a courses management platform (such High-learn, Moodle and etc.)
 
-## Open issues:
- 
-
-1. Backup & Restore DB to/from CSV files.
-2. DB snapshots by date.
-3. Statistical analysis.
-4. User management and invitations to experiments.
-
 ## Installation
 
  <h4>Email system configuration:  </h4>
