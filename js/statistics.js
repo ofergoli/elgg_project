@@ -28,7 +28,7 @@ $(function () {
 		},
 		series: [{
 			type: 'pie',
-			name: 'Browser share',
+			name: 'Post percentage',
 			data: [
 				['Linear Algebra', 13.0],
 				['Advanced Programming', 31.0],

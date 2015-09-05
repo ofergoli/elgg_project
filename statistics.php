@@ -1,9 +1,3 @@
-
-
-
-
-
-
 <div class="row">
 	<div class="col-lg-8">
 		<div class="panel panel-default" style="height: 485px;">
@@ -72,8 +66,6 @@
 		</div>
 	</div>
 </div>
-
-
 <div class="row">
 	<div class="col-lg-7">
 		<div class="panel panel-default">
@@ -95,8 +87,3 @@
 		</div>
 	</div>
 </div>
-
-
-
-<script type="application/javascript">
-</script>
