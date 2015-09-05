@@ -1,6 +1,7 @@
 (function () {
 	var csvDownloadBtn = $('#csv-download').hide(),
 		csvImportBtn = $('#csv-import-btn').hide(),
+		sqlDownloadBtn = $('#sql-download').hide(),
 		overrideDataCb = $('#override-data-cb').hide(),
 		snKey = $('input#sn-key').val(),
 		inputFile = $('#upload-csv-file'),
@@ -11,9 +12,9 @@
 
 	$('.fa-spinner').hide();
 
-	$('button#export-db-btn').on('click', function () {
+	$('button#export-csv-btn').on('click', function () {
 		csvDownloadBtn.hide();
-		var spinner = $('div#export-container').find('.fa-spinner').show();
+		var spinner = $('#csv-download-spinner').show();
 		$.post('backup_restore.php', {
 			dbName: snKey
 		}, function (data) {
@@ -52,10 +53,6 @@
 				alert("Successfully imported data to social network");
 			}
 		});
-	});
-
-	viewSnapshotButton.on('click', function () {
-
 	});
 
 	loadSnapshotButton.on('click', function () {
@@ -103,7 +100,6 @@
 			});
 
 		}
-
 	});
 
 	function convertDateToFilename(date) {

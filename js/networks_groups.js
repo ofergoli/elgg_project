@@ -9,6 +9,7 @@ $(document).ready(function(){
 		for(var i=0 ; i<network_name.length ; i++){
 			$("#network").append("<option value='" + NetworksGroups[network_name[i]][network_name[i]] +"'>" + network_name[i] + "</option>");
 		}
+		debugger;
 		var init_groups = NetworksGroups[$("#network")[0][0].innerHTML].groups;
 		$("#groups").empty();
 		for(var i=0 ; i<init_groups.length ; i++){

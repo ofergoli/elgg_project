@@ -6,7 +6,6 @@ if (isset($_GET['sn'])) {
 }
 
 
-
 if (isset($_FILES["zip_file"])) {
 	$snKey = $_POST['snKey'];
 
@@ -27,7 +26,6 @@ if (isset($_FILES["zip_file"])) {
 	if (!$continue) {
 		$message = "The file you are trying to upload is not a .zip file. Please try again.";
 	}
-
 
 
 	$target_path = getcwd() . "/tmp/upload/" . $filename;  // change this to the correct site path
@@ -93,13 +91,13 @@ function create_zip($path)
 function import_to_database($path, $dbName)
 {
 	$csvFiles = scandir($path);
-	foreach($csvFiles as $filename) {
+	foreach ($csvFiles as $filename) {
 		$file = fopen($path . "/" . $filename, "r");
 		$table_name = substr($filename, 0, -4);
-		if($file) {
+		if ($file) {
 			$lines = array();
-			while($line = fgets($file)) {
-				array_push($lines, "'" . str_replace(",", "','", $line) ."'");
+			while ($line = fgets($file)) {
+				array_push($lines, "'" . str_replace(",", "','", $line) . "'");
 			}
 			DataQueries::ReplaceIntoTable($dbName, $table_name, $lines);
 		}
@@ -108,34 +106,70 @@ function import_to_database($path, $dbName)
 
 ?>
 
+<?php echo '<input id="sn-key" class="hidden_input" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
 <div class="row">
-	<div id="export-container" class="col-sm-5">
+	<div class="col-sm-5">
 		<legend>
 			Export Database
 		</legend>
-		<dl class="dl-horizontal">
-			<dt>Export database to CSV:</dt>
-			<dd>
-				<button id="export-db-btn" class="btn btn-default">
-					<i class="glyphicon glyphicon-export"></i>
-					Export to CSV
-				</button>
-				<?php echo '<input id="sn-key" class="hidden_input" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
-			</dd>
-			<dt></dt>
-			<dd>
-				<h3><i class="fa fa-spinner fa-pulse"></i></h3>
-				<a id="csv-download" class="btn btn-default" href="" download="File">Download CSV files</a>
-			</dd>
-		</dl>
+		<div class="dl-horizontal dashboard-form">
+			<div class="row">
+				<div class="col-sm-5 col-sm-offset-1">
+					<label>Export to CSV:</label>
+				</div>
+				<div class="col-sm-6">
+					<button id="export-csv-btn" class="btn btn-default">
+						<i class="glyphicon glyphicon-export"></i>
+						Export to CSV
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6 col-sm-offset-6">
+					<h3><i id="csv-download-spinner" class="fa fa-spinner fa-pulse"></i></h3>
+					<a id="csv-download" class="btn btn-default" href="" download="File">Download CSV files</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6 col-sm-offset-6">
+					<p>
+						Export the database to a ZIP file containing CSV files for each table in database
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-5 col-sm-offset-1">
+					<label>Export to SQL dump:</label>
+				</div>
+				<div class="col-sm-6">
+					<button id="export-sql-btn" class="btn btn-default">
+						<i class="glyphicon glyphicon-export"></i>
+						Export to SQL dump
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6 col-sm-offset-6">
+					<h3><i class="fa fa-spinner fa-pulse"></i></h3>
+					<a id="sql-download" class="btn btn-default" href="" download="File">Download SQL dump</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6 col-sm-offset-6">
+					<p>
+						Export the database to SQL dump file
+					</p>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div id="import-container" class="col-sm-5">
+	<div class="col-sm-5">
 		<legend>
 			Import Database
 		</legend>
 		<form id="upload-zip" enctype="multipart/form-data" method="post" action="backup_restore.php">
 
-			<dl class="dl-horizontal">
+			<dl class="dl-horizontal dashboard-form">
 				<dt>Import database from CSV:</dt>
 				<dd>
 					<button type="button" id="upload-csv-btn" class="btn btn-default">
@@ -143,7 +177,6 @@ function import_to_database($path, $dbName)
 					</button>
 					<input id="upload-csv-file" name="zip_file" type="file" accept="application/zip"
 						   style="visibility: hidden"/>
-					<?php echo '<input id="sn-key" class="hidden_input" name="snKey" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
 				</dd>
 				<dt></dt>
 				<dd>
@@ -163,6 +196,7 @@ function import_to_database($path, $dbName)
 			</dl>
 		</form>
 	</div>
+
 	<div class="col-sm-2">
 		<img id="db-img" class="pull-right" src="img/db.png" alt="Database"/>
 	</div>

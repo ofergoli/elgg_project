@@ -10,7 +10,7 @@ $(function () {
 			}
 		},
 		title: {
-			text: 'File transfer by group (last 7 days)'
+			text: 'Posts made by group (last 7 days)'
 		},
 		tooltip: {
 			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -92,7 +92,7 @@ $(function () {
 			type: 'column'
 		},
 		title: {
-			text: 'Top posts made in groups'
+			text: 'File transfer by groups'
 		},
 		xAxis: {
 			categories: ['BI', 'Physics', 'C Programming', 'Visual Programming', 'Introduction to Information Systems']
@@ -100,7 +100,7 @@ $(function () {
 		yAxis: {
 			min: 0,
 			title: {
-				text: 'Number of posts made'
+				text: 'File Transfers'
 			},
 			stackLabels: {
 				enabled: true,
@@ -141,10 +141,10 @@ $(function () {
 			}
 		},
 		series: [{
-			name: 'Students',
+			name: 'Download',
 			data: [5, 3, 4, 7, 2]
 		}, {
-			name: 'Professors',
+			name: 'Upload',
 			data: [2, 2, 3, 2, 1]
 		}]
 	});
