@@ -24,62 +24,49 @@
 			<div class="panel-body">
 				<div class="list-group">
 					<a href="#" class="list-group-item">
-						<i class="fa fa-comment fa-fw"></i> New User Were Added
+						<i class="fa fa-user fa-fw"></i> New User Was Added
                         <span class="pull-right text-muted small">
                             <em>4 minutes ago</em>
                         </span>
 					</a>
 					<a href="#" class="list-group-item">
-						<i class="fa fa-twitter fa-fw"></i> 3 New Profiles Were Added
+						<i class="fa fa-group fa-fw"></i> 3 New Groups Were Added
                         <span class="pull-right text-muted small">
                             <em>12 minutes ago</em>
                         </span>
 					</a>
 					<a href="#" class="list-group-item">
-						<i class="fa fa-envelope fa-fw"></i> 2 New Users Were Added
+						<i class="fa fa-user fa-fw"></i> 2 New Users Were Added
                         <span class="pull-right text-muted small">
                             <em>27 minutes ago</em>
                         </span>
 					</a>
 					<a href="#" class="list-group-item">
-						<i class="fa fa-tasks fa-fw"></i> New Feature Available
+						<i class="fa fa-rss fa-fw"></i> New Blogpost Was Added
                         <span class="pull-right text-muted small">
                             <em>43 minutes ago</em>
                         </span>
 					</a>
 					<a href="#" class="list-group-item">
-						<i class="fa fa-upload fa-fw"></i> Server Rebooted
-                        <span class="pull-right text-muted small">
-                            <em>11:32 AM</em>
-                        </span>
-					</a>
-					<a href="#" class="list-group-item">
-						<i class="fa fa-bolt fa-fw"></i> New Profile Were Added
+						<i class="fa fa-file fa-fw"></i> 3 New Files Uploaded
                         <span class="pull-right text-muted small">
                             <em>11:13 AM</em>
                         </span>
 					</a>
 					<a href="#" class="list-group-item">
-						<i class="fa fa-warning fa-fw"></i> New User Were Added
+						<i class="fa fa-user fa-fw"></i> New User Was Added
                         <span class="pull-right text-muted small">
                             <em>10:57 AM</em>
                         </span>
 					</a>
 					<a href="#" class="list-group-item">
-						<i class="fa fa-shopping-cart fa-fw"></i> 2 New Features Available
-                        <span class="pull-right text-muted small">
-                            <em>9:49 AM</em>
-                        </span>
-					</a>
-					<a href="#" class="list-group-item">
-						<i class="fa fa-money fa-fw"></i> New Profile Were Added
+						<i class="fa fa-group fa-fw"></i> 3 New Groups Were Added
                         <span class="pull-right text-muted small">
                             <em>Yesterday</em>
                         </span>
 					</a>
 				</div>
 				<!-- /.list-group -->
-				<a href="#" class="btn btn-default btn-block">View All Alerts</a>
 			</div>
 			<!-- /.panel-body -->
 		</div>
@@ -91,7 +78,7 @@
 	<div class="col-lg-7">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				Profile Usage
+				Groups Usage
 			</div>
 			<div id="profiles_use">
 			</div>

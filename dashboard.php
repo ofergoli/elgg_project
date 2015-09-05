@@ -65,7 +65,7 @@ include_once('body_header.php');
 					</div>
 					<div role="tabpanel" class="tab-pane" id="user-management">
 						<div class="content-box tab-content">
-
+							<?php require_once('user_management.php'); ?>
 						</div>
 					</div>
 				</div>
