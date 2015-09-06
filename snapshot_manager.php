@@ -26,6 +26,22 @@ if (isset($_GET['sn'])) {
 				</div>
 			</div>
 			<div class="row">
+				<div class="col-sm-2 col-sm-offset-1">
+					<label>Temp Username:</label>
+				</div>
+				<div class="col-sm-6">
+					<input type="text" id="view-snapshot-username" style="height: 28px;">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-2 col-sm-offset-1">
+					<label>Temp Password:</label>
+				</div>
+				<div class="col-sm-6">
+					<input type="password" id="view-snapshot-password" style="height: 28px;">
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-sm-offset-3 col-sm-9">
 					<button id="view-snapshot-btn" class="btn btn-default">
 						View
@@ -35,8 +51,7 @@ if (isset($_GET['sn'])) {
 			<div class="row">
 				<div class="col-sm-9 col-sm-offset-3">
 				<p>
-					You can view a snapshot of previous state of the network. <br/>
-					Please choose a date and then press the View button.
+					Choosing the 'view snapshot' option will create a new social network and the import the SQL dump file from the requested snapshot date.
 				</p>
 				</div>
 			</div>
