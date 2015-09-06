@@ -2,9 +2,11 @@
 	var csvDownloadBtn = $('#csv-download').hide(),
 		csvImportBtn = $('#csv-import-btn').hide(),
 		sqlDownloadBtn = $('#sql-download').hide(),
+		sqlImportBtn = $('#sql-import-btn').hide(),
 		overrideDataCb = $('#override-data-cb').hide(),
 		snKey = $('input#sn-key').val(),
-		inputFile = $('#upload-csv-file'),
+		csvInputFile = $('#upload-csv-file'),
+		sqlInputFile = $('#upload-sql-file'),
 		viewSnapshotButton = $('#view-snapshot-btn'),
 		loadSnapshotButton = $('#load-snapshot-btn'),
 		viewDatepicker = $('#view-datepicker'),
@@ -26,8 +28,27 @@
 		});
 	});
 
+	$('button#export-sql-btn').on('click', function () {
+		sqlDownloadBtn.hide();
+		var spinner = $('#sql-download-spinner').show();
+		$.post('export_sql.php', {
+			dbName: snKey
+		}, function (data) {
+			var result = JSON.parse(data);
+			if(!result.success) {
+				alert("An error has occured while trying to create SQL dump file");
+			}
+			else {
+				sqlDownloadBtn.attr('href', result.url)
+					.attr('download', result.filename)
+					.show();
+				spinner.hide();
+			}
+		});
+	});
+
 	$('#upload-csv-btn').on('click', function () {
-		inputFile.trigger('click')
+		csvInputFile.trigger('click')
 
 			.change(function (e) {
 				if (this.files.length > 0) {
@@ -36,6 +57,17 @@
 				}
 			});
 	});
+
+	$('#upload-sql-btn').on('click', function () {
+		sqlInputFile.trigger('click')
+			.change(function (e) {
+				if(this.files.length === 1) {
+					sqlImportBtn.show();
+				}
+			})
+	});
+
+
 
 	csvImportBtn.on('click', function () {
 		var data = new FormData();
@@ -49,8 +81,25 @@
 			type: 'POST',
 			contentType: false,
 			processData: false,
-			success: function () {
-				alert("Successfully imported data to social network");
+			success: function (response) {
+				alert(JSON.parse(response));
+			}
+		});
+	});
+
+	sqlImportBtn.on('click', function () {
+		var data = new FormData();
+		data.append('sql_file', $('#upload-sql-file')[0].files[0]);
+		data.append('snKey', $('#sn-key').val());
+		$.ajax({
+			url: 'import_sql.php',
+			data: data,
+			cache: false,
+			type: 'POST',
+			contentType: false,
+			processData: false,
+			success: function (response) {
+				alert(JSON.parse(response).message);
 			}
 		});
 	});

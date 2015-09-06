@@ -28,12 +28,12 @@ if (isset($_FILES["zip_file"])) {
 	}
 
 
-	$target_path = getcwd() . "/tmp/upload/" . $filename;  // change this to the correct site path
+	$target_path = getcwd() . "/tmp/upload/zip/" . $filename;  // change this to the correct site path
 	if (move_uploaded_file($source, $target_path)) {
 		$zip = new ZipArchive();
 		$x = $zip->open($target_path);
 		if ($x === true) {
-			$folder_path = getcwd() . "/tmp/upload/" . substr($filename, 0, strlen($filename) - 4);
+			$folder_path = getcwd() . "/tmp/upload/zip/" . substr($filename, 0, strlen($filename) - 4);
 			$zip->extractTo($folder_path); // change this to the correct site path
 			$zip->close();
 
@@ -50,7 +50,6 @@ if (isset($_FILES["zip_file"])) {
 	exit;
 }
 
-
 if (isset($_POST['dbName'])) {
 	if (isset($_POST['zipFile'])) {
 		echo json_encode($_POST['zipFile']);
@@ -59,6 +58,7 @@ if (isset($_POST['dbName'])) {
 		$path = DataQueries::GetAllTables($_POST['dbName']);
 		$result = new stdClass();
 		$result->filename = basename($path);
+
 		$result->url = $Url . "/" . create_zip($path);
 		echo json_encode($result);
 		exit;
@@ -67,6 +67,7 @@ if (isset($_POST['dbName'])) {
 
 function create_zip($path)
 {
+
 	$rootPath = realpath($path);
 	$zip = new ZipArchive();
 	$zip->open($path . '.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
@@ -97,6 +98,7 @@ function import_to_database($path, $dbName)
 		if ($file) {
 			$lines = array();
 			while ($line = fgets($file)) {
+				echo $line;
 				array_push($lines, "'" . str_replace(",", "','", $line) . "'");
 			}
 			DataQueries::ReplaceIntoTable($dbName, $table_name, $lines);
@@ -150,14 +152,14 @@ function import_to_database($path, $dbName)
 			</div>
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-6">
-					<h3><i class="fa fa-spinner fa-pulse"></i></h3>
+					<h3><i id="sql-download-spinner" class="fa fa-spinner fa-pulse"></i></h3>
 					<a id="sql-download" class="btn btn-default" href="" download="File">Download SQL dump</a>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-6">
 					<p>
-						Export the database to SQL dump file
+						Export the database to SQL dump file. This option is recommended if you only need to download a backup for the database and do not need to edit the data
 					</p>
 				</div>
 			</div>
@@ -168,32 +170,70 @@ function import_to_database($path, $dbName)
 			Import Database
 		</legend>
 		<form id="upload-zip" enctype="multipart/form-data" method="post" action="backup_restore.php">
-
-			<dl class="dl-horizontal dashboard-form">
-				<dt>Import database from CSV:</dt>
-				<dd>
-					<button type="button" id="upload-csv-btn" class="btn btn-default">
-						Upload CSV files
-					</button>
-					<input id="upload-csv-file" name="zip_file" type="file" accept="application/zip"
-						   style="visibility: hidden"/>
-				</dd>
-				<dt></dt>
-				<dd>
-					<label id="override-data-cb">
-						<input name="override_data" type="checkbox"/>
-						Override existing data
-					</label>
-				</dd>
-				<dt></dt>
-				<dd>
-					<!-- <h3><i class="fa fa-spinner fa-pulse"></i></h3>-->
-					<button type="button" id="csv-import-btn" class="btn btn-default" href="">
-						<i class="glyphicon glyphicon-import"></i>
-						Import from CSV
-					</button>
-				</dd>
-			</dl>
+			<div class="dashboard-form">
+				<div class="row">
+					<div class="col-sm-5 col-sm-offset-1">
+						<label>Import from CSV:</label>
+					</div>
+					<div class="col-sm-6">
+						<button type="button" id="upload-csv-btn" class="btn btn-default">
+							Upload CSV files
+						</button>
+						<input id="upload-csv-file" name="zip_file" type="file" accept="application/zip"
+							   style="visibility: hidden"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-offset-6 col-sm-6">
+						<p>Import data from CSV files containing database table data. Note that the CSV files structure should be the same as the export CSV output</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-offset-6 col-sm-6">
+						<button type="button" id="csv-import-btn" class="btn btn-default" href="">
+							<i class="glyphicon glyphicon-import"></i>
+							Import from CSV
+						</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 col-sm-offset-6">
+						<label id="override-data-cb">
+							<input name="override_data" type="checkbox"/>
+							Override existing data
+						</label>
+					</div>
+				</div>
+			</div>
+		</form>
+		<form id="upload-sql" enctype="multipart/form-data" method="post" action="backup_restore.php">
+			<div class="dashboard-form">
+				<div class="row">
+					<div class="col-sm-5 col-sm-offset-1">
+						<label>Import from SQL dump:</label>
+					</div>
+					<div class="col-sm-6">
+						<button type="button" id="upload-sql-btn" class="btn btn-default">
+							Upload SQL file
+						</button>
+						<input id="upload-sql-file" name="sql_file" type="file" accept="*.sql"
+							   style="visibility: hidden"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-offset-6 col-sm-6">
+						<p>Import data from CSV files containing database table data. Note that the CSV files structure should be the same as the export CSV output</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-offset-6 col-sm-6">
+						<button type="button" id="sql-import-btn" class="btn btn-default" href="">
+							<i class="glyphicon glyphicon-import"></i>
+							Import from SQL
+						</button>
+					</div>
+				</div>
+			</div>
 		</form>
 	</div>
 

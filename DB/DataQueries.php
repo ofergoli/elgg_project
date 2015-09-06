@@ -132,7 +132,7 @@ class DataQueries
 	{
 		$query = "SHOW TABLES";
 		$tables = AdoHelper::ExecuteDataSet($dbName, $query, null);
-		$path = "tmp/" . $dbName;
+		$path = "tmp/download/zip/" . $dbName;
 		foreach ($tables as $table) {
 			$table_name = $table[array_keys($table)[0]];
 			$select = "SELECT * FROM " . $table_name;
