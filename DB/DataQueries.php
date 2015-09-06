@@ -158,5 +158,20 @@ class DataQueries
 	{
 		$query = "SHOW ";
 	}
+
+	public static function GetNetworkGroups($networkKey)
+	{
+		$query = "SELECT * FROM elgg_groups_entity";
+		return AdoHelper::ExecuteDataSet($networkKey, $query, null);
+	}
+
+	public static function GetUsersFromGroup($dbName, $groupId)
+	{
+		$query = "SELECT email FROM elgg_users_entity AS T1 " .
+			"JOIN (SELECT guid_one FROM elgg_entity_relationships WHERE relationship='member' AND guid_one=?) AS T2 " .
+			"ON T1.guid = T2.guid_one";
+		$params = array($groupId);
+		return AdoHelper::ExecuteDataSet($dbName, $query, $params);
+	}
 }
 

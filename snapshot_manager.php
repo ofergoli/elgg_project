@@ -44,15 +44,16 @@ if (isset($_GET['sn'])) {
 			<div class="row">
 				<div class="col-sm-offset-3 col-sm-9">
 					<button id="view-snapshot-btn" class="btn btn-default">
-						View
+						View Snapshot
 					</button>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-9 col-sm-offset-3">
-				<p>
-					Choosing the 'view snapshot' option will create a new social network and the import the SQL dump file from the requested snapshot date.
-				</p>
+					<p>
+						Choosing the 'view snapshot' option will create a new social network and the import the SQL dump
+						file from the requested snapshot date.
+					</p>
 				</div>
 			</div>
 		</div>
@@ -65,24 +66,28 @@ if (isset($_GET['sn'])) {
 		</div>
 		<div class="dashboard-form">
 			<div class="row">
-				<dt>Date:</dt>
-				<dd>
+				<div class="col-sm-offset-1 col-sm-2">
+					<label>Date:</label>
+				</div>
+				<div class="col-sm-9">
 					<input type="date" id="load-datepicker" style="height: 28px;">
-				</dd>
-				<dt style="padding-top: 15px;">Snapshot:</dt>
-				<dd style="padding-top: 15px;">
-					<?php echo '<input id="sn-key" class="hidden_input" name="snKey" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
-					<button id="load-snapshot-btn" class="btn btn-default btn-xs">
-						<!--						<i class="glyphicon glyphicon-export"></i>-->
-						Load
-					</button>
-				</dd>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="well well-sm">
-				You can Import a snapshot of previous state of the network. <br/>
-				Please choose a date and then press the Load button.
+			<div class="row">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button id="load-snapshot-btn" class="btn btn-default">
+						<!--						<i class="glyphicon glyphicon-export"></i>-->
+						Load Snapshot
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-9 col-sm-offset-3">
+					<h4 style="color: red">Warning!</h4>
+					<p>
+						This option will erase all current data on the social network database and restore the data to the requested snapshot date
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
