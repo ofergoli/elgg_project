@@ -112,7 +112,7 @@ function import_to_database($path, $dbName)
 		<legend>
 			Export Database
 		</legend>
-		<div class="dl-horizontal dashboard-form">
+		<div class="dashboard-form">
 			<div class="row">
 				<div class="col-sm-5 col-sm-offset-1">
 					<label>Export to CSV:</label>

@@ -8,6 +8,7 @@ if (isset($_GET['sn'])) {
 ?>
 
 
+<?php echo '<input id="sn-key" class="hidden_input" name="snKey" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
 <div class="row">
 	<div class="col-md-5">
 		<div class="row">
@@ -15,25 +16,29 @@ if (isset($_GET['sn'])) {
 				View Snapshot
 			</legend>
 		</div>
-		<div class="row">
-			<dl class="dl-horizontal">
-				<dt>Date:</dt>
-				<dd>
+		<div class="dashboard-form">
+			<div class="row">
+				<div class="col-sm-2 col-sm-offset-1">
+					<label>Date:</label>
+				</div>
+				<div class="col-sm-6">
 					<input type="date" id="view-datepicker" style="height: 28px;">
-				</dd>
-				<dt style="padding-top: 15px;">Snapshot:</dt>
-				<dd style="padding-top: 15px;">
-					<?php echo '<input id="sn-key" class="hidden_input" name="snKey" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
-					<button id="view-snapshot-btn" class="btn btn-default btn-xs">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button id="view-snapshot-btn" class="btn btn-default">
 						View
 					</button>
-				</dd>
-			</dl>
-		</div>
-		<div class="row">
-			<div class="well well-sm">
-				You can view a snapshot of previous state of the network. <br/>
-				Please choose a date and then press the View button.
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-9 col-sm-offset-3">
+				<p>
+					You can view a snapshot of previous state of the network. <br/>
+					Please choose a date and then press the View button.
+				</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -43,8 +48,8 @@ if (isset($_GET['sn'])) {
 				Load Snapshot
 			</legend>
 		</div>
-		<div class="row">
-			<dl class="dl-horizontal">
+		<div class="dashboard-form">
+			<div class="row">
 				<dt>Date:</dt>
 				<dd>
 					<input type="date" id="load-datepicker" style="height: 28px;">
@@ -57,7 +62,7 @@ if (isset($_GET['sn'])) {
 						Load
 					</button>
 				</dd>
-			</dl>
+			</div>
 		</div>
 		<div class="row">
 			<div class="well well-sm">

@@ -772,7 +772,6 @@ body {
 	padding: inherit;
 }
 
-.dashboard-form dd, .dashboard-form dt{
-    min-height: 10px;
-    
+.dashboard-form .row{
+    margin-top: 5px;
 }
