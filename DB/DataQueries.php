@@ -70,6 +70,13 @@ class DataQueries
 		return AdoHelper::ExecuteDataSet("bgunet_db", $query, $parameters);
 	}
 
+	public static function GetAllNetworks()
+	{
+		$query = "SELECT nid FROM social_networks";
+
+		return AdoHelper::ExecuteDataSet("bgunet_db", $query, null);
+	}
+
 	public static function SetNetwork($socialKey, $username, $networkName, $url)
 	{
 		$query = "INSERT INTO social_networks(nid, uid, name, url)
@@ -125,7 +132,7 @@ class DataQueries
 	{
 		$query = "SHOW TABLES";
 		$tables = AdoHelper::ExecuteDataSet($dbName, $query, null);
-		$path = "tmp/" . $dbName;
+		$path = "tmp/download/zip/" . $dbName;
 		foreach ($tables as $table) {
 			$table_name = $table[array_keys($table)[0]];
 			$select = "SELECT * FROM " . $table_name;
@@ -135,8 +142,9 @@ class DataQueries
 		return $path;
 	}
 
-	public static function ReplaceIntoTable($dbName, $tableName, $valuesArray) {
-		if(count($valuesArray) > 0) {
+	public static function ReplaceIntoTable($dbName, $tableName, $valuesArray)
+	{
+		if (count($valuesArray) > 0) {
 			$query = "REPLACE INTO " . $tableName . " VALUES";
 			foreach ($valuesArray as $values) {
 				$query .= "(" . $values . "), ";
@@ -144,6 +152,52 @@ class DataQueries
 			$query = substr($query, 0, -2) . ";";
 			AdoHelper::ExecuteMultiQuery($dbName, $query);
 		}
+	}
+
+	public static function ShowAllDatabases()
+	{
+		$query = "SHOW ";
+	}
+
+	public static function GetNetworkGroups($networkKey)
+	{
+		$query = "SELECT * FROM elgg_groups_entity";
+		return AdoHelper::ExecuteDataSet($networkKey, $query, null);
+	}
+
+	public static function GetUsersFromGroup($dbName, $groupId)
+	{
+		$query = "SELECT email FROM elgg_users_entity AS T1 " .
+			"JOIN (SELECT guid_one FROM elgg_entity_relationships WHERE relationship='member' AND guid_two='" . $groupId . "') AS T2 " .
+			"ON T1.guid = T2.guid_one";
+		return AdoHelper::ExecuteDataSet($dbName, $query, null);
+	}
+
+	public static function GetUsersStats($dbName)
+	{
+		$query = "SELECT DATE_FORMAT((FROM_UNIXTIME(ts)), '%e/%m') AS date, COUNT(*) AS users_count " .
+			"FROM elgg_users_sessions " .
+			"GROUP BY DATE(FROM_UNIXTIME(ts)) " .
+			"ORDER BY date DESC LIMIT 7";
+		return AdoHelper::ExecuteDataSet($dbName, $query, null);
+	}
+
+	public static function GetGroupsStats($dbName)
+	{
+		$query = "SELECT t2.name AS group_name, COUNT(*) AS posts " .
+			"FROM elgg_entities AS t1 JOIN elgg_groups_entity AS t2 " .
+			"ON t1.container_guid = t2.guid GROUP BY container_guid";
+		return AdoHelper::ExecuteDataSet($dbName, $query, null);
+	}
+
+	public static function GetFilesStats($dbName)
+	{
+		$query = "SELECT name AS group_name, COUNT(*) AS files FROM elgg_groups_entity AS t1 JOIN" .
+					"(SELECT * FROM 365c6a7a6afd7fe3632e47714370527d.elgg_entities" .
+					"WHERE subtype = 2) AS t2" .
+					"ON t1.guid = t2.container_guid" .
+					"GROUP BY container_guid";
+		return AdoHelper::ExecuteDataSet($dbName, $query, null);
 	}
 }
 

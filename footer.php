@@ -12,7 +12,8 @@
 <script type="text/javascript" src="js/updateUser.js"></script>
 <script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>
 <script type="text/javascript" src="js/highcharts.js"></script>
-<script src="js/dashboard.js"></script>
+<script type="text/javascript" src="js/dashboard.js"></script>
 <script type="text/javascript" src="js/statistics.js"></script>
+<script type="text/javascript" src="js/user-management.js"></script>
 </body>
 </html>

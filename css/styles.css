@@ -623,7 +623,7 @@ body {
    .header .form{
       margin:10px auto;
    }
-   .sidebar, content-box{
+   .sidebar, .content-box{
       margin-bottom:30px;
       width:100%;
       float:none;
@@ -770,4 +770,12 @@ body {
 
 .tab-content .row {
 	padding: inherit;
+}
+
+.dashboard-form .row{
+    margin-top: 5px;
+}
+
+#users-img {
+    height: 110px;
 }

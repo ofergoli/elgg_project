@@ -41,12 +41,6 @@ include_once('body_header.php');
 							<a href="#user-management" aria-controls="user-management" role="tab" data-toggle="tab">User
 								Management</a>
 						</li>
-
-
-<!--						<li role="presentation">-->
-<!--							<a href="#file-validation" aria-controls="file-validation" role="tab" data-toggle="tab">File-->
-<!--								Validation</a>-->
-<!--						</li>-->
 					</ul>
 				</div>
 				<div class="tab-content">
@@ -71,14 +65,9 @@ include_once('body_header.php');
 					</div>
 					<div role="tabpanel" class="tab-pane" id="user-management">
 						<div class="content-box tab-content">
-
+							<?php require_once('user_management.php'); ?>
 						</div>
 					</div>
-<!--					<div role="tabpanel" class="tab-pane" id="file-validation">-->
-<!--						<div class="content-box tab-content">-->
-<!---->
-<!--						</div>-->
-<!--					</div>-->
 				</div>
 			</div>
 		</div>

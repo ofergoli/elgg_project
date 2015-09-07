@@ -23,7 +23,7 @@ class MailService {
         $headers = 'From: BGU.NET.Service@gmail.com' . "\r\n" .
                    'Reply-To: BGU.NET.Service@gmail.com' . "\r\n" .
                     'X-Mailer: PHP/' . phpversion();
-
+        echo $address;
         mail($address,$subject,$message,$headers);
     }
 
