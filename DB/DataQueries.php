@@ -185,8 +185,18 @@ class DataQueries
 	public static function GetGroupsStats($dbName)
 	{
 		$query = "SELECT t2.name AS group_name, COUNT(*) AS posts " .
-					"FROM elgg_entities AS t1 JOIN elgg_groups_entity AS t2 ".
-					"ON t1.container_guid = t2.guid GROUP BY container_guid";
+			"FROM elgg_entities AS t1 JOIN elgg_groups_entity AS t2 " .
+			"ON t1.container_guid = t2.guid GROUP BY container_guid";
+		return AdoHelper::ExecuteDataSet($dbName, $query, null);
+	}
+
+	public static function GetFilesStats($dbName)
+	{
+		$query = "SELECT name AS group_name, COUNT(*) AS files FROM elgg_groups_entity AS t1 JOIN" .
+					"(SELECT * FROM 365c6a7a6afd7fe3632e47714370527d.elgg_entities" .
+					"WHERE subtype = 2) AS t2" .
+					"ON t1.guid = t2.container_guid" .
+					"GROUP BY container_guid";
 		return AdoHelper::ExecuteDataSet($dbName, $query, null);
 	}
 }
