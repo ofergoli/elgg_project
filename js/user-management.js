@@ -16,7 +16,11 @@ $(function () {
 		$.ajax({
 			url: "experiments_invitations.php",
 			type: "POST",
-			data: postData
+			data: postData,
+			success: function (response) {
+				var result = JSON.parse(response);
+				alert(result.message);
+			}
 		});
 
 	});

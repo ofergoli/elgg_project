@@ -10,9 +10,25 @@ $result["success"] = false;
 if(isset($_POST["snKey"]) && isset($_POST["groups"]) && isset($_POST["emailTitle"]) && isset($_POST["emailContent"])) {
 	$snKey = $_POST["snKey"];
 	$groups = $_POST["groups"];
-	$users = array();
+	$emailTitle = $_POST["emailTitle"];
+	$emailContent = $_POST["emailContent"];
+	$emails = array();
 	foreach($groups as $group) {
 		$groupUsers = DataQueries::GetUsersFromGroup($snKey, $group);
-		echo $groupUsers["email"];
+		foreach($groupUsers as $user) {
+			if(!in_array($user["email"], $emails)) {
+				array_push($emails, $user["email"]);
+			}
+		}
 	}
+
+	$mailService = new MailService();
+	foreach($emails as $email) {
+		$mailService->Send($email, $emailTitle, $emailContent);
+	}
+
+	$result["message"] = "Successfully sent invitations to the selected groups' members";
+	$result["success"] = true;
 }
+
+echo json_encode($result);
