@@ -168,8 +168,25 @@ class DataQueries
 	public static function GetUsersFromGroup($dbName, $groupId)
 	{
 		$query = "SELECT email FROM elgg_users_entity AS T1 " .
-			"JOIN (SELECT guid_one FROM elgg_entity_relationships WHERE relationship='member' AND guid_two='" . $groupId ."') AS T2 " .
+			"JOIN (SELECT guid_one FROM elgg_entity_relationships WHERE relationship='member' AND guid_two='" . $groupId . "') AS T2 " .
 			"ON T1.guid = T2.guid_one";
+		return AdoHelper::ExecuteDataSet($dbName, $query, null);
+	}
+
+	public static function GetUsersStats($dbName)
+	{
+		$query = "SELECT DATE_FORMAT((FROM_UNIXTIME(ts)), '%e/%m') AS date, COUNT(*) AS users_count " .
+			"FROM elgg_users_sessions " .
+			"GROUP BY DATE(FROM_UNIXTIME(ts)) " .
+			"ORDER BY date DESC LIMIT 7";
+		return AdoHelper::ExecuteDataSet($dbName, $query, null);
+	}
+
+	public static function GetGroupsStats($dbName)
+	{
+		$query = "SELECT t2.name AS group_name, COUNT(*) AS posts " .
+					"FROM elgg_entities AS t1 JOIN elgg_groups_entity AS t2 ".
+					"ON t1.container_guid = t2.guid GROUP BY container_guid";
 		return AdoHelper::ExecuteDataSet($dbName, $query, null);
 	}
 }

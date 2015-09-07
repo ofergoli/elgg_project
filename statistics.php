@@ -1,3 +1,13 @@
+<?php
+if (isset($_GET['sn'])) {
+	$sn_key = $_GET['sn'];
+}
+
+?>
+
+<?php echo '<input id="sn-key" class="hidden_input" name="snKey" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
+
+
 <div class="row">
 	<div class="col-lg-8">
 		<div class="panel panel-default" style="height: 485px;">

@@ -1,86 +1,107 @@
 $(function () {
-	$('#file_type_pie').css({height: '400px'});
-	$('#file_type_pie').highcharts({
-		chart: {
-			type: 'pie',
-			options3d: {
-				enabled: true,
-				alpha: 45,
-				beta: 0
+	$.ajax({
+		type: 'GET',
+		url: 'get_groups_stats.php',
+		data: {snKey: $('#sn-key').val()},
+		success: function (response) {
+			var groupStats = JSON.parse(response);
+			var chartData = [];
+			if(groupStats && groupStats.length > 0) {
+				groupStats.forEach(function (groupStat) {
+					chartData.push([groupStat.groupName, parseFloat(groupStat.postsCount)]);
+				});
 			}
-		},
-		title: {
-			text: 'Posts made by group (last 7 days)'
-		},
-		tooltip: {
-			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-		},
-		plotOptions: {
-			pie: {
-				allowPointSelect: true,
-				cursor: 'pointer',
-				depth: 35,
-				dataLabels: {
-					enabled: true,
-					format: '{point.name}'
-				}
-			}
-		},
-		series: [{
-			type: 'pie',
-			name: 'Post percentage',
-			data: [
-				['Linear Algebra', 13.0],
-				['Advanced Programming', 31.0],
-				['Operating Systems', 36.0],
-				['Introduction to Databases', 15.0],
-				['Calculus', 5.0]
-			]
-		}]
+
+
+			$('#file_type_pie').css({height: '400px'});
+			$('#file_type_pie').highcharts({
+				chart: {
+					type: 'pie',
+					options3d: {
+						enabled: true,
+						alpha: 45,
+						beta: 0
+					}
+				},
+				title: {
+					text: 'Posts made by group'
+				},
+				tooltip: {
+					pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+				},
+				plotOptions: {
+					pie: {
+						allowPointSelect: true,
+						cursor: 'pointer',
+						depth: 35,
+						dataLabels: {
+							enabled: true,
+							format: '{point.name}'
+						}
+					}
+				},
+				series: [{
+					type: 'pie',
+					name: 'Post percentage',
+					data: chartData
+				}]
+			});
+		}
 	});
 });
 
 
 $(function () {
-	$('#users_amount_line').highcharts({
-		chart: {
-			type: 'line'
-		},
-		title: {
-			text: ''
-		},
-		subtitle: {
-			text: 'Number Of Users Usage'
-		},
-		xAxis: {
-			categories: ['25/8', '26/8', '27/8', '28/8', '29/8', '30/8', '31/8', '1/9', '2/9', '3/9', '4/9', '5/9']
-		},
-		yAxis: {
-			title: {
-				text: 'Users'
+	$.ajax({
+		type: 'GET',
+		url: 'get_users_stats.php',
+		data: {snKey: $('#sn-key').val()},
+		success: function (response) {
+			var stats = JSON.parse(response).reverse();
+			if(stats && stats.length > 1) {
+				var dates = [],
+					counts = [];
+				stats.forEach(function (stat) {
+					dates.push(stat.date);
+					counts.push(parseInt(stat.userCount));
+				});
+
+				debugger;
+				$('#users_amount_line').highcharts({
+					chart: {
+						type: 'line'
+					},
+					title: {
+						text: ''
+					},
+					subtitle: {
+						text: 'Number Of Users Usage'
+					},
+					xAxis: {
+						categories: dates
+					},
+					yAxis: {
+						title: {
+							text: 'Users'
+						}
+					},
+					plotOptions: {
+						line: {
+							dataLabels: {
+								enabled: true
+							},
+							enableMouseTracking: false
+						}
+					},
+					series: [
+						{
+							name: 'Students',
+							data: counts
+						}
+					]
+				});
 			}
-		},
-		plotOptions: {
-			line: {
-				dataLabels: {
-					enabled: true
-				},
-				enableMouseTracking: false
-			}
-		},
-		series: [
-			{
-				name: 'Students',
-				data: [7, 6, 9, 14, 18, 21, 25, 26, 23, 18, 13, 9]
-			},
-			{
-				name: 'Professors',
-				data: [3, 4, 5, 8, 11, 15, 17, 16, 14, 10, 6, 4]
-			},
-			{
-				name: 'Total',
-				data: [10, 10, 14, 22, 29, 36, 42, 42, 37, 28, 19, 13]
-			}]
+		}
 	});
 });
 
