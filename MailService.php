@@ -15,31 +15,31 @@
 //      Account:  "BGU.NET.Service@gmail.com".
 //      Password: "bguforever".
 
-class MailService {
+class MailService
+{
 
-    // Simple mail sender function.
-    function Send($address, $subject, $message)
-    {
-        $headers = 'From: BGU.NET.Service@gmail.com' . "\r\n" .
-                   'Reply-To: BGU.NET.Service@gmail.com' . "\r\n" .
-                    'X-Mailer: PHP/' . phpversion();
-        echo $address;
-        mail($address,$subject,$message,$headers);
-    }
+	// Simple mail sender function.
+	function Send($address, $subject, $message)
+	{
+		$headers = 'From: BGU.NET.Service@gmail.com' . "\r\n" .
+			'Reply-To: BGU.NET.Service@gmail.com' . "\r\n" .
+			'X-Mailer: PHP/' . phpversion();
 
-    // Invitations sender function that will iterate over addresses array and send
-    // to each address an invite.
-    function SendInvitations($addresses)
-    {
-        $_subject = "Subject Test";
-        $_message = "Message Test";
+		mail($address, $subject, $message, $headers);
+	}
 
-        foreach ( $addresses as $address )
-        {
-            self::Send($address,$_subject,$_message);
-        }
+	// Invitations sender function that will iterate over addresses array and send
+	// to each address an invite.
+	function SendInvitations($addresses)
+	{
+		$_subject = "Subject Test";
+		$_message = "Message Test";
 
-    }
+		foreach ($addresses as $address) {
+			self::Send($address, $_subject, $_message);
+		}
+
+	}
 }
 
 

@@ -193,11 +193,38 @@ class DataQueries
 	public static function GetFilesStats($dbName)
 	{
 		$query = "SELECT name AS group_name, COUNT(*) AS files FROM elgg_groups_entity AS t1 JOIN" .
-					"(SELECT * FROM 365c6a7a6afd7fe3632e47714370527d.elgg_entities" .
-					"WHERE subtype = 2) AS t2" .
-					"ON t1.guid = t2.container_guid" .
-					"GROUP BY container_guid";
+			"(SELECT * FROM 365c6a7a6afd7fe3632e47714370527d.elgg_entities" .
+			"WHERE subtype = 2) AS t2" .
+			"ON t1.guid = t2.container_guid" .
+			"GROUP BY container_guid";
 		return AdoHelper::ExecuteDataSet($dbName, $query, null);
+	}
+
+	public static function UpdateCopyDatabase($dbName, $oldDbName)
+	{
+		$query = "UPDATE elgg_datalists " .
+		"SET value = REPLACE(value, '" . $oldDbName . "', '" . $dbName .  "') " .
+		"WHERE name = 'path' OR name = 'dataroot'";
+		AdoHelper::ExecuteNonQuery($dbName, $query, null);
+
+		$query = "UPDATE elgg_sites_entity ".
+					"SET url = REPLACE(url, '" . $oldDbName . "', '" . $dbName . "') ".
+					"WHERE guid=1";
+		AdoHelper::ExecuteNonQuery($dbName, $query, null);
+
+		$query = "UPDATE elgg_metastrings SET string = REPLACE(string, '". $oldDbName . "', '". $dbName . "') " .
+					"WHERE id = ( ".
+   					"SELECT value_id ".
+					"FROM elgg_metadata ".
+   					"WHERE name_id = ( ".
+      					"SELECT * ".
+      					"FROM ( " .
+         					"SELECT id ".
+							"FROM elgg_metastrings ".
+							"WHERE string = 'filestore::dir_root'".
+						") as ms2 ".
+   					") LIMIT 1)";
+		AdoHelper::ExecuteNonQuery($dbName, $query, null);
 	}
 }
 

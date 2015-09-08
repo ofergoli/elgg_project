@@ -65,8 +65,6 @@ $(function () {
 					dates.push(stat.date);
 					counts.push(parseInt(stat.userCount));
 				});
-
-				debugger;
 				$('#users_amount_line').highcharts({
 					chart: {
 						type: 'line'

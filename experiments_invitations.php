@@ -7,6 +7,11 @@ include_once("DB/DataQueries.php");
 $result["message"] = "Failed to invite groups users";
 $result["success"] = false;
 
+error_reporting(-1);
+ini_set('display_errors', 'On');
+set_error_handler("var_dump");
+
+
 if(isset($_POST["snKey"]) && isset($_POST["groups"]) && isset($_POST["emailTitle"]) && isset($_POST["emailContent"])) {
 	$snKey = $_POST["snKey"];
 	$groups = $_POST["groups"];
@@ -27,8 +32,8 @@ if(isset($_POST["snKey"]) && isset($_POST["groups"]) && isset($_POST["emailTitle
 		$mailService->Send($email, $emailTitle, $emailContent);
 	}
 
-	$result["message"] = "Successfully sent invitations to the selected groups' members";
-	$result["success"] = true;
+//	$result["message"] = "Successfully sent invitations to the selected groups' members";
+//	$result["success"] = true;
 }
 
-echo json_encode($result);
+//echo json_encode($result);

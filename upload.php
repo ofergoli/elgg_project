@@ -31,7 +31,7 @@
                             $text.= "Use Your BGU username and password in order to login to the network \n"; 
                             $text.= "You are signed already to " . $group_name[0]['name'] . " Group \n\n";
                             $text.= "Link to " . $social_name[0]['name'] .  +" :" . $UrlToSocial;
-                            $MAIL->Send("ofergolib@gmail.com","Welcome to " . $social_name[0]['name'] . " Network",$text);
+                            $MAIL->Send($newUser["email"],"Welcome to " . $social_name[0]['name'] . " Network",$text);
                         }
                     }
                     return true;

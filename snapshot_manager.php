@@ -26,26 +26,21 @@ if (isset($_GET['sn'])) {
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-2 col-sm-offset-1">
-					<label>Temp Username:</label>
-				</div>
-				<div class="col-sm-6">
-					<input type="text" id="view-snapshot-username" style="height: 28px;">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-2 col-sm-offset-1">
-					<label>Temp Password:</label>
-				</div>
-				<div class="col-sm-6">
-					<input type="password" id="view-snapshot-password" style="height: 28px;">
-				</div>
-			</div>
-			<div class="row">
 				<div class="col-sm-offset-3 col-sm-9">
 					<button id="view-snapshot-btn" class="btn btn-default">
 						View Snapshot
 					</button>
+					<h3>
+						<i id="view-snapshot-spinner" class="fa fa-spinner fa-pulse"></i>
+					</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-offset-3 col-sm-9">
+					<h3>
+						<i id="view-snapshot-spinner" class="fa fa-spinner fa-pulse"></i>
+					</h3>
+					<a id="view-snapshot-link" class="btn btn-default">View Network Snapshot</a>
 				</div>
 			</div>
 			<div class="row">
@@ -84,8 +79,10 @@ if (isset($_GET['sn'])) {
 			<div class="row">
 				<div class="col-sm-9 col-sm-offset-3">
 					<h4 style="color: red">Warning!</h4>
+
 					<p>
-						This option will erase all current data on the social network database and restore the data to the requested snapshot date
+						This option will erase all current data on the social network database and restore the data to
+						the requested snapshot date
 					</p>
 				</div>
 			</div>

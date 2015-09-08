@@ -13,7 +13,7 @@ if (isset($_GET['sn'])) {
 
 
 <div class="row">
-	<div class="col-md-5">
+	<div class="col-md-10">
 		<div class="row">
 			<legend>
 				Send Experiment Invitations:
@@ -43,41 +43,36 @@ if (isset($_GET['sn'])) {
 					?>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<h4>Invitation Email:</h4>
-
-					<div class="row">
-						<div class="col-md-3">
-							<label for="email-title">Title:</label>
-						</div>
-						<div class="col-md-9">
-							<input type="text" id="email-title" placeholder="Email Title">
-						</div>
-					</div>
-					<div class="row" style="margin-top: 10px;">
-						<div class="col-md-3">
-							<label for="email-content">Content:</label>
-						</div>
-						<div class="col-md-9">
-						<textarea name="email-content" id="email-content" cols="20" rows="10"
-								  placeholder="Email Content"></textarea>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-offset-3 col-md-8">
-							<button id="send-inivitation-btn" class="btn btn-default btn-lg">Send Invitations</button>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	<div class="col-md-5">
 		<div class="row">
-			<legend>
-				Add Users
-			</legend>
+			<div class="col-md-12">
+				<h4>Invitation Email:</h4>
+
+				<div class="row">
+					<div class="col-md-3">
+						<label for="email-title">Subject:</label>
+					</div>
+					<div class="col-md-9">
+						<input type="text" id="email-title" placeholder="Email Subject">
+					</div>
+				</div>
+				<div class="row" style="margin-top: 10px;">
+					<div class="col-md-3">
+						<label for="email-content">Body:</label>
+					</div>
+					<div class="col-md-9">
+						<textarea name="email-content" id="email-content" cols="20" rows="10"
+								  placeholder="Email Body"></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-offset-3 col-md-8">
+						<button id="send-inivitation-btn" class="btn btn-default btn-lg">Send Invitations</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="col-md-2">
