@@ -6,7 +6,7 @@ $(function () {
 		success: function (response) {
 			var groupStats = JSON.parse(response);
 			var chartData = [];
-			if(groupStats && groupStats.length > 0) {
+			if (groupStats && groupStats.length > 0) {
 				groupStats.forEach(function (groupStat) {
 					chartData.push([groupStat.groupName, parseFloat(groupStat.postsCount)]);
 				});
@@ -58,7 +58,7 @@ $(function () {
 		data: {snKey: $('#sn-key').val()},
 		success: function (response) {
 			var stats = JSON.parse(response).reverse();
-			if(stats && stats.length > 1) {
+			if (stats && stats.length > 1) {
 				var dates = [],
 					counts = [];
 				stats.forEach(function (stat) {
@@ -73,7 +73,7 @@ $(function () {
 						text: ''
 					},
 					subtitle: {
-						text: 'Number Of Users Usage'
+						text: 'Users sessions'
 					},
 					xAxis: {
 						categories: dates
@@ -93,7 +93,7 @@ $(function () {
 					},
 					series: [
 						{
-							name: 'Students',
+							name: 'Users logins',
 							data: counts
 						}
 					]
@@ -166,5 +166,27 @@ $(function () {
 			name: 'Upload',
 			data: [2, 2, 3, 2, 1]
 		}]
+	});
+});
+
+$(function () {
+
+	$.ajax({
+		type: 'GET',
+		url: 'get_notifications.php',
+		data: {snKey: $('#sn-key').val()},
+		success: function (response) {
+			var notifications = JSON.parse(response);
+			var notificationsList = $('#notification-panel').find('.list-group');
+			notifications.forEach(function (notification) {
+				debugger;
+				notificationsList.append(
+					'<a href="#" class="list-group-item"><i class="fa fa-' + notification.type + '" fa-fw"></i> New ' + notification.type + ' was added'+
+					'<span class="pull-right text-muted small">' +
+					'<em>' + jQuery.timeago(new Date(notification.timeStamp)) + '</em>' +
+					'</span>' +
+					'</a>');
+			});
+		}
 	});
 });

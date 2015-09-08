@@ -15,5 +15,6 @@
 <script type="text/javascript" src="js/dashboard.js"></script>
 <script type="text/javascript" src="js/statistics.js"></script>
 <script type="text/javascript" src="js/user-management.js"></script>
+<script type="text/javascript" src="js/jquery.timeago.js"></script>
 </body>
 </html>

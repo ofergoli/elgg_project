@@ -193,7 +193,7 @@ class DataQueries
 	public static function GetFilesStats($dbName)
 	{
 		$query = "SELECT name AS group_name, COUNT(*) AS files FROM elgg_groups_entity AS t1 JOIN" .
-			"(SELECT * FROM 365c6a7a6afd7fe3632e47714370527d.elgg_entities" .
+			"(SELECT * FROM ". $dbName . ".elgg_entities" .
 			"WHERE subtype = 2) AS t2" .
 			"ON t1.guid = t2.container_guid" .
 			"GROUP BY container_guid";
@@ -225,6 +225,14 @@ class DataQueries
 						") as ms2 ".
    					") LIMIT 1)";
 		AdoHelper::ExecuteNonQuery($dbName, $query, null);
+	}
+
+	public static function GetNotifications($dbName) {
+		$query = "SELECT type, FROM_UNIXTIME(time_created) AS time_created FROM elgg_entities " .
+					"WHERE type IN ('user', 'group') " .
+					"ORDER BY time_created DESC LIMIT 10";
+
+		return AdoHelper::ExecuteDataSet($dbName, $query, null);
 	}
 }
 
