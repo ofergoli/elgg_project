@@ -4,8 +4,8 @@ include_once("utility.php");
 include_once("DB/AdoHelper.php");
 include_once("db_connection.php");
 
-$result["utl"] = "";
-$result["success"] = true;
+$result["url"] = "";
+$result["success"] = false;
 
 if(isset($_POST["dbName"])) {
 	$dbName = $_POST["dbName"];

@@ -98,7 +98,6 @@ function import_to_database($path, $dbName)
 		if ($file) {
 			$lines = array();
 			while ($line = fgets($file)) {
-				echo $line;
 				array_push($lines, "'" . str_replace(",", "','", $line) . "'");
 			}
 			DataQueries::ReplaceIntoTable($dbName, $table_name, $lines);
@@ -109,6 +108,7 @@ function import_to_database($path, $dbName)
 ?>
 
 <?php echo '<input id="sn-key" class="hidden_input" style="visibility: hidden;" value="' . $sn_key . '"/>'; ?>
+<?php include_once("modal.php"); ?>
 <div class="row">
 	<div class="col-sm-5">
 		<legend>
