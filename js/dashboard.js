@@ -10,7 +10,8 @@
 		viewSnapshotButton = $('#view-snapshot-btn'),
 		loadSnapshotButton = $('#load-snapshot-btn'),
 		viewDatepicker = $('#view-datepicker'),
-		loadDatepicker = $('#load-datepicker');
+		loadDatepicker = $('#load-datepicker'),
+		viewSnapshotLink = $('#view-snapshot-link').hide();
 
 	$('.fa-spinner').hide();
 
@@ -35,8 +36,8 @@
 			dbName: snKey
 		}, function (data) {
 			var result = JSON.parse(data);
-            console.log(result);
-			if(!result.success) {
+			console.log(result);
+			if (!result.success) {
 				alert("An error has occured while trying to create SQL dump file");
 			}
 			else {
@@ -60,115 +61,111 @@
 	});
 
 	$('#upload-sql-btn').on('click', function () {
- 		sqlInputFile.trigger('click')
+		sqlInputFile.trigger('click')
 			.change(function (e) {
-				if(this.files.length === 1) {
+				if (this.files.length === 1) {
 					sqlImportBtn.show();
 				}
 			})
 	});
 
 
-
 	csvImportBtn.on('click', function () {
-        modalDialog('Import CSV to database', 'This action will override all current data, are you sure you want to continue?', function () {
-            var data = new FormData();
-            data.append('zip_file', $('#upload-csv-file')[0].files[0]);
-            data.append('snKey', $('#sn-key').val());
-            data.append('overrideData', $('#override-data-cb input:checkbox').prop('checked'));
-            $.ajax({
-                url: 'backup_restore.php',
-                data: data,
-                cache: false,
-                type: 'POST',
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    alert(JSON.parse(response).message);
-                }
-            });
-        });
+		modalDialog('Import CSV to database', 'This action will override all current data, are you sure you want to continue?', function () {
+			var data = new FormData();
+			data.append('zip_file', $('#upload-csv-file')[0].files[0]);
+			data.append('snKey', $('#sn-key').val());
+			data.append('overrideData', $('#override-data-cb input:checkbox').prop('checked'));
+			$.ajax({
+				url: 'backup_restore.php',
+				data: data,
+				cache: false,
+				type: 'POST',
+				contentType: false,
+				processData: false,
+				success: function (response) {
+					alert(JSON.parse(response).message);
+				}
+			});
+		});
 	});
 
 	sqlImportBtn.on('click', function () {
-        modalDialog('Import SQL to database', 'This action will override all current data, are you sure you want to continue?', function () {
-            var data = new FormData();
-            data.append('sql_file', $('#upload-sql-file')[0].files[0]);
-            data.append('snKey', $('#sn-key').val());
-            $.ajax({
-                url: 'import_sql.php',
-                data: data,
-                cache: false,
-                type: 'POST',
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    alert(JSON.parse(response).message);
-                }
-            });
-        });
+		modalDialog('Import SQL to database', 'This action will override all current data, are you sure you want to continue?', function () {
+			var data = new FormData();
+			data.append('sql_file', $('#upload-sql-file')[0].files[0]);
+			data.append('snKey', $('#sn-key').val());
+			$.ajax({
+				url: 'import_sql.php',
+				data: data,
+				cache: false,
+				type: 'POST',
+				contentType: false,
+				processData: false,
+				success: function (response) {
+					alert(JSON.parse(response).message);
+				}
+			});
+		});
 	});
 
 	loadSnapshotButton.on('click', function () {
 		if (!loadDatepicker.val() || loadDatepicker.val() === '' || loadDatepicker.val().split('-').length !== 3) {
-			alert('Choose the date of snapshot you would like to load');
+			modalAlert('Input missing', 'Choose the date of snapshot you would like to load');
 		}
 		else {
-            modalDialog('Load snapshot to database', 'This action will restore the network to a previous date. All current data will be overridden, are you sure you want to continue?', function () {
-                var snapshotData = {
-                    snapshotFilename: convertDateToFilename(loadDatepicker.val()),
-                    snKey: $('#sn-key').val()
-                };
-                $.ajax({
-                    type: 'POST',
-                    data: snapshotData,
-                    url: 'load_snapshot.php',
-                    success: function (response) {
-                        alert(JSON.parse(response).message);
-                    },
-                    failure: function (error) {
-                        console.log(error);
-                    }
-                });
-            });
+			modalDialog('Load snapshot to database', 'This action will restore the network to a previous date. All current data will be overridden, are you sure you want to continue?', function () {
+				var snapshotData = {
+					snapshotFilename: convertDateToFilename(loadDatepicker.val()),
+					snKey: $('#sn-key').val()
+				};
+				$.ajax({
+					type: 'POST',
+					data: snapshotData,
+					url: 'load_snapshot.php',
+					success: function (response) {
+						alert(JSON.parse(response).message);
+					},
+					failure: function (error) {
+						console.log(error);
+					}
+				});
+			});
 		}
 	});
 
-    function modalDialog(title, dialogMessage, onConfirm) {
-        $('#dialog-message').find('.dialog-message').empty().append(dialogMessage);
-        $('#dialog-message').dialog({
-            modal: true,
-            title: title,
-            buttons: {
-                Cancel: function () {
-                    $(this).dialog("close");
-                },
-                OK: function () {
-                    onConfirm();
-                    $(this).dialog("close");
-                }
-            }
-        });
-    }
 
 	viewSnapshotButton.on('click', function () {
 		if (!viewDatepicker.val() || viewDatepicker.val() === '' || viewDatepicker.val().split('-').length !== 3) {
-			alert('Choose the date of snapshot you would like to view');
+			modalAlert('Input missing', 'Choose the date of snapshot you would like to view');
 		}
 		else {
+			var viewSnapshotSpinner = $('#view-snapshot-spinner').show();
 			var snapshotData = {
 				snapshotFilename: convertDateToFilename(viewDatepicker.val()),
 				snKey: $('#sn-key').val()
 			};
+			viewSnapshotLink.hide();
+			$(this).prop('disabled', true);
 			$.ajax({
 				type: 'POST',
 				data: snapshotData,
 				url: 'view_snapshot.php',
 				success: function (response) {
-					console.log(response);
+					var result = JSON.parse(response);
+					if (result.success) {
+						viewSnapshotSpinner.hide();
+						viewSnapshotLink.attr('href', result.url);
+						viewSnapshotLink.show();
+					}
+					else {
+						modalAlert('View Snapshot Error', 'An error occured when trying to view snapshot from previous date');
+					}
+					$(this).prop('disabled', false);
 				},
 				failure: function (error) {
 					console.log(error);
+					$(this).prop('disabled', false);
 				}
 			});
 
@@ -184,5 +181,36 @@
 		}
 		return asTokens[2] + '_' + asTokens[1] + '_' + asTokens[0] + '.sql';
 	}
+
+	function modalDialog(title, dialogMessage, onConfirm) {
+		$('#dialog-message').find('.dialog-message').empty().append(dialogMessage);
+		$('#dialog-message').dialog({
+			modal: true,
+			title: title,
+			buttons: {
+				Cancel: function () {
+					$(this).dialog("close");
+				},
+				OK: function () {
+					onConfirm();
+					$(this).dialog("close");
+				}
+			}
+		});
+	}
+
+	function modalAlert(title, alertMessage) {
+		$('#dialog-message').find('.dialog-message').empty().append(alertMessage);
+		$('#dialog-message').dialog({
+			modal: true,
+			title: title,
+			buttons: {
+				OK: function () {
+					$(this).dialog("close");
+				}
+			}
+		});
+	}
+
 
 })();

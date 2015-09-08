@@ -1,4 +1,4 @@
-<div id="dialog-message" title="Download complete">
+<div id="dialog-message" title="">
 	<p>
 
 	<div class="dialog-message">
